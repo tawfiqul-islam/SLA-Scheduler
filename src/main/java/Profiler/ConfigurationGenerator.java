@@ -1,5 +1,7 @@
 package Profiler;
 
+import Settings.Settings;
+
 import java.io.FileWriter;
 import java.io.IOException;
 

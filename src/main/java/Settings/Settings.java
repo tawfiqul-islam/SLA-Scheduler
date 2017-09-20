@@ -1,4 +1,4 @@
-package Profiler;
+package Settings;
 
 /*
  * Holds the settings for the Profiler 

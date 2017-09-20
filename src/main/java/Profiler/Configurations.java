@@ -1,5 +1,7 @@
 package Profiler;
 
+import Settings.Settings;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -157,7 +159,7 @@ public class Configurations implements Comparator<Configurations>{
 		for(int i=0;i<completionTime.size();i++)
 		{
 			avg+=completionTime.get(i)/1000;
-			if(i!=0&&(i+1)%Settings.repeatConfig==0)
+			if(i!=0&&(i+1)% Settings.repeatConfig==0)
 			{
 				System.out.println("avg Completion Time: "+avg/Settings.repeatConfig+"s");
 				avg=0;

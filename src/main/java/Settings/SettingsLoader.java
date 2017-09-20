@@ -1,9 +1,8 @@
-package Profiler;
+package Settings;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
+import java.lang.*;
+import java.io.*;
 
 /*
  * Loads the settings from the profiler configuration file
@@ -21,10 +20,11 @@ public class SettingsLoader {
 	try {
 
 		//specify properties file with full path... or only file name if it's in current directory
-		input = new FileInputStream("profiler.conf");
+		input = new FileInputStream("src/main/resources/profiler.ini");
 
 		// load a properties file
 		prop.load(input);
+
 
 		Settings.workerNumbers=Integer.parseInt(prop.getProperty("worker.numbers"));
 		Settings.workerCores=Integer.parseInt(prop.getProperty("worker.cores"));

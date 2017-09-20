@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import Settings.Settings;
 import org.apache.spark.launcher.SparkLauncher;
 
 /*
@@ -32,6 +33,7 @@ public class ProfilerDeployer {
 				    .addAppArgs(Settings.appArgs)
 				    .addAppArgs(Settings.outputPath+"/"+Integer.toString(outputIndex))
 				    .setMainClass(Settings.applicationClass).setMaster(Settings.sparkMaster).launch();
+
 			}
 			else
 			{
