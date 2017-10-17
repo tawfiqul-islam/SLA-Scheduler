@@ -1,5 +1,6 @@
 package Operator;
 
+import Cluster.Agent;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
@@ -17,12 +18,17 @@ public class HTTPAPI {
 
     public static void main(String[] args) {
 
-       JSONObject statusJSONObj = constructStatusJSON();
+       JSONObject statusJSONObj = constructStatusJSON(Constants.GET_HEALTH);
        ServerResponse serverResponseObj = statusHTTPPOST(statusJSONObj,"http://127.0.0.1:5050/api/v1");
        parseGetHealthResponse(serverResponseObj.responseString);
 
-       JSONArray reserveJSONObj = constructReservationJSON("r1",1.0,2048.0);
-       reservationHTTPPost(reserveJSONObj,"584c6500-6a5f-4a9e-8ac7-ddda16fe31a5-S0","http://127.0.0.1:5050/master/reserve");
+       JSONObject statusJSONObj2 = constructStatusJSON(Constants.GET_STATE);
+       ServerResponse serverResponseObj2 = statusHTTPPOST(statusJSONObj2,"http://127.0.0.1:5050/api/v1");
+       parseGetStateResponse(serverResponseObj2.responseString);
+       Util.printAgentList();
+       //System.out.println(serverResponseObj2.responseString);
+       //JSONArray reserveJSONObj = constructReservationJSON("r1",1.0,2048.0);
+       //reservationHTTPPost(reserveJSONObj,"584c6500-6a5f-4a9e-8ac7-ddda16fe31a5-S0","http://127.0.0.1:5050/master/reserve");
     }
 
     private static ServerResponse reservationHTTPPost(JSONArray obj, String agentId, String httpURI)
@@ -54,8 +60,7 @@ public class HTTPAPI {
                 response.close();
             }
 
-        }catch(Exception e)
-        {
+        }catch(Exception e) {
             e.printStackTrace();
         }
         serverResponseObj.responseString=outputStr;
@@ -126,10 +131,20 @@ public class HTTPAPI {
         }
         return resourceArray;
     }
-    private static JSONObject constructStatusJSON() {
+    private static JSONObject constructStatusJSON(int msgType) {
         JSONObject obj = new JSONObject();
+
         try {
-            obj.put("type", "GET_HEALTH");
+            switch(msgType)
+            {
+                case Constants.GET_HEALTH:
+                    obj.put("type", "GET_HEALTH");
+                    break;
+                case Constants.GET_STATE:
+                    obj.put("type", "GET_STATE");
+                    break;
+            }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -143,5 +158,49 @@ public class HTTPAPI {
             e.printStackTrace();
         }
         System.out.println(health);
+    }
+    private static void parseGetStateResponse(String responseStr){
+        JSONArray agents;
+        try {
+            agents = (JSONArray) new JSONObject(responseStr).getJSONObject("get_state").getJSONObject("get_agents").get("agents");
+
+            for(int i=0; i<agents.length();i++) {
+
+                Agent agentObj = new Agent();
+                agentObj.setAlive(agents.getJSONObject(i).getBoolean("active"));
+                agentObj.setId(agents.getJSONObject(i).getJSONObject("agent_info").getJSONObject("id").getString("value"));
+
+                JSONArray resources =agents.getJSONObject(i).getJSONObject("agent_info").getJSONArray("resources");
+                for(int j=0;j<resources.length();j++) {
+                    String resourceName=resources.getJSONObject(j).getString("name");
+
+                    switch(resourceName)
+                    {
+                        case "cpus":
+                            agentObj.setCpu(resources.getJSONObject(j).getJSONObject("scalar").getDouble("value"));
+                            break;
+                        case "mem":
+                            agentObj.setMem(resources.getJSONObject(j).getJSONObject("scalar").getDouble("value"));
+                            break;
+                        case "disk":
+                            agentObj.setDisk(resources.getJSONObject(j).getJSONObject("scalar").getDouble("value"));
+                            break;
+                        case "ports":
+                            JSONObject ports = resources.getJSONObject(j).getJSONObject("ranges").getJSONArray("range").getJSONObject(0);
+                            agentObj.setPortStart(ports.getInt("begin"));
+                            agentObj.setPortEnd(ports.getInt("end"));
+                            break;
+                    }
+                }
+
+                agentObj.setRegisteredTime(agents.getJSONObject(i).getJSONObject("registered_time").getLong("nanoseconds"));
+
+                Util.agentList.add(agentObj);
+
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,6 +1,6 @@
 package Operator;
 
-class ServerResponse {
-    int statusCode;
+public class ServerResponse {
     String responseString;
+    int statusCode;
 }
