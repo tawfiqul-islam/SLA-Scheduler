@@ -31,17 +31,20 @@ public class HTTPAPI {
        //reservationHTTPPost(reserveJSONObj,"584c6500-6a5f-4a9e-8ac7-ddda16fe31a5-S0","http://127.0.0.1:5050/master/reserve");
     }
 
-    private static ServerResponse reservationHTTPPost(JSONArray obj, String agentId, String httpURI)
-    {
+    private static ServerResponse reservationHTTPPost(JSONArray obj, String agentId, String httpURI) {
+
         String outputStr = "";
         ServerResponse serverResponseObj = new ServerResponse();
+
         try {
+
             CloseableHttpClient httpClient = HttpClients.createDefault();
             HttpPost post = new HttpPost(httpURI);
             List<NameValuePair> params = new ArrayList<>();
             params.add(new BasicNameValuePair("slaveId", agentId));
             params.add(new BasicNameValuePair("resources", obj.toString()));
             CloseableHttpResponse response = null;
+
             try {
                 post.setEntity(new UrlEncodedFormEntity(params));
                 post.setHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
@@ -56,20 +59,27 @@ public class HTTPAPI {
                 while ((tmpStr = br.readLine()) != null) {
                     outputStr += tmpStr;
                 }
-            } finally {
+
+            } catch(Exception e){
+                e.printStackTrace();
+            }finally {
                 response.close();
             }
 
         }catch(Exception e) {
             e.printStackTrace();
         }
+
         serverResponseObj.responseString=outputStr;
+
         return serverResponseObj;
     }
+
     private static ServerResponse statusHTTPPOST(JSONObject obj, String httpURI) {
 
         String outputStr = "";
         ServerResponse serverResponseObj = new ServerResponse();
+
         try {
 
             CloseableHttpClient httpClient = HttpClientBuilder.create().build();
@@ -96,7 +106,6 @@ public class HTTPAPI {
 
             httpClient.close();
 
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -106,6 +115,7 @@ public class HTTPAPI {
     }
 
     private static JSONArray constructReservationJSON(String role, Double cpu, Double mem) {
+
         JSONArray resourceArray = new JSONArray();
         JSONObject cpuObj = new JSONObject();
         JSONObject memObj = new JSONObject();
@@ -129,28 +139,35 @@ public class HTTPAPI {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return resourceArray;
     }
+
     private static JSONObject constructStatusJSON(int msgType) {
+
         JSONObject obj = new JSONObject();
 
         try {
-            switch(msgType)
-            {
+            switch(msgType) {
                 case Constants.GET_HEALTH:
                     obj.put("type", "GET_HEALTH");
                     break;
                 case Constants.GET_STATE:
                     obj.put("type", "GET_STATE");
                     break;
+                default:
+                    break;
             }
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         return obj;
     }
+
     private static void parseGetHealthResponse(String responseStr){
+
         Boolean health = null;
         try {
             health = (Boolean) new JSONObject(responseStr).getJSONObject("get_health").get("healthy");
@@ -159,8 +176,11 @@ public class HTTPAPI {
         }
         System.out.println(health);
     }
+
     private static void parseGetStateResponse(String responseStr){
+
         JSONArray agents;
+
         try {
             agents = (JSONArray) new JSONObject(responseStr).getJSONObject("get_state").getJSONObject("get_agents").get("agents");
 
@@ -174,8 +194,7 @@ public class HTTPAPI {
                 for(int j=0;j<resources.length();j++) {
                     String resourceName=resources.getJSONObject(j).getString("name");
 
-                    switch(resourceName)
-                    {
+                    switch(resourceName) {
                         case "cpus":
                             agentObj.setCpu(resources.getJSONObject(j).getJSONObject("scalar").getDouble("value"));
                             break;
@@ -190,13 +209,12 @@ public class HTTPAPI {
                             agentObj.setPortStart(ports.getInt("begin"));
                             agentObj.setPortEnd(ports.getInt("end"));
                             break;
+                        default:
+                            break;
                     }
                 }
-
                 agentObj.setRegisteredTime(agents.getJSONObject(i).getJSONObject("registered_time").getLong("nanoseconds"));
-
                 Util.agentList.add(agentObj);
-
             }
 
         } catch (JSONException e) {

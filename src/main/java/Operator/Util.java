@@ -5,6 +5,9 @@ import Cluster.Agent;
 import java.util.ArrayList;
 
 public class Util {
+
+    public static int jobHandlerPort=9066;
+    public static String schedulerIP="127.0.0.1";
     public static ArrayList<Agent> agentList= new ArrayList<Agent>();
 
     public static void printAgentList()

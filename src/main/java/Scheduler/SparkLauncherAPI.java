@@ -9,7 +9,7 @@ import org.apache.spark.launcher.SparkLauncher;
 
 import Settings.Settings;
 
-public class JobSubmitter {
+public class SparkLauncherAPI {
 
      void submit(String appClass,String cores, String memory, String coresMax, String mesosCons, String appJarPath, String inputPath, String outputPath, String appArgs) {
         Process pr = null;
