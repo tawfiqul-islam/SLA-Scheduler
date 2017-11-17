@@ -5,8 +5,9 @@ import java.util.ArrayList;
 public class Job {
 
     private String jobID;
+    private String role;
     //stats
-    private double arrivalTime;
+    private String arrivalTime;
     private double startTime;
     private double finishTime;
     private double totalPredictedTime;
@@ -29,6 +30,7 @@ public class Job {
     private String outputPath;
     private String appJarPath;
     private String mainClassName;
+    private String appArgs;
 
     public String getJobID() {
         return jobID;
@@ -38,11 +40,19 @@ public class Job {
         this.jobID = jobID;
     }
 
-    public double getArrivalTime() {
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getArrivalTime() {
         return arrivalTime;
     }
 
-    public void setArrivalTime(double arrivalTime) {
+    public void setArrivalTime(String arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 
@@ -180,5 +190,30 @@ public class Job {
 
     public void setMainClassName(String mainClassName) {
         this.mainClassName = mainClassName;
+    }
+
+    public String getAppArgs() {
+        return appArgs;
+    }
+
+    public void setAppArgs(String appArgs) {
+        this.appArgs = appArgs;
+    }
+
+    @Override
+    public String toString() {
+        return "Job{" +
+                "jobID='" + jobID + '\'' +
+                ", role='" + role + '\'' +
+                ", arrivalTime='" + arrivalTime + '\'' +
+                ", executors=" + executors +
+                ", coresPerExecutor=" + coresPerExecutor +
+                ", memPerExecutor=" + memPerExecutor +
+                ", inputPath='" + inputPath + '\'' +
+                ", outputPath='" + outputPath + '\'' +
+                ", appJarPath='" + appJarPath + '\'' +
+                ", mainClassName='" + mainClassName + '\'' +
+                ", appArgs='" + appArgs + '\'' +
+                '}';
     }
 }

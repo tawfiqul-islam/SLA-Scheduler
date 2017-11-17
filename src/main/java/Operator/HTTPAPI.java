@@ -25,7 +25,7 @@ public class HTTPAPI {
        JSONObject statusJSONObj2 = constructStatusJSON(Constants.GET_STATE);
        ServerResponse serverResponseObj2 = statusHTTPPOST(statusJSONObj2,"http://127.0.0.1:5050/api/v1");
        parseGetStateResponse(serverResponseObj2.responseString);
-       Util.printAgentList();
+       OperatorUtil.printAgentList();
        //System.out.println(serverResponseObj2.responseString);
        //JSONArray reserveJSONObj = constructReservationJSON("r1",1.0,2048.0);
        //reservationHTTPPost(reserveJSONObj,"584c6500-6a5f-4a9e-8ac7-ddda16fe31a5-S0","http://127.0.0.1:5050/master/reserve");
@@ -214,7 +214,7 @@ public class HTTPAPI {
                     }
                 }
                 agentObj.setRegisteredTime(agents.getJSONObject(i).getJSONObject("registered_time").getLong("nanoseconds"));
-                Util.agentList.add(agentObj);
+                OperatorUtil.agentList.add(agentObj);
             }
 
         } catch (JSONException e) {

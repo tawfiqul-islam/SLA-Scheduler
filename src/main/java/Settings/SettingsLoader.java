@@ -1,5 +1,7 @@
 package Settings;
 
+import Scheduler.SchedulerUtil;
+
 import java.util.Properties;
 import java.lang.*;
 import java.io.*;
@@ -25,25 +27,12 @@ public class SettingsLoader {
 		// load a properties file
 		prop.load(input);
 
-
-		Settings.workerNumbers=Integer.parseInt(prop.getProperty("worker.numbers"));
-		Settings.workerCores=Integer.parseInt(prop.getProperty("worker.cores"));
-		Settings.workerMemory=Integer.parseInt(prop.getProperty("worker.memory"));
-		Settings.executorCoresLimit=Integer.parseInt(prop.getProperty("executor.cores.limit"));
-		Settings.profilerInputSize=Integer.parseInt(prop.getProperty("profiler.input.size"));
-		Settings.reProfile=Integer.parseInt(prop.getProperty("reprofile.size"));
-		Settings.repeatConfig=Integer.parseInt(prop.getProperty("repeat.config"));
-		Settings.profilerLevel=prop.getProperty("profiler.level");
+        SchedulerUtil.schedulerAlgorithm=Integer.parseInt(prop.getProperty("scheduler.algorithm"));
+        SchedulerUtil.schedulerIP=prop.getProperty("scheduler.ip");
+        SchedulerUtil.jobHandlerPort=Integer.parseInt(prop.getProperty("scheduler.port"));
 		Settings.sparkHome=prop.getProperty("spark.home");
-		Settings.inputPathProfiler=prop.getProperty("profiler.input.path");
-		Settings.inputPathApplication=prop.getProperty("application.input.path");
-		Settings.applicationJar=prop.getProperty("application.jar.path");
-		Settings.applicationClass=prop.getProperty("application.class");
-		Settings.outputPath=prop.getProperty("application.outputPath");
-		Settings.sparkMaster=prop.getProperty("spark.master");
-		Settings.appArgs=prop.getProperty("appArgs");
-		Settings.coreCost=Double.parseDouble(prop.getProperty("coreCost"));
-		
+		Settings.mesosMasterURI=prop.getProperty("mesos.masterURI");
+
 	} catch (IOException ex) {
 		ex.printStackTrace();
 	} finally {

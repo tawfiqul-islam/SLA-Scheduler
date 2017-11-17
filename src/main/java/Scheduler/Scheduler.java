@@ -11,11 +11,12 @@ public class Scheduler {
     //Load Settings for Profiler
     public static void main(String args[])
     {
+        SettingsLoader.loadSettings();
         JobRequestHandler jobRequestHandlerObj = new JobRequestHandler();
         jobRequestHandlerObj.start();
     }
       /*
-        SettingsLoader.loadSettings();
+
 
         SparkLauncherAPI SparkLauncherAPIobj = new SparkLauncherAPI();
 

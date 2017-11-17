@@ -4,30 +4,29 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.UUID;
 import org.apache.spark.launcher.SparkLauncher;
 
 import Settings.Settings;
 
 public class SparkLauncherAPI {
 
-     void submit(String appClass,String cores, String memory, String coresMax, String mesosCons, String appJarPath, String inputPath, String outputPath, String appArgs) {
+     void submit(Job jobObj) {
         Process pr = null;
         try {
 
             SparkLauncher sl = new SparkLauncher();
             sl.setSparkHome(Settings.sparkHome);
-            sl.setMaster(Settings.sparkMaster);
-            sl.setMainClass(appClass);
-            sl.setConf("spark.executor.cores", cores);
-            sl.setConf("spark.executor.memory", memory);
-            sl.setConf("spark.cores.max", coresMax);
-            sl.setConf("spark.mesos.constraints",mesosCons);
-            sl.setAppResource(appJarPath);
-            sl.addAppArgs(inputPath);
-            if(appArgs!=null)
-                sl.addAppArgs(appArgs);
-            sl.addAppArgs(outputPath + "/" + UUID.randomUUID().toString());
+            sl.setMaster(Settings.mesosMasterURI);
+            sl.setMainClass(jobObj.getMainClassName());
+            sl.setConf("spark.executor.cores", Integer.toString(jobObj.getCoresPerExecutor()));
+            sl.setConf("spark.executor.memory", Double.toString(jobObj.getMemPerExecutor()));
+            sl.setConf("spark.cores.max", Integer.toString(jobObj.getCoresPerExecutor()*jobObj.getExecutors()));
+            sl.setConf("spark.mesos.constraints",jobObj.getRole());
+            sl.setAppResource(jobObj.getAppJarPath());
+            sl.addAppArgs(jobObj.getInputPath());
+            if(jobObj.getAppArgs().length()>0)
+                sl.addAppArgs(jobObj.getAppArgs());
+            sl.addAppArgs(jobObj.getOutputPath());
 
             pr = sl.launch();
 
