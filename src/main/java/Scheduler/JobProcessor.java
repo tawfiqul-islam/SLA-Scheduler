@@ -79,7 +79,7 @@ public class JobProcessor extends Thread {
             e.printStackTrace();
         }
         Job jobObj = parseMessage(readData());
-        SchedulerUtil.queueOperation(jobObj.getJobID(),jobObj,true);
+        SchedulerUtil.queueOperation(jobObj,true);
         SchedulerUtil.printJobQueue();
     }
 }

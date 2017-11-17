@@ -6,7 +6,7 @@ import Settings.SettingsLoader;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
-public class Scheduler {
+public class SchedulerManager {
 
     //Load Settings for Profiler
     public static void main(String args[])

@@ -1,6 +1,10 @@
 package Scheduler;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.logging.Logger;
-import java.util.HashMap;
 
 public class SchedulerUtil {
 
@@ -8,27 +12,26 @@ public class SchedulerUtil {
     public static int jobHandlerPort;
     public static String schedulerIP;
     public static int schedulerAlgorithm;
+    public static Queue<Job>  jobQueue = new LinkedList<Job>();
+    public static ArrayList<Job> finishedJobList = new ArrayList<Job>();
 
-    public static HashMap<String,Job> jobQueue = new HashMap<String, Job>();
-    public static HashMap<String,Job> finishedJobList = new HashMap<String, Job>();
-
-    public static synchronized void queueOperation(String id, Job obj, boolean addOperation) {
+    public static synchronized Job queueOperation(Job obj, boolean addOperation) {
         if (addOperation) {
-            jobQueue.put(id, obj);
-            logger.info("New Job Added to job queue with id: " + id);
+            jobQueue.add(obj);
+            logger.info("New Job Added to job queue with id: " + obj.getJobID());
+            return null;
         }
         else{
-            finishedJobList.put(id, jobQueue.get(id));
-            jobQueue.remove(id);
-            logger.info("Job "+id+" removed from job queue and added to job finished queue");
+            Job removedJob = jobQueue.remove();
+            logger.info("Job "+removedJob.getJobID()+" removed from job queue and added to job finished List");
+            return removedJob;
         }
     }
 
-    public static void printJobQueue()
-    {
-        for (String key : jobQueue.keySet()) {
-            Job jobobj = jobQueue.get(key);
-            System.out.println(jobobj.toString());
+    public static void printJobQueue() {
+        for(Object object : jobQueue) {
+            Job jobObj = (Job) object;
+            System.out.println(jobObj.toString());
         }
     }
 }
