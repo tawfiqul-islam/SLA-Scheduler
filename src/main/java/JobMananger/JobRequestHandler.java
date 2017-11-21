@@ -1,6 +1,6 @@
-package Scheduler;
+package JobMananger;
 
-import Operator.OperatorUtil;
+import Scheduler.SchedulerUtil;
 
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;

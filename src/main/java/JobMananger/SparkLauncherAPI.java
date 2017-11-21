@@ -1,16 +1,18 @@
-package Scheduler;
+package JobMananger;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+
+import Entity.Job;
 import org.apache.spark.launcher.SparkLauncher;
 
 import Settings.Settings;
 
 public class SparkLauncherAPI {
 
-     void submit(Job jobObj) {
+     public void submit(Job jobObj) {
         Process pr = null;
         try {
 

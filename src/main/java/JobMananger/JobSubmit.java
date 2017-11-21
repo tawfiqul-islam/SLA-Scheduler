@@ -1,10 +1,9 @@
-package JobSubmitter;
+package JobMananger;
 import java.io.DataOutputStream;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import Scheduler.SchedulerUtil;
 import org.json.*;
 
 public class JobSubmit {

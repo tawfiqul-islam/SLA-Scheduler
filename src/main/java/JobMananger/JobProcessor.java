@@ -1,4 +1,4 @@
-package Scheduler;
+package JobMananger;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,6 +8,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import Entity.Job;
+import Scheduler.SchedulerUtil;
 import org.json.*;
 import java.util.UUID;
 
@@ -79,7 +82,7 @@ public class JobProcessor extends Thread {
             e.printStackTrace();
         }
         Job jobObj = parseMessage(readData());
-        SchedulerUtil.queueOperation(jobObj,true);
+        SchedulerUtil.queueOperation(jobObj,1);
         SchedulerUtil.printJobQueue();
     }
 }

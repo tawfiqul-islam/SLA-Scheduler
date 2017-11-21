@@ -1,6 +1,8 @@
 package Operator;
 
-import Cluster.Agent;
+import Entity.Agent;
+import Entity.Framework;
+import Settings.Settings;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
@@ -18,17 +20,44 @@ public class HTTPAPI {
 
     public static void main(String[] args) {
 
-       JSONObject statusJSONObj = constructStatusJSON(Constants.GET_HEALTH);
-       ServerResponse serverResponseObj = statusHTTPPOST(statusJSONObj,"http://127.0.0.1:5050/api/v1");
-       parseGetHealthResponse(serverResponseObj.responseString);
+       // JSONArray reserveJSONObj = constructReservationJSON("r2",3.0,3072.0);
+       // reservationHTTPPost(reserveJSONObj,"dc301cec-c32a-42e3-b791-d5fd9e7daae9-S0","http://127.0.0.1:5050/master/unreserve");
 
-       JSONObject statusJSONObj2 = constructStatusJSON(Constants.GET_STATE);
-       ServerResponse serverResponseObj2 = statusHTTPPOST(statusJSONObj2,"http://127.0.0.1:5050/api/v1");
-       parseGetStateResponse(serverResponseObj2.responseString);
-       OperatorUtil.printAgentList();
-       //System.out.println(serverResponseObj2.responseString);
-       //JSONArray reserveJSONObj = constructReservationJSON("r1",1.0,2048.0);
-       //reservationHTTPPost(reserveJSONObj,"584c6500-6a5f-4a9e-8ac7-ddda16fe31a5-S0","http://127.0.0.1:5050/master/reserve");
+    }
+
+    public static ServerResponse RESERVE(String role, double CPU, double memory, String agentID)
+    {
+        JSONArray reserveJSONObj = constructReservationJSON(role,CPU,memory);
+        return reservationHTTPPost(reserveJSONObj,agentID,Settings.mesosMasterURI+"/master/reserve");
+    }
+
+    public static ServerResponse UNRESERVE(String role, double CPU, double memory, String agentID)
+    {
+        JSONArray reserveJSONObj = constructReservationJSON(role,CPU,memory);
+        return reservationHTTPPost(reserveJSONObj,agentID,Settings.mesosMasterURI+"/master/unreserve");
+    }
+
+    public static boolean GET_HEALTH()
+    {
+        JSONObject statusJSONObj = constructStatusJSON(Constants.GET_HEALTH);
+        ServerResponse serverResponseObj = statusHTTPPOST(statusJSONObj,"http://127.0.0.1:5050/api/v1");
+        return parseGetHealthResponse(serverResponseObj.responseString);
+    }
+
+    public static ArrayList<Agent> GET_AGENT()
+    {
+        JSONObject statusJSONObj = constructStatusJSON(Constants.GET_STATE);
+        ServerResponse serverResponseObj = statusHTTPPOST(statusJSONObj,"http://127.0.0.1:5050/api/v1");
+        System.out.println(serverResponseObj.responseString);
+        return parseAgents(serverResponseObj.responseString);
+    }
+
+    public static ArrayList<Framework> GET_FRAMEWORK()
+    {
+        JSONObject statusJSONObj = constructStatusJSON(Constants.GET_STATE);
+        ServerResponse serverResponseObj = statusHTTPPOST(statusJSONObj,"http://127.0.0.1:5050/api/v1");
+        System.out.println(serverResponseObj.responseString);
+        return parseFrameworks(serverResponseObj.responseString);
     }
 
     private static ServerResponse reservationHTTPPost(JSONArray obj, String agentId, String httpURI) {
@@ -166,7 +195,7 @@ public class HTTPAPI {
         return obj;
     }
 
-    private static void parseGetHealthResponse(String responseStr){
+    private static boolean parseGetHealthResponse(String responseStr){
 
         Boolean health = null;
         try {
@@ -175,26 +204,28 @@ public class HTTPAPI {
             e.printStackTrace();
         }
         System.out.println(health);
+        return health;
     }
 
-    private static void parseGetStateResponse(String responseStr){
+    private static ArrayList<Agent> parseAgents(String responseStr) {
 
+        ArrayList<Agent> agentList= new ArrayList<>();
         JSONArray agents;
 
         try {
             agents = (JSONArray) new JSONObject(responseStr).getJSONObject("get_state").getJSONObject("get_agents").get("agents");
 
-            for(int i=0; i<agents.length();i++) {
+            for (int i = 0; i < agents.length(); i++) {
 
                 Agent agentObj = new Agent();
                 agentObj.setAlive(agents.getJSONObject(i).getBoolean("active"));
                 agentObj.setId(agents.getJSONObject(i).getJSONObject("agent_info").getJSONObject("id").getString("value"));
 
-                JSONArray resources =agents.getJSONObject(i).getJSONObject("agent_info").getJSONArray("resources");
-                for(int j=0;j<resources.length();j++) {
-                    String resourceName=resources.getJSONObject(j).getString("name");
+                JSONArray resources = agents.getJSONObject(i).getJSONObject("agent_info").getJSONArray("resources");
+                for (int j = 0; j < resources.length(); j++) {
+                    String resourceName = resources.getJSONObject(j).getString("name");
 
-                    switch(resourceName) {
+                    switch (resourceName) {
                         case "cpus":
                             agentObj.setCpu(resources.getJSONObject(j).getJSONObject("scalar").getDouble("value"));
                             break;
@@ -214,11 +245,44 @@ public class HTTPAPI {
                     }
                 }
                 agentObj.setRegisteredTime(agents.getJSONObject(i).getJSONObject("registered_time").getLong("nanoseconds"));
-                OperatorUtil.agentList.add(agentObj);
+                agentList.add(agentObj);
             }
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        return agentList;
+    }
+
+    private static ArrayList<Framework> parseFrameworks(String responseStr) {
+
+        ArrayList<Framework> frameworkList = new ArrayList<Framework>();
+        JSONArray frameworks;
+        try {
+            frameworks = (JSONArray) new JSONObject(responseStr).getJSONObject("get_state").getJSONObject("get_frameworks").get("frameworks");
+
+            for(int i=0; i<frameworks.length();i++) {
+                Framework frameworkObj = new Framework();
+
+                //framework is finished or active
+                frameworkObj.setActive(frameworks.getJSONObject(i).getBoolean("active"));
+                //framework start time
+                frameworkObj.setStartTime(frameworks.getJSONObject(i).getJSONObject("registered_time").getLong("nanoseconds"));
+                //framework finish time
+                if(frameworks.getJSONObject(i).has("unregistered_time")) {
+                    frameworkObj.setFinishTime(frameworks.getJSONObject(i).getJSONObject("unregistered_time").getLong("nanoseconds"));
+                }
+                //framework id
+                frameworkObj.setID(frameworks.getJSONObject(i).getJSONObject("framework_info").getJSONObject("id").getString("value"));
+                //framework role
+                frameworkObj.setRole(frameworks.getJSONObject(i).getJSONObject("framework_info").getString("role"));
+
+                frameworkList.add(frameworkObj);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return frameworkList;
     }
 }

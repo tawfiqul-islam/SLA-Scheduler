@@ -1,4 +1,4 @@
-package Cluster;
+package Entity;
 
 public class Agent {
 

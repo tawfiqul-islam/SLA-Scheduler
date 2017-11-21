@@ -1,4 +1,4 @@
-package Scheduler;
+package Entity;
 
 import java.util.ArrayList;
 
@@ -6,6 +6,8 @@ public class Job {
 
     private String jobID;
     private String role;
+    private String frameworkID;
+    private int allocatedExecutors;
     //stats
     private String arrivalTime;
     private double startTime;
@@ -14,7 +16,6 @@ public class Job {
     private boolean isSubmitted;
     private boolean isAlive;
     private boolean isSuccessful;
-    private int agentsUsed;
     private ArrayList<String> agentList;
 
     private int priority;
@@ -40,12 +41,28 @@ public class Job {
         this.jobID = jobID;
     }
 
+    public String getFrameworkID() {
+        return frameworkID;
+    }
+
+    public void setFrameworkID(String frameworkID) {
+        this.frameworkID = frameworkID;
+    }
+
     public String getRole() {
         return role;
     }
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public int getAllocatedExecutors() {
+        return allocatedExecutors;
+    }
+
+    public void setAllocatedExecutors(int allocatedExecutors) {
+        this.allocatedExecutors = allocatedExecutors;
     }
 
     public String getArrivalTime() {
@@ -102,14 +119,6 @@ public class Job {
 
     public void setSuccessful(boolean successful) {
         isSuccessful = successful;
-    }
-
-    public int getAgentsUsed() {
-        return agentsUsed;
-    }
-
-    public void setAgentsUsed(int agentsUsed) {
-        this.agentsUsed = agentsUsed;
     }
 
     public ArrayList<String> getAgentList() {

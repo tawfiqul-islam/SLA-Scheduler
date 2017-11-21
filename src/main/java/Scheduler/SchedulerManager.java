@@ -1,17 +1,47 @@
 package Scheduler;
 
-import Settings.Settings;
+import JobMananger.JobRequestHandler;
+import Operator.HTTPAPI;
 import Settings.SettingsLoader;
-
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 
 public class SchedulerManager {
 
     //Load Settings for Profiler
-    public static void main(String args[])
-    {
+    public static void main(String args[]) {
+        //load Settings
         SettingsLoader.loadSettings();
+
+        //check cluster health...fails then throw exception/error or wait for cluster to be ready
+        while(true)
+        {
+            if(HTTPAPI.GET_HEALTH()) {
+                //log cluster has started
+                break;
+            }
+            else {
+                //log cluster is not ready yet
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        //Get cluster status: agentlist
+        SchedulerUtil.agentList=HTTPAPI.GET_AGENT();
+        SchedulerUtil.printAgentList();
+        //start scheduler
+        if(SchedulerUtil.schedulerAlgorithm==Algorithm.RoundRobin) {
+            RoundRobinScheduler rrSchedulerObj = new RoundRobinScheduler();
+            rrSchedulerObj.start();
+        }
+        else if(SchedulerUtil.schedulerAlgorithm==Algorithm.BFHeuristic) {
+
+        }
+        else {
+            //log error..not scheduling algorithm is chosen...or use a defautl scheduler
+        }
+        //start job handler
         JobRequestHandler jobRequestHandlerObj = new JobRequestHandler();
         jobRequestHandlerObj.start();
     }
@@ -28,5 +58,4 @@ public class SchedulerManager {
                 null);
 
     }*/
-
 }
