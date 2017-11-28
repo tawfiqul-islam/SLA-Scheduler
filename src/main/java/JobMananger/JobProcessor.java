@@ -7,7 +7,6 @@ import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import Entity.Job;
 import Scheduler.SchedulerUtil;
@@ -19,13 +18,13 @@ public class JobProcessor extends Thread {
     InputStream in;
     Socket receiverSocket;
     private static int role = 0;
-    private static final Logger logger = Logger.getLogger(JobProcessor.class.getName());
     public JobProcessor(Socket socket) {
         receiverSocket=socket;
     }
     public static synchronized int getRole() {
         return role++;
     }
+
     Job parseMessage(String requestStr) {
         Job jobObj = new Job();
         jobObj.setJobID(UUID.randomUUID().toString());
@@ -33,16 +32,17 @@ public class JobProcessor extends Thread {
             JSONObject requestJson = new JSONObject(requestStr);
             jobObj.setExecutors(requestJson.getInt("executors"));
             jobObj.setCoresPerExecutor(requestJson.getInt("coresPerExecutor"));
-            jobObj.setMemPerExecutor(requestJson.getDouble("memoryPerExecutor"));
+            jobObj.setMemPerExecutor(requestJson.getDouble("memoryPerExecutor")*1024.0);
+            jobObj.setExecutorMemoryOverhead();
             jobObj.setInputPath(requestJson.getString("inputPath"));
             jobObj.setOutputPath(requestJson.getString("outputPath")+"/"+jobObj.getJobID());
             jobObj.setAppJarPath(requestJson.getString("appJarPath"));
             jobObj.setMainClassName(requestJson.getString("mainClassName"));
             jobObj.setAppArgs(requestJson.getString("appArgs"));
             jobObj.setArrivalTime(getCurrentTimeStamp());
-            jobObj.setRole("role-"+getRole());
+            jobObj.setRole("role"+getRole());
         }catch(Exception e) {
-            logger.log(Level.SEVERE,"Exception in JobProcessor ",e);
+            Log.SchedulerLogging.log(Level.SEVERE,JobProcessor.class.getName()+" Exception in parseMessage"+e.toString());
         }
         return jobObj;
     }
@@ -79,7 +79,7 @@ public class JobProcessor extends Thread {
         try {
             in= receiverSocket.getInputStream();
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.SchedulerLogging.log(Level.SEVERE,JobProcessor.class.getName()+" Exception in run method"+e.toString());
         }
         Job jobObj = parseMessage(readData());
         SchedulerUtil.queueOperation(jobObj,1);

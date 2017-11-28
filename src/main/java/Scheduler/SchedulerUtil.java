@@ -2,19 +2,19 @@ package Scheduler;
 
 import Entity.Agent;
 import Entity.Job;
-
+import java.util.logging.Level;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.logging.Logger;
 
 public class SchedulerUtil {
 
-    private static final Logger logger = Logger.getLogger(SchedulerUtil.class.getName());
-    public static int jobHandlerPort=9066;
-    public static String schedulerIP="127.0.0.1";
+    public static String schedulerHome;
+    public static String schedulerRole;
+    public static int jobHandlerPort;
+    public static String schedulerIP;
     public static int schedulerAlgorithm;
-    public static Queue<Job> newJobQueue = new LinkedList<Job>();
+    public static Queue<Job> newJobQueue = new LinkedList<>();
     public static ArrayList<Job> partialSubmittedJobList = new ArrayList<>();
     public static ArrayList<Job> fullySubmittedJobList = new ArrayList<>();
     public static ArrayList<Job> finishedJobList = new ArrayList<>();
@@ -25,16 +25,17 @@ public class SchedulerUtil {
         //add new job in queue
         if(choice==1) {
             newJobQueue.add(obj);
-            logger.info("New Job Added to job queue with id: " + obj.getJobID());
+            Log.SchedulerLogging.log(Level.INFO,SchedulerUtil.class.getName()+": New Job Added to job queue with id: " + obj.getJobID());
             return null;
         }
         //inspect the top job in queue
         else if(choice==2) {
+            Log.SchedulerLogging.log(Level.INFO,SchedulerUtil.class.getName()+": A Job is being inspected with id: " + newJobQueue.element().getJobID());
             return newJobQueue.element();
         }
         //remove a job from queue
         else {
-            logger.info("Job " + newJobQueue.element().getJobID() + " is removed from job queue");
+            Log.SchedulerLogging.log(Level.INFO,SchedulerUtil.class.getName()+" Job " + newJobQueue.element().getJobID() + " is removed from job queue");
             return newJobQueue.remove();
         }
     }
@@ -42,7 +43,7 @@ public class SchedulerUtil {
     public static void printJobQueue() {
         for (Object object : newJobQueue) {
             Job jobObj = (Job) object;
-            System.out.println(jobObj.toString());
+            //System.out.println(jobObj.toString());
         }
     }
     public static void printAgentList()

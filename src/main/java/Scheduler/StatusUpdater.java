@@ -4,8 +4,8 @@ import Entity.Agent;
 import Entity.Framework;
 import Entity.Job;
 import Operator.HTTPAPI;
-
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 public class StatusUpdater extends Thread{
 
@@ -31,6 +31,7 @@ public class StatusUpdater extends Thread{
             if(!present)
             {
                 SchedulerUtil.agentList.remove(k);
+                Log.SchedulerLogging.log(Level.INFO,StatusUpdater.class.getName()+" Removed inactive agent with id: "+SchedulerUtil.agentList.get(k).getId()+" from agent list");
                 k--;
             }
         }
@@ -47,6 +48,7 @@ public class StatusUpdater extends Thread{
                     {
                         //agent is inactive, delete it from agentlist
                         SchedulerUtil.agentList.remove(j);
+                        Log.SchedulerLogging.log(Level.INFO,StatusUpdater.class.getName()+" Removed inactive agent with id: "+SchedulerUtil.agentList.get(j).getId()+" from agent list");
                     }
                 }
             }
@@ -55,6 +57,7 @@ public class StatusUpdater extends Thread{
             {
                 //new agent found, add it to agentlist
                 SchedulerUtil.agentList.add(updatedAgentList.get(i)) ;
+                Log.SchedulerLogging.log(Level.INFO,StatusUpdater.class.getName()+" Added a new agent with id: "+updatedAgentList.get(i).getId()+" to the agent list");
             }
         }
     }
@@ -83,14 +86,20 @@ public class StatusUpdater extends Thread{
                     currentJob.setFinishTime(frameworkList.get(i).getFinishTime());
                     currentJob.setAlive(frameworkList.get(i).isActive());
 
-                    //TO DO handle failed jobs
+                    //TODO handle failed jobs here
                     if(!currentJob.isAlive()&&currentJob.getFinishTime()>0)
                     {
                         //log job finished with id ...
                         //remove from fullySubmittedList
                         SchedulerUtil.fullySubmittedJobList.remove(j);
+                        Log.SchedulerLogging.log(Level.INFO,StatusUpdater.class.getName()+": Removed Job: "+currentJob.getJobID()+" from fullySubmittedJobList");
                         //add in finished job list
                         SchedulerUtil.finishedJobList.add(currentJob);
+                        Log.SchedulerLogging.log(Level.INFO,StatusUpdater.class.getName()+": Added Job: "+currentJob.getJobID()+" to finishedJobList");
+                    }
+                    else
+                    {
+                        Log.SchedulerLogging.log(Level.INFO,StatusUpdater.class.getName()+": Job with ID: "+currentJob.getJobID()+" is still Active");
                     }
                     break;
                 }
@@ -110,34 +119,34 @@ public class StatusUpdater extends Thread{
                         currentJob.setFinishTime(frameworkList.get(i).getFinishTime());
                         currentJob.setAlive(frameworkList.get(i).isActive());
 
-                        //TO DO handle failed jobs
+                        //TODO handle failed jobs here
                         if(!currentJob.isAlive()&&currentJob.getFinishTime()>0)
                         {
                             //log job finished with id ...
                             //remove from fullySubmittedList
                             SchedulerUtil.partialSubmittedJobList.remove(j);
+                            Log.SchedulerLogging.log(Level.INFO,StatusUpdater.class.getName()+": Removed Job: "+currentJob.getJobID()+" from partialSubmittedJobList");
                             //add in finished job list
                             SchedulerUtil.finishedJobList.add(currentJob);
+                            Log.SchedulerLogging.log(Level.INFO,StatusUpdater.class.getName()+": Added Job: "+currentJob.getJobID()+" to finishedJobList");
                         }
                         break;
                     }
                 }
             }
 
-            //the current framework was not found in any list
-            if(!found)
-            {
-                //log error
-                //maybe the framework was launched by any past scheduler?
-                continue;
-            }
-            else
+
+            if(found)
             {
                 //unreserve the current job's reserved resources in all the used agents
                 for(int j=0;j<currentJob.getAgentList().size();j++)
                 {
                     //unreseving resources in an agent when a job is finished
-                    HTTPAPI.UNRESERVE(currentJob.getRole(),currentJob.getCoresPerExecutor(),currentJob.getMemPerExecutor(),currentJob.getAgentList().get(j));
+                    HTTPAPI.UNRESERVE(currentJob.getRole(),currentJob.getCoresPerExecutor(),Math.ceil(currentJob.getTotalExecutorMemory()),currentJob.getAgentList().get(j));
+                    Log.SchedulerLogging.log(Level.INFO,StatusUpdater.class.getName()+" Unreserved CPU: "+currentJob.getCoresPerExecutor()+" Mem: "+Math.ceil(currentJob.getTotalExecutorMemory())+" from Job: "+currentJob.getJobID()+" with Role: "+currentJob.getRole());
+                    //give back these resources by reserving to the default scheduler-role
+                    HTTPAPI.RESERVE(SchedulerUtil.schedulerRole,currentJob.getCoresPerExecutor(),Math.ceil(currentJob.getTotalExecutorMemory()),currentJob.getAgentList().get(j));
+                    Log.SchedulerLogging.log(Level.INFO,StatusUpdater.class.getName()+" Reserved back CPU: "+currentJob.getCoresPerExecutor()+" Mem: "+Math.ceil(currentJob.getTotalExecutorMemory())+" to the default scheduler-role");
 
                     for(int k=0;k<SchedulerUtil.agentList.size();k++)
                     {
@@ -145,14 +154,24 @@ public class StatusUpdater extends Thread{
                         {
                             Agent agentObj = SchedulerUtil.agentList.get(k);
                             agentObj.setCpu(agentObj.getCpu()+currentJob.getCoresPerExecutor());
-                            agentObj.setMem(agentObj.getMem()+currentJob.getMemPerExecutor());
-
+                            agentObj.setMem(agentObj.getMem()+Math.ceil(currentJob.getTotalExecutorMemory()));
+                            Log.SchedulerLogging.log(Level.INFO,StatusUpdater.class.getName()+" Current Status of Agent: "+ SchedulerUtil.agentList.get(k).getId()+"-> CPU: "+ SchedulerUtil.agentList.get(k).getCpu()+" Mem: "+ SchedulerUtil.agentList.get(k).getMem());
                             //updating agent resources
                             SchedulerUtil.agentList.set(k,agentObj);
                             break;
                         }
+                        //TODO add exception if the agent is not found on agentlist
                     }
                 }
+            }
+            //the current framework was not found in any list
+            else
+            {
+                //already added to finish list
+                //log error
+                //maybe the framework was launched by any past scheduler?
+                //Log.SchedulerLogging.log(Level.SEVERE,StatusUpdater.class.getName()+"Framework with id: "+frameworkList.get(i).getID()+"with role: "+frameworkList.get(i).getRole()+" was not found! Launched by any previous scheduler?");
+                continue;
             }
         }
     }

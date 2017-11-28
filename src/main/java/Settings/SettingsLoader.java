@@ -5,6 +5,7 @@ import Scheduler.SchedulerUtil;
 import java.util.Properties;
 import java.lang.*;
 import java.io.*;
+import java.util.logging.Level;
 
 /*
  * Loads the settings from the profiler configuration file
@@ -27,23 +28,25 @@ public class SettingsLoader {
 		// load a properties file
 		prop.load(input);
 
+        SchedulerUtil.schedulerRole=prop.getProperty("scheduler.role");
+        SchedulerUtil.schedulerHome=prop.getProperty("scheduler.home");
         SchedulerUtil.schedulerAlgorithm=Integer.parseInt(prop.getProperty("scheduler.algorithm"));
         SchedulerUtil.schedulerIP=prop.getProperty("scheduler.ip");
         SchedulerUtil.jobHandlerPort=Integer.parseInt(prop.getProperty("scheduler.port"));
 		Settings.sparkHome=prop.getProperty("spark.home");
 		Settings.mesosMasterURI=prop.getProperty("mesos.masterURI");
+		Settings.mesosMasterSpark=prop.getProperty("mesos.masterURIspark");
 
 	} catch (IOException ex) {
-		ex.printStackTrace();
+        Log.SchedulerLogging.log(Level.SEVERE,SettingsLoader.class.getName()+" Exception while loading settings: "+ex);
 	} finally {
 		if (input != null) {
 			try {
 				input.close();
 			} catch (IOException e) {
-				e.printStackTrace();
+                Log.SchedulerLogging.log(Level.SEVERE,SettingsLoader.class.getName()+" Exception while closing inputstream: "+e);
 			}
 		}
 	}
-
   }
 }

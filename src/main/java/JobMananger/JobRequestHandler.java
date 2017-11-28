@@ -6,11 +6,9 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class JobRequestHandler extends Thread {
 
-    private static final Logger logger = Logger.getLogger( JobRequestHandler.class.getName());
 
     public ServerSocket listenerSocket = null;
     private boolean running;
@@ -23,9 +21,10 @@ public class JobRequestHandler extends Thread {
 
             listenerSocket.bind(new InetSocketAddress(SchedulerUtil.schedulerIP, SchedulerUtil.jobHandlerPort));
 
-            logger.info("Started JobHandler on Port: " + SchedulerUtil.jobHandlerPort);
+            Log.SchedulerLogging.log(Level.INFO,JobRequestHandler.class.getName()+" Started JobHandler on Port: " + SchedulerUtil.jobHandlerPort);
+
         }catch (Exception e) {
-            logger.log(Level.SEVERE,"Exception in starting JobHandler on Port: " + SchedulerUtil.jobHandlerPort,e);
+            Log.SchedulerLogging.log(Level.SEVERE,JobRequestHandler.class.getName()+" Exception in startSocket: " + e.toString());
         }
     }
 
@@ -35,7 +34,7 @@ public class JobRequestHandler extends Thread {
         try {
             Thread.sleep(5000);
         } catch (Exception e) {
-            logger.log(Level.SEVERE,"Interrupted JobHandler on port: " + SchedulerUtil.jobHandlerPort,e);
+            Log.SchedulerLogging.log(Level.SEVERE,JobRequestHandler.class.getName()+" Exception in run method: " + e.toString());
         }
 
         running = true;
@@ -44,19 +43,19 @@ public class JobRequestHandler extends Thread {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
-                logger.log(Level.SEVERE,"Interrupted JobHandler on port: " + SchedulerUtil.jobHandlerPort,e);
+                Log.SchedulerLogging.log(Level.SEVERE,JobRequestHandler.class.getName()+" Exception in run method: " + e.toString());
             }
 
             try {
                 clientSocket = listenerSocket.accept();
 
-                logger.info("Got a new request on port: " + SchedulerUtil.jobHandlerPort + " in JobHandler from " + clientSocket.getRemoteSocketAddress());
+                Log.SchedulerLogging.log(Level.INFO,JobRequestHandler.class.getName()+" Got a new request on port: " + SchedulerUtil.jobHandlerPort + " in JobHandler from " + clientSocket.getRemoteSocketAddress());
 
                 jobProcessorObj = new JobProcessor(clientSocket);
                 jobProcessorObj.start();
 
             } catch (Throwable e) {
-                logger.log(Level.SEVERE,"Exception in JobHandler running in port: " + SchedulerUtil.jobHandlerPort ,e);
+                Log.SchedulerLogging.log(Level.SEVERE,JobRequestHandler.class.getName()+" Exception in run method: " + e.toString());
                 running=false;
                 break;
             }
@@ -72,10 +71,10 @@ public class JobRequestHandler extends Thread {
         try {
 
             listenerSocket.close();
-            logger.info("JobHandler shutDown successfully on port: " + SchedulerUtil.jobHandlerPort);
+            Log.SchedulerLogging.log(Level.INFO,JobRequestHandler.class.getName()+" JobHandler shutDown successfully on port: " + SchedulerUtil.jobHandlerPort);
 
         } catch (Exception e) {
-            logger.log(Level.SEVERE,"Exception in shutting down JobHandler", e);
+            Log.SchedulerLogging.log(Level.SEVERE,JobRequestHandler.class.getName()+" Exception in jobHandler shutDown: " + e.toString());
         }
     }
 }

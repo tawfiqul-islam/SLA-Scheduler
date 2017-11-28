@@ -16,7 +16,7 @@ public class Job {
     private boolean isSubmitted;
     private boolean isAlive;
     private boolean isSuccessful;
-    private ArrayList<String> agentList;
+    private ArrayList<String> agentList = new ArrayList<>();
 
     private int priority;
 
@@ -24,6 +24,8 @@ public class Job {
     private int executors;
     private int coresPerExecutor;
     private double memPerExecutor;
+    private double executorMemoryOverhead;
+    private double totalExecutorMemory;
     private double inputSize;
 
     //Environment Information
@@ -32,6 +34,8 @@ public class Job {
     private String appJarPath;
     private String mainClassName;
     private String appArgs;
+
+
 
     public String getJobID() {
         return jobID;
@@ -161,6 +165,19 @@ public class Job {
         this.memPerExecutor = memPerExecutor;
     }
 
+
+    public void setExecutorMemoryOverhead() {
+        executorMemoryOverhead=((memPerExecutor * 0.10) > 384.0)?(memPerExecutor * 0.10):384.0;
+        setTotalExecutorMemory();
+    }
+    public void setTotalExecutorMemory() {
+        totalExecutorMemory=memPerExecutor+executorMemoryOverhead;
+    }
+
+    public double getTotalExecutorMemory() {
+        return totalExecutorMemory;
+    }
+
     public double getInputSize() {
         return inputSize;
     }
@@ -218,6 +235,7 @@ public class Job {
                 ", executors=" + executors +
                 ", coresPerExecutor=" + coresPerExecutor +
                 ", memPerExecutor=" + memPerExecutor +
+                ", executorMemoryOverhead=" + executorMemoryOverhead +
                 ", inputPath='" + inputPath + '\'' +
                 ", outputPath='" + outputPath + '\'' +
                 ", appJarPath='" + appJarPath + '\'' +

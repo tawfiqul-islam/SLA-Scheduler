@@ -12,18 +12,12 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
+import java.util.logging.Level;
 import org.json.*;
 import java.io.*;
 import java.util.*;
 
 public class HTTPAPI {
-
-    public static void main(String[] args) {
-
-       // JSONArray reserveJSONObj = constructReservationJSON("r2",3.0,3072.0);
-       // reservationHTTPPost(reserveJSONObj,"dc301cec-c32a-42e3-b791-d5fd9e7daae9-S0","http://127.0.0.1:5050/master/unreserve");
-
-    }
 
     public static ServerResponse RESERVE(String role, double CPU, double memory, String agentID)
     {
@@ -40,23 +34,23 @@ public class HTTPAPI {
     public static boolean GET_HEALTH()
     {
         JSONObject statusJSONObj = constructStatusJSON(Constants.GET_HEALTH);
-        ServerResponse serverResponseObj = statusHTTPPOST(statusJSONObj,"http://127.0.0.1:5050/api/v1");
+        ServerResponse serverResponseObj = statusHTTPPOST(statusJSONObj,Settings.mesosMasterURI+"/api/v1");
         return parseGetHealthResponse(serverResponseObj.responseString);
     }
 
     public static ArrayList<Agent> GET_AGENT()
     {
         JSONObject statusJSONObj = constructStatusJSON(Constants.GET_STATE);
-        ServerResponse serverResponseObj = statusHTTPPOST(statusJSONObj,"http://127.0.0.1:5050/api/v1");
-        System.out.println(serverResponseObj.responseString);
+        ServerResponse serverResponseObj = statusHTTPPOST(statusJSONObj,Settings.mesosMasterURI+"/api/v1");
+        //System.out.println("GET agent response: "+serverResponseObj.responseString);
         return parseAgents(serverResponseObj.responseString);
     }
 
     public static ArrayList<Framework> GET_FRAMEWORK()
     {
         JSONObject statusJSONObj = constructStatusJSON(Constants.GET_STATE);
-        ServerResponse serverResponseObj = statusHTTPPOST(statusJSONObj,"http://127.0.0.1:5050/api/v1");
-        System.out.println(serverResponseObj.responseString);
+        ServerResponse serverResponseObj = statusHTTPPOST(statusJSONObj,Settings.mesosMasterURI+"/api/v1");
+        //System.out.println("Get framework response: "+serverResponseObj.responseString);
         return parseFrameworks(serverResponseObj.responseString);
     }
 
@@ -79,7 +73,7 @@ public class HTTPAPI {
                 post.setHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
                 post.setHeader("Accept", "application/json");
                 response = httpClient.execute(post);
-                System.out.println(response.getStatusLine());
+                //System.out.println(response.getStatusLine());
                 serverResponseObj.statusCode=response.getStatusLine().getStatusCode();
                 BufferedReader br = new BufferedReader(
                         new InputStreamReader((response.getEntity().getContent())));
@@ -90,13 +84,13 @@ public class HTTPAPI {
                 }
 
             } catch(Exception e){
-                e.printStackTrace();
+                Log.SchedulerLogging.log(Level.SEVERE,HTTPAPI.class.getName()+" Exception in reservationHTTPPost: "+ e.toString());
             }finally {
                 response.close();
             }
 
         }catch(Exception e) {
-            e.printStackTrace();
+            Log.SchedulerLogging.log(Level.SEVERE,HTTPAPI.class.getName()+" Exception in reservationHTTPPost: "+ e.toString());
         }
 
         serverResponseObj.responseString=outputStr;
@@ -122,7 +116,7 @@ public class HTTPAPI {
 
             CloseableHttpResponse response = httpClient.execute(postRequest);
 
-            System.out.println(response.getStatusLine());
+            //System.out.println(response.getStatusLine());
             serverResponseObj.statusCode=response.getStatusLine().getStatusCode();
 
             BufferedReader br = new BufferedReader(
@@ -136,7 +130,7 @@ public class HTTPAPI {
             httpClient.close();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.SchedulerLogging.log(Level.SEVERE,HTTPAPI.class.getName()+" Exception in statusHTTPPost: "+ e.toString());
         }
 
         serverResponseObj.responseString=outputStr;
@@ -166,7 +160,7 @@ public class HTTPAPI {
             resourceArray.put(memObj);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.SchedulerLogging.log(Level.SEVERE,HTTPAPI.class.getName()+" Exception in constructReservationJSON: "+ e.toString());
         }
 
         return resourceArray;
@@ -189,7 +183,7 @@ public class HTTPAPI {
             }
 
         } catch (JSONException e) {
-            e.printStackTrace();
+            Log.SchedulerLogging.log(Level.SEVERE,HTTPAPI.class.getName()+" Exception in constructStatusJSON: "+ e.toString());
         }
 
         return obj;
@@ -201,9 +195,9 @@ public class HTTPAPI {
         try {
             health = (Boolean) new JSONObject(responseStr).getJSONObject("get_health").get("healthy");
         } catch (JSONException e) {
-            e.printStackTrace();
+            Log.SchedulerLogging.log(Level.SEVERE,HTTPAPI.class.getName()+" Exception in parseGetHealthResponse: "+ e.toString());
         }
-        System.out.println(health);
+        //System.out.println(health);
         return health;
     }
 
@@ -249,7 +243,7 @@ public class HTTPAPI {
             }
 
         } catch (JSONException e) {
-            e.printStackTrace();
+            Log.SchedulerLogging.log(Level.SEVERE,HTTPAPI.class.getName()+" Exception in parseAgents: "+ e.toString());
         }
         return agentList;
     }
@@ -259,30 +253,33 @@ public class HTTPAPI {
         ArrayList<Framework> frameworkList = new ArrayList<Framework>();
         JSONArray frameworks;
         try {
-            frameworks = (JSONArray) new JSONObject(responseStr).getJSONObject("get_state").getJSONObject("get_frameworks").get("frameworks");
+            JSONObject tmp = new JSONObject(responseStr);
+            if (tmp.getJSONObject("get_state").getJSONObject("get_frameworks").has("completed_frameworks")) {
 
-            for(int i=0; i<frameworks.length();i++) {
-                Framework frameworkObj = new Framework();
+                frameworks = (JSONArray) new JSONObject(responseStr).getJSONObject("get_state").getJSONObject("get_frameworks").get("completed_frameworks");
 
-                //framework is finished or active
-                frameworkObj.setActive(frameworks.getJSONObject(i).getBoolean("active"));
-                //framework start time
-                frameworkObj.setStartTime(frameworks.getJSONObject(i).getJSONObject("registered_time").getLong("nanoseconds"));
-                //framework finish time
-                if(frameworks.getJSONObject(i).has("unregistered_time")) {
+                for (int i = 0; i < frameworks.length(); i++) {
+                    Framework frameworkObj = new Framework();
+
+                    //framework is finished or active
+                    frameworkObj.setActive(frameworks.getJSONObject(i).getBoolean("active"));
+                    //framework start time
+                    frameworkObj.setStartTime(frameworks.getJSONObject(i).getJSONObject("registered_time").getLong("nanoseconds"));
+                    //framework finish time
                     frameworkObj.setFinishTime(frameworks.getJSONObject(i).getJSONObject("unregistered_time").getLong("nanoseconds"));
+
+                    //framework id
+                    frameworkObj.setID(frameworks.getJSONObject(i).getJSONObject("framework_info").getJSONObject("id").getString("value"));
+                    //framework role
+                    frameworkObj.setRole(frameworks.getJSONObject(i).getJSONObject("framework_info").getString("role"));
+
+                    frameworkList.add(frameworkObj);
                 }
-                //framework id
-                frameworkObj.setID(frameworks.getJSONObject(i).getJSONObject("framework_info").getJSONObject("id").getString("value"));
-                //framework role
-                frameworkObj.setRole(frameworks.getJSONObject(i).getJSONObject("framework_info").getString("role"));
-
-                frameworkList.add(frameworkObj);
             }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
+        } catch(JSONException e){
+            Log.SchedulerLogging.log(Level.SEVERE,HTTPAPI.class.getName()+" Exception in parseFrameworks: "+ e.toString());
         }
+
         return frameworkList;
     }
 }
