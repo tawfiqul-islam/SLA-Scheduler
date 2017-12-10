@@ -20,6 +20,7 @@ public class RoundRobinScheduler extends Thread{
             //allocate more resources to partial submitted jobs
 
             for(int i=0;i<SchedulerUtil.partialSubmittedJobList.size();i++) {
+
                 Log.SchedulerLogging.log(Level.INFO,RoundRobinScheduler.class.getName()+": Trying to place executors for jobs submitted with partial resources");
                 currentJob=SchedulerUtil.partialSubmittedJobList.get(i);
 
@@ -106,6 +107,7 @@ public class RoundRobinScheduler extends Thread{
                 //update the available resources in this agent
                 SchedulerUtil.agentList.get(i).setCpu(SchedulerUtil.agentList.get(i).getCpu()-currentJob.getCoresPerExecutor());
                 SchedulerUtil.agentList.get(i).setMem(SchedulerUtil.agentList.get(i).getMem()-Math.ceil(currentJob.getTotalExecutorMemory()));
+                SchedulerUtil.agentList.get(i).setAlive(true);
 
                 // use http api unreserve-method to first unreserve the resources from the default scheduler-role
                 HTTPAPI.UNRESERVE(SchedulerUtil.schedulerRole,currentJob.getCoresPerExecutor(), Math.ceil(currentJob.getTotalExecutorMemory()),SchedulerUtil.agentList.get(i).getId());

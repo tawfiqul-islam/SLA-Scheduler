@@ -155,6 +155,11 @@ public class StatusUpdater extends Thread{
                             Agent agentObj = SchedulerUtil.agentList.get(k);
                             agentObj.setCpu(agentObj.getCpu()+currentJob.getCoresPerExecutor());
                             agentObj.setMem(agentObj.getMem()+Math.ceil(currentJob.getTotalExecutorMemory()));
+                            //if all the resources of this node are unused, mark it as not used or alive=false
+                            //use APIs here to shut down this agent if needed (to optimize VM cost)
+                            if(agentObj.getCpu()==agentObj.getDefaultCPU() && agentObj.getMem()==agentObj.getDefaultMEM()) {
+                                agentObj.setAlive(false);
+                            }
                             Log.SchedulerLogging.log(Level.INFO,StatusUpdater.class.getName()+" Current Status of Agent: "+ SchedulerUtil.agentList.get(k).getId()+"-> CPU: "+ SchedulerUtil.agentList.get(k).getCpu()+" Mem: "+ SchedulerUtil.agentList.get(k).getMem());
                             //updating agent resources
                             SchedulerUtil.agentList.set(k,agentObj);

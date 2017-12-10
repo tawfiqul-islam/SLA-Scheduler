@@ -222,9 +222,11 @@ public class HTTPAPI {
                     switch (resourceName) {
                         case "cpus":
                             agentObj.setCpu(resources.getJSONObject(j).getJSONObject("scalar").getDouble("value"));
+                            agentObj.setDefaultCPU(agentObj.getCpu());
                             break;
                         case "mem":
                             agentObj.setMem(resources.getJSONObject(j).getJSONObject("scalar").getDouble("value"));
+                            agentObj.setDefaultMEM(agentObj.getMem());
                             break;
                         case "disk":
                             agentObj.setDisk(resources.getJSONObject(j).getJSONObject("scalar").getDouble("value"));

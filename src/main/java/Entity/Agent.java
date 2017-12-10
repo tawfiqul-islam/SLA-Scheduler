@@ -2,6 +2,8 @@ package Entity;
 
 public class Agent {
 
+    private double defaultCPU;
+    private double defaultMEM;
     private double cpu;
     private double mem;
     private double disk;
@@ -10,6 +12,23 @@ public class Agent {
     private boolean isAlive;
     private String id;
     private long registeredTime;
+    private double weight;
+
+    public double getDefaultCPU() {
+        return defaultCPU;
+    }
+
+    public void setDefaultCPU(double defaultCPU) {
+        this.defaultCPU = defaultCPU;
+    }
+
+    public double getDefaultMEM() {
+        return defaultMEM;
+    }
+
+    public void setDefaultMEM(double defaultMEM) {
+        this.defaultMEM = defaultMEM;
+    }
 
     public double getCpu() {
         return cpu;
@@ -73,6 +92,16 @@ public class Agent {
 
     public void setRegisteredTime(long registeredTime) {
         this.registeredTime = registeredTime;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double cpu, double mem) {
+        double cpuWeight = this.cpu/cpu;
+        double memWeight = this.mem/mem;
+        this.weight = cpuWeight<memWeight?cpuWeight:memWeight;
     }
 
     @Override
