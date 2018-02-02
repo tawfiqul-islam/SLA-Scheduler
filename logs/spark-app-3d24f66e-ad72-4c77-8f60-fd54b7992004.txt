@@ -1,0 +1,289 @@
+0: 18/01/31 11:38:52 WARN Utils: Your hostname, Tawfiq-PC resolves to a loopback address: 127.0.1.1; using 10.100.228.108 instead (on interface enp0s31f6)
+1: 18/01/31 11:38:52 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+2: 18/01/31 11:38:52 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+3: Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+4: 18/01/31 11:38:52 INFO SparkContext: Running Spark version 2.3.0-SNAPSHOT
+5: 18/01/31 11:38:52 INFO SparkContext: Submitted application: BigDataBench WordCount
+6: 18/01/31 11:38:52 INFO SecurityManager: Changing view acls to: tawfiq
+7: 18/01/31 11:38:52 INFO SecurityManager: Changing modify acls to: tawfiq
+8: 18/01/31 11:38:52 INFO SecurityManager: Changing view acls groups to: 
+9: 18/01/31 11:38:52 INFO SecurityManager: Changing modify acls groups to: 
+10: 18/01/31 11:38:52 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(tawfiq); groups with view permissions: Set(); users  with modify permissions: Set(tawfiq); groups with modify permissions: Set()
+11: 18/01/31 11:38:52 INFO Utils: Successfully started service 'sparkDriver' on port 41931.
+12: 18/01/31 11:38:52 INFO SparkEnv: Registering MapOutputTracker
+13: 18/01/31 11:38:52 INFO SparkEnv: Registering BlockManagerMaster
+14: 18/01/31 11:38:52 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+15: 18/01/31 11:38:52 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+16: 18/01/31 11:38:52 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-3b91887a-5094-4592-9720-8f394d7d89f4
+17: 18/01/31 11:38:52 INFO MemoryStore: MemoryStore started with capacity 366.3 MB
+18: 18/01/31 11:38:52 INFO SparkEnv: Registering OutputCommitCoordinator
+19: 18/01/31 11:38:53 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+20: 18/01/31 11:38:53 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://tawfiq-pc.mobility.unimelb.net.au:4040
+21: 18/01/31 11:38:53 INFO SparkContext: Added JAR file:/home/tawfiq/research/spark/bigdatabench-spark_1.3.0-hadoop_1.0.4.jar at spark://tawfiq-pc.mobility.unimelb.net.au:41931/jars/bigdatabench-spark_1.3.0-hadoop_1.0.4.jar with timestamp 1517359133080
+22: I0131 11:38:53.313289  4925 sched.cpp:232] Version: 1.4.0
+23: I0131 11:38:53.318701  4918 sched.cpp:336] New master detected at master@127.0.0.1:5050
+24: I0131 11:38:53.319972  4918 sched.cpp:352] No credentials provided. Attempting to register without authentication
+25: I0131 11:38:53.328053  4920 sched.cpp:759] Framework registered with 0aacf5fd-ccc5-45dd-8d32-8221046eb0ee-0006
+26: 18/01/31 11:38:53 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 45813.
+27: 18/01/31 11:38:53 INFO NettyBlockTransferService: Server created on tawfiq-pc.mobility.unimelb.net.au:45813
+28: 18/01/31 11:38:53 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+29: 18/01/31 11:38:53 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, tawfiq-pc.mobility.unimelb.net.au, 45813, None)
+30: 18/01/31 11:38:53 INFO BlockManagerMasterEndpoint: Registering block manager tawfiq-pc.mobility.unimelb.net.au:45813 with 366.3 MB RAM, BlockManagerId(driver, tawfiq-pc.mobility.unimelb.net.au, 45813, None)
+31: 18/01/31 11:38:53 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, tawfiq-pc.mobility.unimelb.net.au, 45813, None)
+32: 18/01/31 11:38:53 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, tawfiq-pc.mobility.unimelb.net.au, 45813, None)
+33: 18/01/31 11:38:53 INFO EventLoggingListener: Logging events to file:/home/tawfiq/research/spark/logs/0aacf5fd-ccc5-45dd-8d32-8221046eb0ee-0006
+34: 18/01/31 11:38:53 INFO MesosCoarseGrainedSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+35: 18/01/31 11:38:54 INFO MesosCoarseGrainedSchedulerBackend: Mesos task 0 is now TASK_RUNNING
+36: 18/01/31 11:38:54 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 214.5 KB, free 366.1 MB)
+37: 18/01/31 11:38:54 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 20.4 KB, free 366.1 MB)
+38: 18/01/31 11:38:54 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on tawfiq-pc.mobility.unimelb.net.au:45813 (size: 20.4 KB, free: 366.3 MB)
+39: 18/01/31 11:38:54 INFO SparkContext: Created broadcast 0 from textFile at WordCount.scala:26
+40: 18/01/31 11:38:54 INFO FileInputFormat: Total input paths to process : 3
+41: 18/01/31 11:38:54 INFO deprecation: mapred.output.dir is deprecated. Instead, use mapreduce.output.fileoutputformat.outputdir
+42: 18/01/31 11:38:54 INFO SparkContext: Starting job: runJob at SparkHadoopWriter.scala:78
+43: 18/01/31 11:38:54 INFO DAGScheduler: Registering RDD 3 (map at WordCount.scala:28)
+44: 18/01/31 11:38:54 INFO DAGScheduler: Got job 0 (runJob at SparkHadoopWriter.scala:78) with 48 output partitions
+45: 18/01/31 11:38:54 INFO DAGScheduler: Final stage: ResultStage 1 (runJob at SparkHadoopWriter.scala:78)
+46: 18/01/31 11:38:54 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 0)
+47: 18/01/31 11:38:54 INFO DAGScheduler: Missing parents: List(ShuffleMapStage 0)
+48: 18/01/31 11:38:54 INFO DAGScheduler: Submitting ShuffleMapStage 0 (MapPartitionsRDD[3] at map at WordCount.scala:28), which has no missing parents
+49: 18/01/31 11:38:54 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 4.8 KB, free 366.1 MB)
+50: 18/01/31 11:38:54 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 2.8 KB, free 366.1 MB)
+51: 18/01/31 11:38:54 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on tawfiq-pc.mobility.unimelb.net.au:45813 (size: 2.8 KB, free: 366.3 MB)
+52: 18/01/31 11:38:54 INFO SparkContext: Created broadcast 1 from broadcast at DAGScheduler.scala:1029
+53: 18/01/31 11:38:54 INFO DAGScheduler: Submitting 48 missing tasks from ShuffleMapStage 0 (MapPartitionsRDD[3] at map at WordCount.scala:28) (first 15 tasks are for partitions Vector(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14))
+54: 18/01/31 11:38:54 INFO TaskSchedulerImpl: Adding task set 0.0 with 48 tasks
+55: 18/01/31 11:38:55 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.100.228.108:47504) with ID 0
+56: 18/01/31 11:38:55 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, Tawfiq-PC, executor 0, partition 0, PROCESS_LOCAL, 7911 bytes)
+57: 18/01/31 11:38:55 INFO TaskSetManager: Starting task 1.0 in stage 0.0 (TID 1, Tawfiq-PC, executor 0, partition 1, PROCESS_LOCAL, 7911 bytes)
+58: 18/01/31 11:38:55 INFO BlockManagerMasterEndpoint: Registering block manager Tawfiq-PC:44277 with 4.1 GB RAM, BlockManagerId(0, Tawfiq-PC, 44277, None)
+59: 18/01/31 11:38:55 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on Tawfiq-PC:44277 (size: 2.8 KB, free: 4.1 GB)
+60: 18/01/31 11:38:56 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on Tawfiq-PC:44277 (size: 20.4 KB, free: 4.1 GB)
+61: 18/01/31 11:38:58 INFO TaskSetManager: Starting task 2.0 in stage 0.0 (TID 2, Tawfiq-PC, executor 0, partition 2, PROCESS_LOCAL, 7911 bytes)
+62: 18/01/31 11:38:58 INFO TaskSetManager: Starting task 3.0 in stage 0.0 (TID 3, Tawfiq-PC, executor 0, partition 3, PROCESS_LOCAL, 7911 bytes)
+63: 18/01/31 11:38:58 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 2764 ms on Tawfiq-PC (executor 0) (1/48)
+64: 18/01/31 11:38:58 INFO TaskSetManager: Finished task 1.0 in stage 0.0 (TID 1) in 2766 ms on Tawfiq-PC (executor 0) (2/48)
+65: 18/01/31 11:38:59 INFO TaskSetManager: Starting task 4.0 in stage 0.0 (TID 4, Tawfiq-PC, executor 0, partition 4, PROCESS_LOCAL, 7911 bytes)
+66: 18/01/31 11:38:59 INFO TaskSetManager: Finished task 3.0 in stage 0.0 (TID 3) in 1385 ms on Tawfiq-PC (executor 0) (3/48)
+67: 18/01/31 11:38:59 INFO TaskSetManager: Starting task 5.0 in stage 0.0 (TID 5, Tawfiq-PC, executor 0, partition 5, PROCESS_LOCAL, 7911 bytes)
+68: 18/01/31 11:38:59 INFO TaskSetManager: Finished task 2.0 in stage 0.0 (TID 2) in 1430 ms on Tawfiq-PC (executor 0) (4/48)
+69: 18/01/31 11:39:02 INFO TaskSetManager: Starting task 6.0 in stage 0.0 (TID 6, Tawfiq-PC, executor 0, partition 6, PROCESS_LOCAL, 7911 bytes)
+70: 18/01/31 11:39:02 INFO TaskSetManager: Finished task 4.0 in stage 0.0 (TID 4) in 2396 ms on Tawfiq-PC (executor 0) (5/48)
+71: 18/01/31 11:39:02 INFO TaskSetManager: Starting task 7.0 in stage 0.0 (TID 7, Tawfiq-PC, executor 0, partition 7, PROCESS_LOCAL, 7911 bytes)
+72: 18/01/31 11:39:02 INFO TaskSetManager: Finished task 5.0 in stage 0.0 (TID 5) in 2380 ms on Tawfiq-PC (executor 0) (6/48)
+73: 18/01/31 11:39:03 INFO TaskSetManager: Finished task 7.0 in stage 0.0 (TID 7) in 1280 ms on Tawfiq-PC (executor 0) (7/48)
+74: 18/01/31 11:39:03 INFO TaskSetManager: Starting task 8.0 in stage 0.0 (TID 8, Tawfiq-PC, executor 0, partition 8, PROCESS_LOCAL, 7911 bytes)
+75: 18/01/31 11:39:03 INFO TaskSetManager: Starting task 9.0 in stage 0.0 (TID 9, Tawfiq-PC, executor 0, partition 9, PROCESS_LOCAL, 7911 bytes)
+76: 18/01/31 11:39:03 INFO TaskSetManager: Finished task 6.0 in stage 0.0 (TID 6) in 1328 ms on Tawfiq-PC (executor 0) (8/48)
+77: 18/01/31 11:39:04 INFO TaskSetManager: Starting task 10.0 in stage 0.0 (TID 10, Tawfiq-PC, executor 0, partition 10, PROCESS_LOCAL, 7911 bytes)
+78: 18/01/31 11:39:04 INFO TaskSetManager: Finished task 8.0 in stage 0.0 (TID 8) in 1052 ms on Tawfiq-PC (executor 0) (9/48)
+79: 18/01/31 11:39:04 INFO TaskSetManager: Starting task 11.0 in stage 0.0 (TID 11, Tawfiq-PC, executor 0, partition 11, PROCESS_LOCAL, 7911 bytes)
+80: 18/01/31 11:39:04 INFO TaskSetManager: Finished task 9.0 in stage 0.0 (TID 9) in 1075 ms on Tawfiq-PC (executor 0) (10/48)
+81: 18/01/31 11:39:05 INFO TaskSetManager: Starting task 12.0 in stage 0.0 (TID 12, Tawfiq-PC, executor 0, partition 12, PROCESS_LOCAL, 7911 bytes)
+82: 18/01/31 11:39:05 INFO TaskSetManager: Finished task 10.0 in stage 0.0 (TID 10) in 1021 ms on Tawfiq-PC (executor 0) (11/48)
+83: 18/01/31 11:39:05 INFO TaskSetManager: Starting task 13.0 in stage 0.0 (TID 13, Tawfiq-PC, executor 0, partition 13, PROCESS_LOCAL, 7911 bytes)
+84: 18/01/31 11:39:05 INFO TaskSetManager: Finished task 11.0 in stage 0.0 (TID 11) in 1011 ms on Tawfiq-PC (executor 0) (12/48)
+85: 18/01/31 11:39:06 INFO TaskSetManager: Starting task 14.0 in stage 0.0 (TID 14, Tawfiq-PC, executor 0, partition 14, PROCESS_LOCAL, 7911 bytes)
+86: 18/01/31 11:39:06 INFO TaskSetManager: Finished task 12.0 in stage 0.0 (TID 12) in 1184 ms on Tawfiq-PC (executor 0) (13/48)
+87: 18/01/31 11:39:06 INFO TaskSetManager: Starting task 15.0 in stage 0.0 (TID 15, Tawfiq-PC, executor 0, partition 15, PROCESS_LOCAL, 7911 bytes)
+88: 18/01/31 11:39:06 INFO TaskSetManager: Finished task 13.0 in stage 0.0 (TID 13) in 1184 ms on Tawfiq-PC (executor 0) (14/48)
+89: 18/01/31 11:39:07 INFO TaskSetManager: Starting task 16.0 in stage 0.0 (TID 16, Tawfiq-PC, executor 0, partition 16, PROCESS_LOCAL, 7907 bytes)
+90: 18/01/31 11:39:07 INFO TaskSetManager: Finished task 15.0 in stage 0.0 (TID 15) in 1134 ms on Tawfiq-PC (executor 0) (15/48)
+91: 18/01/31 11:39:08 INFO TaskSetManager: Starting task 17.0 in stage 0.0 (TID 17, Tawfiq-PC, executor 0, partition 17, PROCESS_LOCAL, 7907 bytes)
+92: 18/01/31 11:39:08 INFO TaskSetManager: Finished task 14.0 in stage 0.0 (TID 14) in 1430 ms on Tawfiq-PC (executor 0) (16/48)
+93: 18/01/31 11:39:08 INFO TaskSetManager: Starting task 18.0 in stage 0.0 (TID 18, Tawfiq-PC, executor 0, partition 18, PROCESS_LOCAL, 7907 bytes)
+94: 18/01/31 11:39:08 INFO TaskSetManager: Finished task 16.0 in stage 0.0 (TID 16) in 1009 ms on Tawfiq-PC (executor 0) (17/48)
+95: 18/01/31 11:39:09 INFO TaskSetManager: Starting task 19.0 in stage 0.0 (TID 19, Tawfiq-PC, executor 0, partition 19, PROCESS_LOCAL, 7907 bytes)
+96: 18/01/31 11:39:09 INFO TaskSetManager: Finished task 17.0 in stage 0.0 (TID 17) in 975 ms on Tawfiq-PC (executor 0) (18/48)
+97: 18/01/31 11:39:09 INFO TaskSetManager: Starting task 20.0 in stage 0.0 (TID 20, Tawfiq-PC, executor 0, partition 20, PROCESS_LOCAL, 7907 bytes)
+98: 18/01/31 11:39:09 INFO TaskSetManager: Finished task 18.0 in stage 0.0 (TID 18) in 971 ms on Tawfiq-PC (executor 0) (19/48)
+99: 18/01/31 11:39:10 INFO TaskSetManager: Starting task 21.0 in stage 0.0 (TID 21, Tawfiq-PC, executor 0, partition 21, PROCESS_LOCAL, 7907 bytes)
+100: 18/01/31 11:39:10 INFO TaskSetManager: Finished task 19.0 in stage 0.0 (TID 19) in 940 ms on Tawfiq-PC (executor 0) (20/48)
+101: 18/01/31 11:39:10 INFO TaskSetManager: Starting task 22.0 in stage 0.0 (TID 22, Tawfiq-PC, executor 0, partition 22, PROCESS_LOCAL, 7907 bytes)
+102: 18/01/31 11:39:10 INFO TaskSetManager: Finished task 20.0 in stage 0.0 (TID 20) in 1018 ms on Tawfiq-PC (executor 0) (21/48)
+103: 18/01/31 11:39:11 INFO TaskSetManager: Starting task 23.0 in stage 0.0 (TID 23, Tawfiq-PC, executor 0, partition 23, PROCESS_LOCAL, 7907 bytes)
+104: 18/01/31 11:39:11 INFO TaskSetManager: Finished task 21.0 in stage 0.0 (TID 21) in 1072 ms on Tawfiq-PC (executor 0) (22/48)
+105: 18/01/31 11:39:12 INFO TaskSetManager: Starting task 24.0 in stage 0.0 (TID 24, Tawfiq-PC, executor 0, partition 24, PROCESS_LOCAL, 7907 bytes)
+106: 18/01/31 11:39:12 INFO TaskSetManager: Finished task 22.0 in stage 0.0 (TID 22) in 1123 ms on Tawfiq-PC (executor 0) (23/48)
+107: 18/01/31 11:39:12 INFO TaskSetManager: Starting task 25.0 in stage 0.0 (TID 25, Tawfiq-PC, executor 0, partition 25, PROCESS_LOCAL, 7907 bytes)
+108: 18/01/31 11:39:12 INFO TaskSetManager: Finished task 23.0 in stage 0.0 (TID 23) in 1082 ms on Tawfiq-PC (executor 0) (24/48)
+109: 18/01/31 11:39:13 INFO TaskSetManager: Starting task 26.0 in stage 0.0 (TID 26, Tawfiq-PC, executor 0, partition 26, PROCESS_LOCAL, 7907 bytes)
+110: 18/01/31 11:39:13 INFO TaskSetManager: Finished task 24.0 in stage 0.0 (TID 24) in 1028 ms on Tawfiq-PC (executor 0) (25/48)
+111: 18/01/31 11:39:13 INFO TaskSetManager: Starting task 27.0 in stage 0.0 (TID 27, Tawfiq-PC, executor 0, partition 27, PROCESS_LOCAL, 7907 bytes)
+112: 18/01/31 11:39:13 INFO TaskSetManager: Finished task 25.0 in stage 0.0 (TID 25) in 993 ms on Tawfiq-PC (executor 0) (26/48)
+113: 18/01/31 11:39:14 INFO TaskSetManager: Starting task 28.0 in stage 0.0 (TID 28, Tawfiq-PC, executor 0, partition 28, PROCESS_LOCAL, 7907 bytes)
+114: 18/01/31 11:39:14 INFO TaskSetManager: Finished task 26.0 in stage 0.0 (TID 26) in 1105 ms on Tawfiq-PC (executor 0) (27/48)
+115: 18/01/31 11:39:14 INFO TaskSetManager: Starting task 29.0 in stage 0.0 (TID 29, Tawfiq-PC, executor 0, partition 29, PROCESS_LOCAL, 7907 bytes)
+116: 18/01/31 11:39:14 INFO TaskSetManager: Finished task 27.0 in stage 0.0 (TID 27) in 1027 ms on Tawfiq-PC (executor 0) (28/48)
+117: 18/01/31 11:39:15 INFO TaskSetManager: Starting task 30.0 in stage 0.0 (TID 30, Tawfiq-PC, executor 0, partition 30, PROCESS_LOCAL, 7907 bytes)
+118: 18/01/31 11:39:15 INFO TaskSetManager: Finished task 28.0 in stage 0.0 (TID 28) in 897 ms on Tawfiq-PC (executor 0) (29/48)
+119: 18/01/31 11:39:15 INFO TaskSetManager: Starting task 31.0 in stage 0.0 (TID 31, Tawfiq-PC, executor 0, partition 31, PROCESS_LOCAL, 7907 bytes)
+120: 18/01/31 11:39:15 INFO TaskSetManager: Finished task 29.0 in stage 0.0 (TID 29) in 992 ms on Tawfiq-PC (executor 0) (30/48)
+121: 18/01/31 11:39:15 INFO TaskSetManager: Starting task 32.0 in stage 0.0 (TID 32, Tawfiq-PC, executor 0, partition 32, PROCESS_LOCAL, 7900 bytes)
+122: 18/01/31 11:39:15 INFO TaskSetManager: Finished task 31.0 in stage 0.0 (TID 31) in 637 ms on Tawfiq-PC (executor 0) (31/48)
+123: 18/01/31 11:39:16 INFO TaskSetManager: Starting task 33.0 in stage 0.0 (TID 33, Tawfiq-PC, executor 0, partition 33, PROCESS_LOCAL, 7900 bytes)
+124: 18/01/31 11:39:16 INFO TaskSetManager: Finished task 30.0 in stage 0.0 (TID 30) in 966 ms on Tawfiq-PC (executor 0) (32/48)
+125: 18/01/31 11:39:16 INFO TaskSetManager: Starting task 34.0 in stage 0.0 (TID 34, Tawfiq-PC, executor 0, partition 34, PROCESS_LOCAL, 7900 bytes)
+126: 18/01/31 11:39:16 INFO TaskSetManager: Finished task 32.0 in stage 0.0 (TID 32) in 1070 ms on Tawfiq-PC (executor 0) (33/48)
+127: 18/01/31 11:39:17 INFO TaskSetManager: Starting task 35.0 in stage 0.0 (TID 35, Tawfiq-PC, executor 0, partition 35, PROCESS_LOCAL, 7900 bytes)
+128: 18/01/31 11:39:17 INFO TaskSetManager: Finished task 33.0 in stage 0.0 (TID 33) in 1066 ms on Tawfiq-PC (executor 0) (34/48)
+129: 18/01/31 11:39:18 INFO TaskSetManager: Starting task 36.0 in stage 0.0 (TID 36, Tawfiq-PC, executor 0, partition 36, PROCESS_LOCAL, 7900 bytes)
+130: 18/01/31 11:39:18 INFO TaskSetManager: Finished task 34.0 in stage 0.0 (TID 34) in 1031 ms on Tawfiq-PC (executor 0) (35/48)
+131: 18/01/31 11:39:18 INFO TaskSetManager: Starting task 37.0 in stage 0.0 (TID 37, Tawfiq-PC, executor 0, partition 37, PROCESS_LOCAL, 7900 bytes)
+132: 18/01/31 11:39:18 INFO TaskSetManager: Finished task 35.0 in stage 0.0 (TID 35) in 1023 ms on Tawfiq-PC (executor 0) (36/48)
+133: 18/01/31 11:39:19 INFO TaskSetManager: Starting task 38.0 in stage 0.0 (TID 38, Tawfiq-PC, executor 0, partition 38, PROCESS_LOCAL, 7900 bytes)
+134: 18/01/31 11:39:19 INFO TaskSetManager: Finished task 36.0 in stage 0.0 (TID 36) in 1001 ms on Tawfiq-PC (executor 0) (37/48)
+135: 18/01/31 11:39:19 INFO TaskSetManager: Starting task 39.0 in stage 0.0 (TID 39, Tawfiq-PC, executor 0, partition 39, PROCESS_LOCAL, 7900 bytes)
+136: 18/01/31 11:39:19 INFO TaskSetManager: Finished task 37.0 in stage 0.0 (TID 37) in 1204 ms on Tawfiq-PC (executor 0) (38/48)
+137: 18/01/31 11:39:20 INFO TaskSetManager: Starting task 40.0 in stage 0.0 (TID 40, Tawfiq-PC, executor 0, partition 40, PROCESS_LOCAL, 7900 bytes)
+138: 18/01/31 11:39:20 INFO TaskSetManager: Finished task 38.0 in stage 0.0 (TID 38) in 1004 ms on Tawfiq-PC (executor 0) (39/48)
+139: 18/01/31 11:39:20 INFO TaskSetManager: Starting task 41.0 in stage 0.0 (TID 41, Tawfiq-PC, executor 0, partition 41, PROCESS_LOCAL, 7900 bytes)
+140: 18/01/31 11:39:20 INFO TaskSetManager: Finished task 39.0 in stage 0.0 (TID 39) in 930 ms on Tawfiq-PC (executor 0) (40/48)
+141: 18/01/31 11:39:20 INFO TaskSetManager: Starting task 42.0 in stage 0.0 (TID 42, Tawfiq-PC, executor 0, partition 42, PROCESS_LOCAL, 7900 bytes)
+142: 18/01/31 11:39:20 INFO TaskSetManager: Finished task 40.0 in stage 0.0 (TID 40) in 980 ms on Tawfiq-PC (executor 0) (41/48)
+143: 18/01/31 11:39:21 INFO TaskSetManager: Starting task 43.0 in stage 0.0 (TID 43, Tawfiq-PC, executor 0, partition 43, PROCESS_LOCAL, 7900 bytes)
+144: 18/01/31 11:39:21 INFO TaskSetManager: Finished task 41.0 in stage 0.0 (TID 41) in 971 ms on Tawfiq-PC (executor 0) (42/48)
+145: 18/01/31 11:39:22 INFO TaskSetManager: Starting task 44.0 in stage 0.0 (TID 44, Tawfiq-PC, executor 0, partition 44, PROCESS_LOCAL, 7900 bytes)
+146: 18/01/31 11:39:22 INFO TaskSetManager: Finished task 42.0 in stage 0.0 (TID 42) in 1112 ms on Tawfiq-PC (executor 0) (43/48)
+147: 18/01/31 11:39:22 INFO TaskSetManager: Starting task 45.0 in stage 0.0 (TID 45, Tawfiq-PC, executor 0, partition 45, PROCESS_LOCAL, 7900 bytes)
+148: 18/01/31 11:39:22 INFO TaskSetManager: Finished task 43.0 in stage 0.0 (TID 43) in 1102 ms on Tawfiq-PC (executor 0) (44/48)
+149: 18/01/31 11:39:23 INFO TaskSetManager: Starting task 46.0 in stage 0.0 (TID 46, Tawfiq-PC, executor 0, partition 46, PROCESS_LOCAL, 7900 bytes)
+150: 18/01/31 11:39:23 INFO TaskSetManager: Finished task 44.0 in stage 0.0 (TID 44) in 944 ms on Tawfiq-PC (executor 0) (45/48)
+151: 18/01/31 11:39:23 INFO TaskSetManager: Starting task 47.0 in stage 0.0 (TID 47, Tawfiq-PC, executor 0, partition 47, PROCESS_LOCAL, 7900 bytes)
+152: 18/01/31 11:39:23 INFO TaskSetManager: Finished task 45.0 in stage 0.0 (TID 45) in 1014 ms on Tawfiq-PC (executor 0) (46/48)
+153: 18/01/31 11:39:23 INFO TaskSetManager: Finished task 47.0 in stage 0.0 (TID 47) in 617 ms on Tawfiq-PC (executor 0) (47/48)
+154: 18/01/31 11:39:24 INFO TaskSetManager: Finished task 46.0 in stage 0.0 (TID 46) in 951 ms on Tawfiq-PC (executor 0) (48/48)
+155: 18/01/31 11:39:24 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+156: 18/01/31 11:39:24 INFO DAGScheduler: ShuffleMapStage 0 (map at WordCount.scala:28) finished in 29.224 s
+157: 18/01/31 11:39:24 INFO DAGScheduler: looking for newly runnable stages
+158: 18/01/31 11:39:24 INFO DAGScheduler: running: Set()
+159: 18/01/31 11:39:24 INFO DAGScheduler: waiting: Set(ResultStage 1)
+160: 18/01/31 11:39:24 INFO DAGScheduler: failed: Set()
+161: 18/01/31 11:39:24 INFO DAGScheduler: Submitting ResultStage 1 (MapPartitionsRDD[5] at saveAsTextFile at WordCount.scala:31), which has no missing parents
+162: 18/01/31 11:39:24 INFO MemoryStore: Block broadcast_2 stored as values in memory (estimated size 65.6 KB, free 366.0 MB)
+163: 18/01/31 11:39:24 INFO MemoryStore: Block broadcast_2_piece0 stored as bytes in memory (estimated size 23.6 KB, free 366.0 MB)
+164: 18/01/31 11:39:24 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on tawfiq-pc.mobility.unimelb.net.au:45813 (size: 23.6 KB, free: 366.3 MB)
+165: 18/01/31 11:39:24 INFO SparkContext: Created broadcast 2 from broadcast at DAGScheduler.scala:1029
+166: 18/01/31 11:39:24 INFO DAGScheduler: Submitting 48 missing tasks from ResultStage 1 (MapPartitionsRDD[5] at saveAsTextFile at WordCount.scala:31) (first 15 tasks are for partitions Vector(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14))
+167: 18/01/31 11:39:24 INFO TaskSchedulerImpl: Adding task set 1.0 with 48 tasks
+168: 18/01/31 11:39:24 INFO TaskSetManager: Starting task 0.0 in stage 1.0 (TID 48, Tawfiq-PC, executor 0, partition 0, NODE_LOCAL, 7671 bytes)
+169: 18/01/31 11:39:24 INFO TaskSetManager: Starting task 1.0 in stage 1.0 (TID 49, Tawfiq-PC, executor 0, partition 1, NODE_LOCAL, 7671 bytes)
+170: 18/01/31 11:39:24 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on Tawfiq-PC:44277 (size: 23.6 KB, free: 4.1 GB)
+171: 18/01/31 11:39:24 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 10.100.228.108:47504
+172: 18/01/31 11:39:24 INFO TaskSetManager: Starting task 2.0 in stage 1.0 (TID 50, Tawfiq-PC, executor 0, partition 2, NODE_LOCAL, 7671 bytes)
+173: 18/01/31 11:39:24 INFO TaskSetManager: Finished task 0.0 in stage 1.0 (TID 48) in 211 ms on Tawfiq-PC (executor 0) (1/48)
+174: 18/01/31 11:39:24 INFO TaskSetManager: Starting task 3.0 in stage 1.0 (TID 51, Tawfiq-PC, executor 0, partition 3, NODE_LOCAL, 7671 bytes)
+175: 18/01/31 11:39:24 INFO TaskSetManager: Finished task 1.0 in stage 1.0 (TID 49) in 227 ms on Tawfiq-PC (executor 0) (2/48)
+176: 18/01/31 11:39:24 INFO TaskSetManager: Starting task 4.0 in stage 1.0 (TID 52, Tawfiq-PC, executor 0, partition 4, NODE_LOCAL, 7671 bytes)
+177: 18/01/31 11:39:24 INFO TaskSetManager: Finished task 2.0 in stage 1.0 (TID 50) in 101 ms on Tawfiq-PC (executor 0) (3/48)
+178: 18/01/31 11:39:24 INFO TaskSetManager: Starting task 5.0 in stage 1.0 (TID 53, Tawfiq-PC, executor 0, partition 5, NODE_LOCAL, 7671 bytes)
+179: 18/01/31 11:39:24 INFO TaskSetManager: Finished task 3.0 in stage 1.0 (TID 51) in 95 ms on Tawfiq-PC (executor 0) (4/48)
+180: 18/01/31 11:39:24 INFO TaskSetManager: Starting task 6.0 in stage 1.0 (TID 54, Tawfiq-PC, executor 0, partition 6, NODE_LOCAL, 7671 bytes)
+181: 18/01/31 11:39:24 INFO TaskSetManager: Finished task 4.0 in stage 1.0 (TID 52) in 80 ms on Tawfiq-PC (executor 0) (5/48)
+182: 18/01/31 11:39:24 INFO TaskSetManager: Starting task 7.0 in stage 1.0 (TID 55, Tawfiq-PC, executor 0, partition 7, NODE_LOCAL, 7671 bytes)
+183: 18/01/31 11:39:24 INFO TaskSetManager: Finished task 5.0 in stage 1.0 (TID 53) in 85 ms on Tawfiq-PC (executor 0) (6/48)
+184: 18/01/31 11:39:24 INFO TaskSetManager: Starting task 8.0 in stage 1.0 (TID 56, Tawfiq-PC, executor 0, partition 8, NODE_LOCAL, 7671 bytes)
+185: 18/01/31 11:39:24 INFO TaskSetManager: Finished task 6.0 in stage 1.0 (TID 54) in 98 ms on Tawfiq-PC (executor 0) (7/48)
+186: 18/01/31 11:39:24 INFO TaskSetManager: Starting task 9.0 in stage 1.0 (TID 57, Tawfiq-PC, executor 0, partition 9, NODE_LOCAL, 7671 bytes)
+187: 18/01/31 11:39:24 INFO TaskSetManager: Finished task 7.0 in stage 1.0 (TID 55) in 82 ms on Tawfiq-PC (executor 0) (8/48)
+188: 18/01/31 11:39:24 INFO TaskSetManager: Starting task 10.0 in stage 1.0 (TID 58, Tawfiq-PC, executor 0, partition 10, NODE_LOCAL, 7671 bytes)
+189: 18/01/31 11:39:24 INFO TaskSetManager: Finished task 9.0 in stage 1.0 (TID 57) in 74 ms on Tawfiq-PC (executor 0) (9/48)
+190: 18/01/31 11:39:24 INFO TaskSetManager: Starting task 11.0 in stage 1.0 (TID 59, Tawfiq-PC, executor 0, partition 11, NODE_LOCAL, 7671 bytes)
+191: 18/01/31 11:39:24 INFO TaskSetManager: Finished task 8.0 in stage 1.0 (TID 56) in 114 ms on Tawfiq-PC (executor 0) (10/48)
+192: 18/01/31 11:39:24 INFO TaskSetManager: Starting task 12.0 in stage 1.0 (TID 60, Tawfiq-PC, executor 0, partition 12, NODE_LOCAL, 7671 bytes)
+193: 18/01/31 11:39:24 INFO TaskSetManager: Finished task 10.0 in stage 1.0 (TID 58) in 81 ms on Tawfiq-PC (executor 0) (11/48)
+194: 18/01/31 11:39:24 INFO TaskSetManager: Starting task 13.0 in stage 1.0 (TID 61, Tawfiq-PC, executor 0, partition 13, NODE_LOCAL, 7671 bytes)
+195: 18/01/31 11:39:24 INFO TaskSetManager: Finished task 11.0 in stage 1.0 (TID 59) in 71 ms on Tawfiq-PC (executor 0) (12/48)
+196: 18/01/31 11:39:24 INFO TaskSetManager: Starting task 14.0 in stage 1.0 (TID 62, Tawfiq-PC, executor 0, partition 14, NODE_LOCAL, 7671 bytes)
+197: 18/01/31 11:39:24 INFO TaskSetManager: Finished task 12.0 in stage 1.0 (TID 60) in 66 ms on Tawfiq-PC (executor 0) (13/48)
+198: 18/01/31 11:39:24 INFO TaskSetManager: Starting task 15.0 in stage 1.0 (TID 63, Tawfiq-PC, executor 0, partition 15, NODE_LOCAL, 7671 bytes)
+199: 18/01/31 11:39:24 INFO TaskSetManager: Finished task 13.0 in stage 1.0 (TID 61) in 54 ms on Tawfiq-PC (executor 0) (14/48)
+200: 18/01/31 11:39:24 INFO TaskSetManager: Starting task 16.0 in stage 1.0 (TID 64, Tawfiq-PC, executor 0, partition 16, NODE_LOCAL, 7671 bytes)
+201: 18/01/31 11:39:24 INFO TaskSetManager: Finished task 14.0 in stage 1.0 (TID 62) in 56 ms on Tawfiq-PC (executor 0) (15/48)
+202: 18/01/31 11:39:24 INFO TaskSetManager: Starting task 17.0 in stage 1.0 (TID 65, Tawfiq-PC, executor 0, partition 17, NODE_LOCAL, 7671 bytes)
+203: 18/01/31 11:39:24 INFO TaskSetManager: Finished task 15.0 in stage 1.0 (TID 63) in 51 ms on Tawfiq-PC (executor 0) (16/48)
+204: 18/01/31 11:39:24 INFO TaskSetManager: Starting task 18.0 in stage 1.0 (TID 66, Tawfiq-PC, executor 0, partition 18, NODE_LOCAL, 7671 bytes)
+205: 18/01/31 11:39:24 INFO TaskSetManager: Finished task 16.0 in stage 1.0 (TID 64) in 55 ms on Tawfiq-PC (executor 0) (17/48)
+206: 18/01/31 11:39:24 INFO TaskSetManager: Starting task 19.0 in stage 1.0 (TID 67, Tawfiq-PC, executor 0, partition 19, NODE_LOCAL, 7671 bytes)
+207: 18/01/31 11:39:24 INFO TaskSetManager: Finished task 17.0 in stage 1.0 (TID 65) in 94 ms on Tawfiq-PC (executor 0) (18/48)
+208: 18/01/31 11:39:24 INFO TaskSetManager: Starting task 20.0 in stage 1.0 (TID 68, Tawfiq-PC, executor 0, partition 20, NODE_LOCAL, 7671 bytes)
+209: 18/01/31 11:39:24 INFO TaskSetManager: Finished task 18.0 in stage 1.0 (TID 66) in 61 ms on Tawfiq-PC (executor 0) (19/48)
+210: 18/01/31 11:39:24 INFO TaskSetManager: Starting task 21.0 in stage 1.0 (TID 69, Tawfiq-PC, executor 0, partition 21, NODE_LOCAL, 7671 bytes)
+211: 18/01/31 11:39:24 INFO TaskSetManager: Finished task 19.0 in stage 1.0 (TID 67) in 62 ms on Tawfiq-PC (executor 0) (20/48)
+212: 18/01/31 11:39:24 INFO TaskSetManager: Starting task 22.0 in stage 1.0 (TID 70, Tawfiq-PC, executor 0, partition 22, NODE_LOCAL, 7671 bytes)
+213: 18/01/31 11:39:24 INFO TaskSetManager: Finished task 20.0 in stage 1.0 (TID 68) in 51 ms on Tawfiq-PC (executor 0) (21/48)
+214: 18/01/31 11:39:25 INFO TaskSetManager: Starting task 23.0 in stage 1.0 (TID 71, Tawfiq-PC, executor 0, partition 23, NODE_LOCAL, 7671 bytes)
+215: 18/01/31 11:39:25 INFO TaskSetManager: Finished task 22.0 in stage 1.0 (TID 70) in 46 ms on Tawfiq-PC (executor 0) (22/48)
+216: 18/01/31 11:39:25 INFO TaskSetManager: Starting task 24.0 in stage 1.0 (TID 72, Tawfiq-PC, executor 0, partition 24, NODE_LOCAL, 7671 bytes)
+217: 18/01/31 11:39:25 INFO TaskSetManager: Finished task 21.0 in stage 1.0 (TID 69) in 93 ms on Tawfiq-PC (executor 0) (23/48)
+218: 18/01/31 11:39:25 INFO TaskSetManager: Starting task 25.0 in stage 1.0 (TID 73, Tawfiq-PC, executor 0, partition 25, NODE_LOCAL, 7671 bytes)
+219: 18/01/31 11:39:25 INFO TaskSetManager: Finished task 23.0 in stage 1.0 (TID 71) in 70 ms on Tawfiq-PC (executor 0) (24/48)
+220: 18/01/31 11:39:25 INFO BlockManagerInfo: Removed broadcast_1_piece0 on Tawfiq-PC:44277 in memory (size: 2.8 KB, free: 4.1 GB)
+221: 18/01/31 11:39:25 INFO BlockManagerInfo: Removed broadcast_1_piece0 on tawfiq-pc.mobility.unimelb.net.au:45813 in memory (size: 2.8 KB, free: 366.3 MB)
+222: 18/01/31 11:39:25 INFO TaskSetManager: Starting task 26.0 in stage 1.0 (TID 74, Tawfiq-PC, executor 0, partition 26, NODE_LOCAL, 7671 bytes)
+223: 18/01/31 11:39:25 INFO TaskSetManager: Finished task 24.0 in stage 1.0 (TID 72) in 67 ms on Tawfiq-PC (executor 0) (25/48)
+224: 18/01/31 11:39:25 INFO TaskSetManager: Starting task 27.0 in stage 1.0 (TID 75, Tawfiq-PC, executor 0, partition 27, NODE_LOCAL, 7671 bytes)
+225: 18/01/31 11:39:25 INFO TaskSetManager: Finished task 25.0 in stage 1.0 (TID 73) in 71 ms on Tawfiq-PC (executor 0) (26/48)
+226: 18/01/31 11:39:25 INFO TaskSetManager: Starting task 28.0 in stage 1.0 (TID 76, Tawfiq-PC, executor 0, partition 28, NODE_LOCAL, 7671 bytes)
+227: 18/01/31 11:39:25 INFO TaskSetManager: Finished task 26.0 in stage 1.0 (TID 74) in 68 ms on Tawfiq-PC (executor 0) (27/48)
+228: 18/01/31 11:39:25 INFO TaskSetManager: Finished task 27.0 in stage 1.0 (TID 75) in 64 ms on Tawfiq-PC (executor 0) (28/48)
+229: 18/01/31 11:39:25 INFO TaskSetManager: Starting task 29.0 in stage 1.0 (TID 77, Tawfiq-PC, executor 0, partition 29, NODE_LOCAL, 7671 bytes)
+230: 18/01/31 11:39:25 INFO TaskSetManager: Starting task 30.0 in stage 1.0 (TID 78, Tawfiq-PC, executor 0, partition 30, NODE_LOCAL, 7671 bytes)
+231: 18/01/31 11:39:25 INFO TaskSetManager: Finished task 28.0 in stage 1.0 (TID 76) in 55 ms on Tawfiq-PC (executor 0) (29/48)
+232: 18/01/31 11:39:25 INFO TaskSetManager: Starting task 31.0 in stage 1.0 (TID 79, Tawfiq-PC, executor 0, partition 31, NODE_LOCAL, 7671 bytes)
+233: 18/01/31 11:39:25 INFO TaskSetManager: Finished task 29.0 in stage 1.0 (TID 77) in 74 ms on Tawfiq-PC (executor 0) (30/48)
+234: 18/01/31 11:39:25 INFO TaskSetManager: Starting task 32.0 in stage 1.0 (TID 80, Tawfiq-PC, executor 0, partition 32, NODE_LOCAL, 7671 bytes)
+235: 18/01/31 11:39:25 INFO TaskSetManager: Finished task 31.0 in stage 1.0 (TID 79) in 47 ms on Tawfiq-PC (executor 0) (31/48)
+236: 18/01/31 11:39:25 INFO TaskSetManager: Finished task 30.0 in stage 1.0 (TID 78) in 110 ms on Tawfiq-PC (executor 0) (32/48)
+237: 18/01/31 11:39:25 INFO TaskSetManager: Starting task 33.0 in stage 1.0 (TID 81, Tawfiq-PC, executor 0, partition 33, NODE_LOCAL, 7671 bytes)
+238: 18/01/31 11:39:25 INFO TaskSetManager: Starting task 34.0 in stage 1.0 (TID 82, Tawfiq-PC, executor 0, partition 34, NODE_LOCAL, 7671 bytes)
+239: 18/01/31 11:39:25 INFO TaskSetManager: Finished task 32.0 in stage 1.0 (TID 80) in 65 ms on Tawfiq-PC (executor 0) (33/48)
+240: 18/01/31 11:39:25 INFO TaskSetManager: Starting task 35.0 in stage 1.0 (TID 83, Tawfiq-PC, executor 0, partition 35, NODE_LOCAL, 7671 bytes)
+241: 18/01/31 11:39:25 INFO TaskSetManager: Finished task 33.0 in stage 1.0 (TID 81) in 50 ms on Tawfiq-PC (executor 0) (34/48)
+242: 18/01/31 11:39:25 INFO TaskSetManager: Starting task 36.0 in stage 1.0 (TID 84, Tawfiq-PC, executor 0, partition 36, NODE_LOCAL, 7671 bytes)
+243: 18/01/31 11:39:25 INFO TaskSetManager: Finished task 34.0 in stage 1.0 (TID 82) in 40 ms on Tawfiq-PC (executor 0) (35/48)
+244: 18/01/31 11:39:25 INFO TaskSetManager: Starting task 37.0 in stage 1.0 (TID 85, Tawfiq-PC, executor 0, partition 37, NODE_LOCAL, 7671 bytes)
+245: 18/01/31 11:39:25 INFO TaskSetManager: Finished task 35.0 in stage 1.0 (TID 83) in 45 ms on Tawfiq-PC (executor 0) (36/48)
+246: 18/01/31 11:39:25 INFO TaskSetManager: Starting task 38.0 in stage 1.0 (TID 86, Tawfiq-PC, executor 0, partition 38, NODE_LOCAL, 7671 bytes)
+247: 18/01/31 11:39:25 INFO TaskSetManager: Finished task 36.0 in stage 1.0 (TID 84) in 60 ms on Tawfiq-PC (executor 0) (37/48)
+248: 18/01/31 11:39:25 INFO TaskSetManager: Starting task 39.0 in stage 1.0 (TID 87, Tawfiq-PC, executor 0, partition 39, NODE_LOCAL, 7671 bytes)
+249: 18/01/31 11:39:25 INFO TaskSetManager: Finished task 37.0 in stage 1.0 (TID 85) in 83 ms on Tawfiq-PC (executor 0) (38/48)
+250: 18/01/31 11:39:25 INFO TaskSetManager: Starting task 40.0 in stage 1.0 (TID 88, Tawfiq-PC, executor 0, partition 40, NODE_LOCAL, 7671 bytes)
+251: 18/01/31 11:39:25 INFO TaskSetManager: Finished task 38.0 in stage 1.0 (TID 86) in 40 ms on Tawfiq-PC (executor 0) (39/48)
+252: 18/01/31 11:39:25 INFO TaskSetManager: Starting task 41.0 in stage 1.0 (TID 89, Tawfiq-PC, executor 0, partition 41, NODE_LOCAL, 7671 bytes)
+253: 18/01/31 11:39:25 INFO TaskSetManager: Finished task 39.0 in stage 1.0 (TID 87) in 41 ms on Tawfiq-PC (executor 0) (40/48)
+254: 18/01/31 11:39:25 INFO TaskSetManager: Starting task 42.0 in stage 1.0 (TID 90, Tawfiq-PC, executor 0, partition 42, NODE_LOCAL, 7671 bytes)
+255: 18/01/31 11:39:25 INFO TaskSetManager: Finished task 40.0 in stage 1.0 (TID 88) in 52 ms on Tawfiq-PC (executor 0) (41/48)
+256: 18/01/31 11:39:25 INFO TaskSetManager: Starting task 43.0 in stage 1.0 (TID 91, Tawfiq-PC, executor 0, partition 43, NODE_LOCAL, 7671 bytes)
+257: 18/01/31 11:39:25 INFO TaskSetManager: Finished task 41.0 in stage 1.0 (TID 89) in 47 ms on Tawfiq-PC (executor 0) (42/48)
+258: 18/01/31 11:39:25 INFO TaskSetManager: Starting task 44.0 in stage 1.0 (TID 92, Tawfiq-PC, executor 0, partition 44, NODE_LOCAL, 7671 bytes)
+259: 18/01/31 11:39:25 INFO TaskSetManager: Finished task 42.0 in stage 1.0 (TID 90) in 58 ms on Tawfiq-PC (executor 0) (43/48)
+260: 18/01/31 11:39:25 INFO TaskSetManager: Starting task 45.0 in stage 1.0 (TID 93, Tawfiq-PC, executor 0, partition 45, NODE_LOCAL, 7671 bytes)
+261: 18/01/31 11:39:25 INFO TaskSetManager: Finished task 43.0 in stage 1.0 (TID 91) in 110 ms on Tawfiq-PC (executor 0) (44/48)
+262: 18/01/31 11:39:25 INFO TaskSetManager: Starting task 46.0 in stage 1.0 (TID 94, Tawfiq-PC, executor 0, partition 46, NODE_LOCAL, 7671 bytes)
+263: 18/01/31 11:39:25 INFO TaskSetManager: Finished task 44.0 in stage 1.0 (TID 92) in 94 ms on Tawfiq-PC (executor 0) (45/48)
+264: 18/01/31 11:39:25 INFO TaskSetManager: Starting task 47.0 in stage 1.0 (TID 95, Tawfiq-PC, executor 0, partition 47, NODE_LOCAL, 7671 bytes)
+265: 18/01/31 11:39:25 INFO TaskSetManager: Finished task 46.0 in stage 1.0 (TID 94) in 40 ms on Tawfiq-PC (executor 0) (46/48)
+266: 18/01/31 11:39:25 INFO TaskSetManager: Finished task 45.0 in stage 1.0 (TID 93) in 55 ms on Tawfiq-PC (executor 0) (47/48)
+267: 18/01/31 11:39:25 INFO TaskSetManager: Finished task 47.0 in stage 1.0 (TID 95) in 33 ms on Tawfiq-PC (executor 0) (48/48)
+268: 18/01/31 11:39:25 INFO TaskSchedulerImpl: Removed TaskSet 1.0, whose tasks have all completed, from pool 
+269: 18/01/31 11:39:25 INFO DAGScheduler: ResultStage 1 (runJob at SparkHadoopWriter.scala:78) finished in 1.795 s
+270: 18/01/31 11:39:25 INFO DAGScheduler: Job 0 finished: runJob at SparkHadoopWriter.scala:78, took 31.243311 s
+271: 18/01/31 11:39:25 INFO SparkHadoopWriter: Job job_20180131113854_0005 committed.
+272: 18/01/31 11:39:25 INFO SparkContext: Invoking stop() from shutdown hook
+273: 18/01/31 11:39:25 INFO SparkUI: Stopped Spark web UI at http://tawfiq-pc.mobility.unimelb.net.au:4040
+274: 18/01/31 11:39:25 INFO MesosCoarseGrainedSchedulerBackend: Shutting down all executors
+275: 18/01/31 11:39:25 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Asking each executor to shut down
+276: 18/01/31 11:39:26 INFO MesosCoarseGrainedSchedulerBackend: Mesos task 0 is now TASK_FINISHED
+277: I0131 11:39:26.076385  5298 sched.cpp:2021] Asked to stop the driver
+278: I0131 11:39:26.076629  4920 sched.cpp:1203] Stopping framework 0aacf5fd-ccc5-45dd-8d32-8221046eb0ee-0006
+279: 18/01/31 11:39:26 INFO MesosCoarseGrainedSchedulerBackend: driver.run() returned with code DRIVER_STOPPED
+280: 18/01/31 11:39:26 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+281: 18/01/31 11:39:26 INFO MemoryStore: MemoryStore cleared
+282: 18/01/31 11:39:26 INFO BlockManager: BlockManager stopped
+283: 18/01/31 11:39:26 INFO BlockManagerMaster: BlockManagerMaster stopped
+284: 18/01/31 11:39:26 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+285: 18/01/31 11:39:26 INFO SparkContext: Successfully stopped SparkContext
+286: 18/01/31 11:39:26 INFO ShutdownHookManager: Shutdown hook called
+287: 18/01/31 11:39:26 INFO ShutdownHookManager: Deleting directory /tmp/spark-89d264fa-cbb9-46a7-888d-861715208834
+288: 18/01/31 11:39:26 INFO ShutdownHookManager: Deleting directory /tmp/spark-8f572fad-c205-4c46-ae9d-b08a02516e4e

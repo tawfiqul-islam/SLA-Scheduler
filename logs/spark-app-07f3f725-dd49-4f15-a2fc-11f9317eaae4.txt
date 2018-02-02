@@ -1,0 +1,190 @@
+0: 18/01/31 15:57:18 WARN Utils: Your hostname, Tawfiq-PC resolves to a loopback address: 127.0.1.1; using 10.100.228.108 instead (on interface enp0s31f6)
+1: 18/01/31 15:57:18 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+2: 18/01/31 15:57:18 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+3: Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+4: 18/01/31 15:57:18 INFO SparkContext: Running Spark version 2.3.0-SNAPSHOT
+5: 18/01/31 15:57:18 INFO SparkContext: Submitted application: BigDataBench WordCount
+6: 18/01/31 15:57:18 INFO SecurityManager: Changing view acls to: tawfiq
+7: 18/01/31 15:57:18 INFO SecurityManager: Changing modify acls to: tawfiq
+8: 18/01/31 15:57:18 INFO SecurityManager: Changing view acls groups to: 
+9: 18/01/31 15:57:18 INFO SecurityManager: Changing modify acls groups to: 
+10: 18/01/31 15:57:18 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(tawfiq); groups with view permissions: Set(); users  with modify permissions: Set(tawfiq); groups with modify permissions: Set()
+11: 18/01/31 15:57:18 INFO Utils: Successfully started service 'sparkDriver' on port 35623.
+12: 18/01/31 15:57:18 INFO SparkEnv: Registering MapOutputTracker
+13: 18/01/31 15:57:18 INFO SparkEnv: Registering BlockManagerMaster
+14: 18/01/31 15:57:18 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+15: 18/01/31 15:57:18 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+16: 18/01/31 15:57:18 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-d0465286-c55d-49c2-ad62-ed6b836f44e2
+17: 18/01/31 15:57:18 INFO MemoryStore: MemoryStore started with capacity 366.3 MB
+18: 18/01/31 15:57:18 INFO SparkEnv: Registering OutputCommitCoordinator
+19: 18/01/31 15:57:18 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
+20: 18/01/31 15:57:18 INFO Utils: Successfully started service 'SparkUI' on port 4041.
+21: 18/01/31 15:57:18 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://tawfiq-pc.mobility.unimelb.net.au:4041
+22: 18/01/31 15:57:18 INFO SparkContext: Added JAR file:/home/tawfiq/research/spark/bigdatabench-spark_1.3.0-hadoop_1.0.4.jar at spark://tawfiq-pc.mobility.unimelb.net.au:35623/jars/bigdatabench-spark_1.3.0-hadoop_1.0.4.jar with timestamp 1517374638890
+23: I0131 15:57:19.207981 12732 sched.cpp:232] Version: 1.4.0
+24: I0131 15:57:19.213338 12730 sched.cpp:336] New master detected at master@127.0.0.1:5050
+25: I0131 15:57:19.214696 12730 sched.cpp:352] No credentials provided. Attempting to register without authentication
+26: I0131 15:57:19.227658 12723 sched.cpp:759] Framework registered with 0aacf5fd-ccc5-45dd-8d32-8221046eb0ee-0008
+27: 18/01/31 15:57:19 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 44859.
+28: 18/01/31 15:57:19 INFO NettyBlockTransferService: Server created on tawfiq-pc.mobility.unimelb.net.au:44859
+29: 18/01/31 15:57:19 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+30: 18/01/31 15:57:19 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, tawfiq-pc.mobility.unimelb.net.au, 44859, None)
+31: 18/01/31 15:57:19 INFO BlockManagerMasterEndpoint: Registering block manager tawfiq-pc.mobility.unimelb.net.au:44859 with 366.3 MB RAM, BlockManagerId(driver, tawfiq-pc.mobility.unimelb.net.au, 44859, None)
+32: 18/01/31 15:57:19 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, tawfiq-pc.mobility.unimelb.net.au, 44859, None)
+33: 18/01/31 15:57:19 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, tawfiq-pc.mobility.unimelb.net.au, 44859, None)
+34: 18/01/31 15:57:19 INFO EventLoggingListener: Logging events to file:/home/tawfiq/research/spark/logs/0aacf5fd-ccc5-45dd-8d32-8221046eb0ee-0008
+35: 18/01/31 15:57:19 INFO MesosCoarseGrainedSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+36: 18/01/31 15:57:19 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 214.5 KB, free 366.1 MB)
+37: 18/01/31 15:57:19 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 20.4 KB, free 366.1 MB)
+38: 18/01/31 15:57:19 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on tawfiq-pc.mobility.unimelb.net.au:44859 (size: 20.4 KB, free: 366.3 MB)
+39: 18/01/31 15:57:19 INFO SparkContext: Created broadcast 0 from textFile at WordCount.scala:26
+40: 18/01/31 15:57:20 INFO FileInputFormat: Total input paths to process : 3
+41: 18/01/31 15:57:20 INFO deprecation: mapred.output.dir is deprecated. Instead, use mapreduce.output.fileoutputformat.outputdir
+42: 18/01/31 15:57:20 INFO SparkContext: Starting job: runJob at SparkHadoopWriter.scala:78
+43: 18/01/31 15:57:20 INFO DAGScheduler: Registering RDD 3 (map at WordCount.scala:28)
+44: 18/01/31 15:57:20 INFO DAGScheduler: Got job 0 (runJob at SparkHadoopWriter.scala:78) with 48 output partitions
+45: 18/01/31 15:57:20 INFO DAGScheduler: Final stage: ResultStage 1 (runJob at SparkHadoopWriter.scala:78)
+46: 18/01/31 15:57:20 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 0)
+47: 18/01/31 15:57:20 INFO DAGScheduler: Missing parents: List(ShuffleMapStage 0)
+48: 18/01/31 15:57:20 INFO DAGScheduler: Submitting ShuffleMapStage 0 (MapPartitionsRDD[3] at map at WordCount.scala:28), which has no missing parents
+49: 18/01/31 15:57:20 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 4.8 KB, free 366.1 MB)
+50: 18/01/31 15:57:20 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 2.8 KB, free 366.1 MB)
+51: 18/01/31 15:57:20 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on tawfiq-pc.mobility.unimelb.net.au:44859 (size: 2.8 KB, free: 366.3 MB)
+52: 18/01/31 15:57:20 INFO SparkContext: Created broadcast 1 from broadcast at DAGScheduler.scala:1029
+53: 18/01/31 15:57:20 INFO DAGScheduler: Submitting 48 missing tasks from ShuffleMapStage 0 (MapPartitionsRDD[3] at map at WordCount.scala:28) (first 15 tasks are for partitions Vector(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14))
+54: 18/01/31 15:57:20 INFO TaskSchedulerImpl: Adding task set 0.0 with 48 tasks
+55: 18/01/31 15:57:35 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+56: 18/01/31 15:57:50 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+57: 18/01/31 15:58:05 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+58: 18/01/31 15:58:20 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+59: 18/01/31 15:58:35 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+60: 18/01/31 15:58:50 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+61: 18/01/31 15:59:05 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+62: 18/01/31 15:59:19 INFO DAGScheduler: Asked to cancel job 0
+63: 18/01/31 15:59:19 INFO TaskSchedulerImpl: Cancelling stage 0
+64: 18/01/31 15:59:19 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+65: 18/01/31 15:59:19 INFO TaskSchedulerImpl: Stage 0 was cancelled
+66: 18/01/31 15:59:19 INFO DAGScheduler: ShuffleMapStage 0 (map at WordCount.scala:28) failed in 118.973 s due to Job 0 cancelled 
+67: 18/01/31 15:59:19 INFO DAGScheduler: Job 0 failed: runJob at SparkHadoopWriter.scala:78, took 119.118702 s
+68: 18/01/31 15:59:19 ERROR SparkHadoopWriter: Aborting job job_20180131155720_0005.
+69: org.apache.spark.SparkException: Job 0 cancelled 
+70: 	at org.apache.spark.scheduler.DAGScheduler.org$apache$spark$scheduler$DAGScheduler$$failJobAndIndependentStages(DAGScheduler.scala:1581)
+71: 	at org.apache.spark.scheduler.DAGScheduler.handleJobCancellation(DAGScheduler.scala:1521)
+72: 	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:1768)
+73: 	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1751)
+74: 	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1740)
+75: 	at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:48)
+76: 	at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:642)
+77: 	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2023)
+78: 	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2044)
+79: 	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2076)
+80: 	at org.apache.spark.internal.io.SparkHadoopWriter$.write(SparkHadoopWriter.scala:78)
+81: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopDataset$1.apply$mcV$sp(PairRDDFunctions.scala:1096)
+82: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopDataset$1.apply(PairRDDFunctions.scala:1094)
+83: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopDataset$1.apply(PairRDDFunctions.scala:1094)
+84: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+85: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+86: 	at org.apache.spark.rdd.RDD.withScope(RDD.scala:363)
+87: 	at org.apache.spark.rdd.PairRDDFunctions.saveAsHadoopDataset(PairRDDFunctions.scala:1094)
+88: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopFile$4.apply$mcV$sp(PairRDDFunctions.scala:1067)
+89: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopFile$4.apply(PairRDDFunctions.scala:1032)
+90: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopFile$4.apply(PairRDDFunctions.scala:1032)
+91: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+92: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+93: 	at org.apache.spark.rdd.RDD.withScope(RDD.scala:363)
+94: 	at org.apache.spark.rdd.PairRDDFunctions.saveAsHadoopFile(PairRDDFunctions.scala:1032)
+95: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopFile$1.apply$mcV$sp(PairRDDFunctions.scala:958)
+96: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopFile$1.apply(PairRDDFunctions.scala:958)
+97: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopFile$1.apply(PairRDDFunctions.scala:958)
+98: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+99: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+100: 	at org.apache.spark.rdd.RDD.withScope(RDD.scala:363)
+101: 	at org.apache.spark.rdd.PairRDDFunctions.saveAsHadoopFile(PairRDDFunctions.scala:957)
+102: 	at org.apache.spark.rdd.RDD$$anonfun$saveAsTextFile$1.apply$mcV$sp(RDD.scala:1491)
+103: 	at org.apache.spark.rdd.RDD$$anonfun$saveAsTextFile$1.apply(RDD.scala:1470)
+104: 	at org.apache.spark.rdd.RDD$$anonfun$saveAsTextFile$1.apply(RDD.scala:1470)
+105: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+106: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+107: 	at org.apache.spark.rdd.RDD.withScope(RDD.scala:363)
+108: 	at org.apache.spark.rdd.RDD.saveAsTextFile(RDD.scala:1470)
+109: 	at cn.ac.ict.bigdatabench.WordCount$.main(WordCount.scala:31)
+110: 	at cn.ac.ict.bigdatabench.WordCount.main(WordCount.scala)
+111: 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+112: 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+113: 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+114: 	at java.lang.reflect.Method.invoke(Method.java:498)
+115: 	at org.apache.spark.deploy.SparkSubmit$.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:842)
+116: 	at org.apache.spark.deploy.SparkSubmit$.doRunMain$1(SparkSubmit.scala:188)
+117: 	at org.apache.spark.deploy.SparkSubmit$.submit(SparkSubmit.scala:218)
+118: 	at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:127)
+119: 	at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+120: Exception in thread "main" org.apache.spark.SparkException: Job aborted.
+121: 	at org.apache.spark.internal.io.SparkHadoopWriter$.write(SparkHadoopWriter.scala:96)
+122: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopDataset$1.apply$mcV$sp(PairRDDFunctions.scala:1096)
+123: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopDataset$1.apply(PairRDDFunctions.scala:1094)
+124: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopDataset$1.apply(PairRDDFunctions.scala:1094)
+125: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+126: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+127: 	at org.apache.spark.rdd.RDD.withScope(RDD.scala:363)
+128: 	at org.apache.spark.rdd.PairRDDFunctions.saveAsHadoopDataset(PairRDDFunctions.scala:1094)
+129: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopFile$4.apply$mcV$sp(PairRDDFunctions.scala:1067)
+130: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopFile$4.apply(PairRDDFunctions.scala:1032)
+131: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopFile$4.apply(PairRDDFunctions.scala:1032)
+132: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+133: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+134: 	at org.apache.spark.rdd.RDD.withScope(RDD.scala:363)
+135: 	at org.apache.spark.rdd.PairRDDFunctions.saveAsHadoopFile(PairRDDFunctions.scala:1032)
+136: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopFile$1.apply$mcV$sp(PairRDDFunctions.scala:958)
+137: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopFile$1.apply(PairRDDFunctions.scala:958)
+138: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopFile$1.apply(PairRDDFunctions.scala:958)
+139: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+140: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+141: 	at org.apache.spark.rdd.RDD.withScope(RDD.scala:363)
+142: 	at org.apache.spark.rdd.PairRDDFunctions.saveAsHadoopFile(PairRDDFunctions.scala:957)
+143: 	at org.apache.spark.rdd.RDD$$anonfun$saveAsTextFile$1.apply$mcV$sp(RDD.scala:1491)
+144: 	at org.apache.spark.rdd.RDD$$anonfun$saveAsTextFile$1.apply(RDD.scala:1470)
+145: 	at org.apache.spark.rdd.RDD$$anonfun$saveAsTextFile$1.apply(RDD.scala:1470)
+146: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+147: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+148: 	at org.apache.spark.rdd.RDD.withScope(RDD.scala:363)
+149: 	at org.apache.spark.rdd.RDD.saveAsTextFile(RDD.scala:1470)
+150: 	at cn.ac.ict.bigdatabench.WordCount$.main(WordCount.scala:31)
+151: 	at cn.ac.ict.bigdatabench.WordCount.main(WordCount.scala)
+152: 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+153: 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+154: 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+155: 	at java.lang.reflect.Method.invoke(Method.java:498)
+156: 	at org.apache.spark.deploy.SparkSubmit$.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:842)
+157: 	at org.apache.spark.deploy.SparkSubmit$.doRunMain$1(SparkSubmit.scala:188)
+158: 	at org.apache.spark.deploy.SparkSubmit$.submit(SparkSubmit.scala:218)
+159: 	at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:127)
+160: 	at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+161: Caused by: org.apache.spark.SparkException: Job 0 cancelled 
+162: 	at org.apache.spark.scheduler.DAGScheduler.org$apache$spark$scheduler$DAGScheduler$$failJobAndIndependentStages(DAGScheduler.scala:1581)
+163: 	at org.apache.spark.scheduler.DAGScheduler.handleJobCancellation(DAGScheduler.scala:1521)
+164: 	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:1768)
+165: 	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1751)
+166: 	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1740)
+167: 	at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:48)
+168: 	at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:642)
+169: 	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2023)
+170: 	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2044)
+171: 	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2076)
+172: 	at org.apache.spark.internal.io.SparkHadoopWriter$.write(SparkHadoopWriter.scala:78)
+173: 	... 39 more
+174: 18/01/31 15:59:19 INFO SparkContext: Invoking stop() from shutdown hook
+175: 18/01/31 15:59:19 INFO SparkUI: Stopped Spark web UI at http://tawfiq-pc.mobility.unimelb.net.au:4041
+176: 18/01/31 15:59:19 INFO MesosCoarseGrainedSchedulerBackend: Shutting down all executors
+177: 18/01/31 15:59:19 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Asking each executor to shut down
+178: I0131 15:59:19.467236 12818 sched.cpp:2021] Asked to stop the driver
+179: I0131 15:59:19.467551 12729 sched.cpp:1203] Stopping framework 0aacf5fd-ccc5-45dd-8d32-8221046eb0ee-0008
+180: 18/01/31 15:59:19 INFO MesosCoarseGrainedSchedulerBackend: driver.run() returned with code DRIVER_STOPPED
+181: 18/01/31 15:59:19 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+182: 18/01/31 15:59:19 INFO MemoryStore: MemoryStore cleared
+183: 18/01/31 15:59:19 INFO BlockManager: BlockManager stopped
+184: 18/01/31 15:59:19 INFO BlockManagerMaster: BlockManagerMaster stopped
+185: 18/01/31 15:59:19 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+186: 18/01/31 15:59:19 INFO SparkContext: Successfully stopped SparkContext
+187: 18/01/31 15:59:19 INFO ShutdownHookManager: Shutdown hook called
+188: 18/01/31 15:59:19 INFO ShutdownHookManager: Deleting directory /tmp/spark-97456373-c455-4711-8afc-54b55cbc163e
+189: 18/01/31 15:59:19 INFO ShutdownHookManager: Deleting directory /tmp/spark-ef20a596-7f84-4de6-b9b4-847b8d035ab4

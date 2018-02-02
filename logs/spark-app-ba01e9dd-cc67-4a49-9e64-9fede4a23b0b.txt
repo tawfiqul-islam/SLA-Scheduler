@@ -1,0 +1,354 @@
+0: 18/01/31 15:59:35 WARN Utils: Your hostname, Tawfiq-PC resolves to a loopback address: 127.0.1.1; using 10.100.228.108 instead (on interface enp0s31f6)
+1: 18/01/31 15:59:35 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+2: 18/01/31 15:59:35 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+3: Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+4: 18/01/31 15:59:35 INFO SparkContext: Running Spark version 2.3.0-SNAPSHOT
+5: 18/01/31 15:59:35 INFO SparkContext: Submitted application: BigDataBench WordCount
+6: 18/01/31 15:59:35 INFO SecurityManager: Changing view acls to: tawfiq
+7: 18/01/31 15:59:35 INFO SecurityManager: Changing modify acls to: tawfiq
+8: 18/01/31 15:59:35 INFO SecurityManager: Changing view acls groups to: 
+9: 18/01/31 15:59:35 INFO SecurityManager: Changing modify acls groups to: 
+10: 18/01/31 15:59:35 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(tawfiq); groups with view permissions: Set(); users  with modify permissions: Set(tawfiq); groups with modify permissions: Set()
+11: 18/01/31 15:59:35 INFO Utils: Successfully started service 'sparkDriver' on port 35241.
+12: 18/01/31 15:59:35 INFO SparkEnv: Registering MapOutputTracker
+13: 18/01/31 15:59:35 INFO SparkEnv: Registering BlockManagerMaster
+14: 18/01/31 15:59:35 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+15: 18/01/31 15:59:35 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+16: 18/01/31 15:59:35 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-aa97f1ec-5808-453e-baed-a819fa25245d
+17: 18/01/31 15:59:35 INFO MemoryStore: MemoryStore started with capacity 366.3 MB
+18: 18/01/31 15:59:36 INFO SparkEnv: Registering OutputCommitCoordinator
+19: 18/01/31 15:59:36 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+20: 18/01/31 15:59:36 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://tawfiq-pc.mobility.unimelb.net.au:4040
+21: 18/01/31 15:59:36 INFO SparkContext: Added JAR file:/home/tawfiq/research/spark/bigdatabench-spark_1.3.0-hadoop_1.0.4.jar at spark://tawfiq-pc.mobility.unimelb.net.au:35241/jars/bigdatabench-spark_1.3.0-hadoop_1.0.4.jar with timestamp 1517374776214
+22: I0131 15:59:36.429260 12966 sched.cpp:232] Version: 1.4.0
+23: I0131 15:59:36.434890 12957 sched.cpp:336] New master detected at master@127.0.0.1:5050
+24: I0131 15:59:36.436276 12957 sched.cpp:352] No credentials provided. Attempting to register without authentication
+25: I0131 15:59:36.442612 12959 sched.cpp:759] Framework registered with 0aacf5fd-ccc5-45dd-8d32-8221046eb0ee-0009
+26: 18/01/31 15:59:36 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 45599.
+27: 18/01/31 15:59:36 INFO NettyBlockTransferService: Server created on tawfiq-pc.mobility.unimelb.net.au:45599
+28: 18/01/31 15:59:36 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+29: 18/01/31 15:59:36 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, tawfiq-pc.mobility.unimelb.net.au, 45599, None)
+30: 18/01/31 15:59:36 INFO BlockManagerMasterEndpoint: Registering block manager tawfiq-pc.mobility.unimelb.net.au:45599 with 366.3 MB RAM, BlockManagerId(driver, tawfiq-pc.mobility.unimelb.net.au, 45599, None)
+31: 18/01/31 15:59:36 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, tawfiq-pc.mobility.unimelb.net.au, 45599, None)
+32: 18/01/31 15:59:36 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, tawfiq-pc.mobility.unimelb.net.au, 45599, None)
+33: 18/01/31 15:59:36 INFO EventLoggingListener: Logging events to file:/home/tawfiq/research/spark/logs/0aacf5fd-ccc5-45dd-8d32-8221046eb0ee-0009
+34: 18/01/31 15:59:36 INFO MesosCoarseGrainedSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+35: 18/01/31 15:59:37 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 214.5 KB, free 366.1 MB)
+36: 18/01/31 15:59:37 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 20.4 KB, free 366.1 MB)
+37: 18/01/31 15:59:37 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on tawfiq-pc.mobility.unimelb.net.au:45599 (size: 20.4 KB, free: 366.3 MB)
+38: 18/01/31 15:59:37 INFO SparkContext: Created broadcast 0 from textFile at WordCount.scala:26
+39: 18/01/31 15:59:37 INFO FileInputFormat: Total input paths to process : 3
+40: 18/01/31 15:59:37 INFO deprecation: mapred.output.dir is deprecated. Instead, use mapreduce.output.fileoutputformat.outputdir
+41: 18/01/31 15:59:37 INFO SparkContext: Starting job: runJob at SparkHadoopWriter.scala:78
+42: 18/01/31 15:59:37 INFO DAGScheduler: Registering RDD 3 (map at WordCount.scala:28)
+43: 18/01/31 15:59:37 INFO DAGScheduler: Got job 0 (runJob at SparkHadoopWriter.scala:78) with 48 output partitions
+44: 18/01/31 15:59:37 INFO DAGScheduler: Final stage: ResultStage 1 (runJob at SparkHadoopWriter.scala:78)
+45: 18/01/31 15:59:37 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 0)
+46: 18/01/31 15:59:37 INFO DAGScheduler: Missing parents: List(ShuffleMapStage 0)
+47: 18/01/31 15:59:37 INFO DAGScheduler: Submitting ShuffleMapStage 0 (MapPartitionsRDD[3] at map at WordCount.scala:28), which has no missing parents
+48: 18/01/31 15:59:37 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 4.8 KB, free 366.1 MB)
+49: 18/01/31 15:59:37 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 2.8 KB, free 366.1 MB)
+50: 18/01/31 15:59:37 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on tawfiq-pc.mobility.unimelb.net.au:45599 (size: 2.8 KB, free: 366.3 MB)
+51: 18/01/31 15:59:37 INFO SparkContext: Created broadcast 1 from broadcast at DAGScheduler.scala:1029
+52: 18/01/31 15:59:37 INFO DAGScheduler: Submitting 48 missing tasks from ShuffleMapStage 0 (MapPartitionsRDD[3] at map at WordCount.scala:28) (first 15 tasks are for partitions Vector(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14))
+53: 18/01/31 15:59:37 INFO TaskSchedulerImpl: Adding task set 0.0 with 48 tasks
+54: 18/01/31 15:59:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+55: 18/01/31 16:00:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+56: 18/01/31 16:00:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+57: 18/01/31 16:00:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+58: 18/01/31 16:00:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+59: 18/01/31 16:01:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+60: 18/01/31 16:01:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+61: 18/01/31 16:01:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+62: 18/01/31 16:01:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+63: 18/01/31 16:02:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+64: 18/01/31 16:02:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+65: 18/01/31 16:02:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+66: 18/01/31 16:02:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+67: 18/01/31 16:03:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+68: 18/01/31 16:03:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+69: 18/01/31 16:03:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+70: 18/01/31 16:03:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+71: 18/01/31 16:04:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+72: 18/01/31 16:04:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+73: 18/01/31 16:04:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+74: 18/01/31 16:04:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+75: 18/01/31 16:05:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+76: 18/01/31 16:05:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+77: 18/01/31 16:05:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+78: 18/01/31 16:05:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+79: 18/01/31 16:06:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+80: 18/01/31 16:06:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+81: 18/01/31 16:06:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+82: 18/01/31 16:06:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+83: 18/01/31 16:07:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+84: 18/01/31 16:07:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+85: 18/01/31 16:07:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+86: 18/01/31 16:07:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+87: 18/01/31 16:08:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+88: 18/01/31 16:08:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+89: 18/01/31 16:08:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+90: 18/01/31 16:08:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+91: 18/01/31 16:09:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+92: 18/01/31 16:09:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+93: 18/01/31 16:09:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+94: 18/01/31 16:09:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+95: 18/01/31 16:10:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+96: 18/01/31 16:10:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+97: 18/01/31 16:10:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+98: 18/01/31 16:10:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+99: 18/01/31 16:11:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+100: 18/01/31 16:11:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+101: 18/01/31 16:11:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+102: 18/01/31 16:11:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+103: 18/01/31 16:12:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+104: 18/01/31 16:12:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+105: 18/01/31 16:12:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+106: 18/01/31 16:12:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+107: 18/01/31 16:13:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+108: 18/01/31 16:13:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+109: 18/01/31 16:13:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+110: 18/01/31 16:13:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+111: 18/01/31 16:14:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+112: 18/01/31 16:14:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+113: 18/01/31 16:14:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+114: 18/01/31 16:14:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+115: 18/01/31 16:15:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+116: 18/01/31 16:15:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+117: 18/01/31 16:15:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+118: 18/01/31 16:15:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+119: 18/01/31 16:16:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+120: 18/01/31 16:16:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+121: 18/01/31 16:16:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+122: 18/01/31 16:16:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+123: 18/01/31 16:17:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+124: 18/01/31 16:17:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+125: 18/01/31 16:17:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+126: 18/01/31 16:17:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+127: 18/01/31 16:18:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+128: 18/01/31 16:18:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+129: 18/01/31 16:18:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+130: 18/01/31 16:18:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+131: 18/01/31 16:19:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+132: 18/01/31 16:19:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+133: 18/01/31 16:19:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+134: 18/01/31 16:19:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+135: 18/01/31 16:20:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+136: 18/01/31 16:20:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+137: 18/01/31 16:20:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+138: 18/01/31 16:20:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+139: 18/01/31 16:21:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+140: 18/01/31 16:21:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+141: 18/01/31 16:21:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+142: 18/01/31 16:21:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+143: 18/01/31 16:22:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+144: 18/01/31 16:22:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+145: 18/01/31 16:22:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+146: 18/01/31 16:22:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+147: 18/01/31 16:23:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+148: 18/01/31 16:23:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+149: 18/01/31 16:23:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+150: 18/01/31 16:23:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+151: 18/01/31 16:24:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+152: 18/01/31 16:24:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+153: 18/01/31 16:24:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+154: 18/01/31 16:24:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+155: 18/01/31 16:25:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+156: 18/01/31 16:25:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+157: 18/01/31 16:25:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+158: 18/01/31 16:25:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+159: 18/01/31 16:26:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+160: 18/01/31 16:26:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+161: 18/01/31 16:26:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+162: 18/01/31 16:26:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+163: 18/01/31 16:27:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+164: 18/01/31 16:27:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+165: 18/01/31 16:27:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+166: 18/01/31 16:27:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+167: 18/01/31 16:28:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+168: 18/01/31 16:28:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+169: 18/01/31 16:28:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+170: 18/01/31 16:28:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+171: 18/01/31 16:29:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+172: 18/01/31 16:29:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+173: 18/01/31 16:29:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+174: 18/01/31 16:29:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+175: 18/01/31 16:30:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+176: 18/01/31 16:30:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+177: 18/01/31 16:30:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+178: 18/01/31 16:30:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+179: 18/01/31 16:31:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+180: 18/01/31 16:31:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+181: 18/01/31 16:31:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+182: 18/01/31 16:31:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+183: 18/01/31 16:32:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+184: 18/01/31 16:32:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+185: 18/01/31 16:32:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+186: 18/01/31 16:32:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+187: 18/01/31 16:33:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+188: 18/01/31 16:33:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+189: 18/01/31 16:33:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+190: 18/01/31 16:33:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+191: 18/01/31 16:34:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+192: 18/01/31 16:34:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+193: 18/01/31 16:34:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+194: 18/01/31 16:34:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+195: 18/01/31 16:35:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+196: 18/01/31 16:35:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+197: 18/01/31 16:35:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+198: 18/01/31 16:35:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+199: 18/01/31 16:36:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+200: 18/01/31 16:36:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+201: 18/01/31 16:36:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+202: 18/01/31 16:36:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+203: 18/01/31 16:37:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+204: 18/01/31 16:37:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+205: 18/01/31 16:37:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+206: 18/01/31 16:37:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+207: 18/01/31 16:38:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+208: 18/01/31 16:38:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+209: 18/01/31 16:38:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+210: 18/01/31 16:38:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+211: 18/01/31 16:39:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+212: 18/01/31 16:39:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+213: 18/01/31 16:39:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+214: 18/01/31 16:39:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+215: 18/01/31 16:40:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+216: 18/01/31 16:40:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+217: 18/01/31 16:40:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+218: 18/01/31 16:40:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+219: 18/01/31 16:41:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+220: 18/01/31 16:41:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+221: 18/01/31 16:41:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+222: 18/01/31 16:41:52 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+223: 18/01/31 16:42:07 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+224: 18/01/31 16:42:22 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+225: 18/01/31 16:42:37 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+226: 18/01/31 16:42:39 INFO DAGScheduler: Asked to cancel job 0
+227: 18/01/31 16:42:39 INFO TaskSchedulerImpl: Cancelling stage 0
+228: 18/01/31 16:42:39 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+229: 18/01/31 16:42:39 INFO TaskSchedulerImpl: Stage 0 was cancelled
+230: 18/01/31 16:42:39 INFO DAGScheduler: ShuffleMapStage 0 (map at WordCount.scala:28) failed in 2582.456 s due to Job 0 cancelled 
+231: 18/01/31 16:42:39 INFO DAGScheduler: Job 0 failed: runJob at SparkHadoopWriter.scala:78, took 2582.613744 s
+232: 18/01/31 16:42:39 ERROR SparkHadoopWriter: Aborting job job_20180131155937_0005.
+233: org.apache.spark.SparkException: Job 0 cancelled 
+234: 	at org.apache.spark.scheduler.DAGScheduler.org$apache$spark$scheduler$DAGScheduler$$failJobAndIndependentStages(DAGScheduler.scala:1581)
+235: 	at org.apache.spark.scheduler.DAGScheduler.handleJobCancellation(DAGScheduler.scala:1521)
+236: 	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:1768)
+237: 	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1751)
+238: 	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1740)
+239: 	at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:48)
+240: 	at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:642)
+241: 	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2023)
+242: 	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2044)
+243: 	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2076)
+244: 	at org.apache.spark.internal.io.SparkHadoopWriter$.write(SparkHadoopWriter.scala:78)
+245: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopDataset$1.apply$mcV$sp(PairRDDFunctions.scala:1096)
+246: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopDataset$1.apply(PairRDDFunctions.scala:1094)
+247: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopDataset$1.apply(PairRDDFunctions.scala:1094)
+248: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+249: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+250: 	at org.apache.spark.rdd.RDD.withScope(RDD.scala:363)
+251: 	at org.apache.spark.rdd.PairRDDFunctions.saveAsHadoopDataset(PairRDDFunctions.scala:1094)
+252: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopFile$4.apply$mcV$sp(PairRDDFunctions.scala:1067)
+253: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopFile$4.apply(PairRDDFunctions.scala:1032)
+254: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopFile$4.apply(PairRDDFunctions.scala:1032)
+255: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+256: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+257: 	at org.apache.spark.rdd.RDD.withScope(RDD.scala:363)
+258: 	at org.apache.spark.rdd.PairRDDFunctions.saveAsHadoopFile(PairRDDFunctions.scala:1032)
+259: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopFile$1.apply$mcV$sp(PairRDDFunctions.scala:958)
+260: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopFile$1.apply(PairRDDFunctions.scala:958)
+261: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopFile$1.apply(PairRDDFunctions.scala:958)
+262: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+263: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+264: 	at org.apache.spark.rdd.RDD.withScope(RDD.scala:363)
+265: 	at org.apache.spark.rdd.PairRDDFunctions.saveAsHadoopFile(PairRDDFunctions.scala:957)
+266: 	at org.apache.spark.rdd.RDD$$anonfun$saveAsTextFile$1.apply$mcV$sp(RDD.scala:1491)
+267: 	at org.apache.spark.rdd.RDD$$anonfun$saveAsTextFile$1.apply(RDD.scala:1470)
+268: 	at org.apache.spark.rdd.RDD$$anonfun$saveAsTextFile$1.apply(RDD.scala:1470)
+269: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+270: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+271: 	at org.apache.spark.rdd.RDD.withScope(RDD.scala:363)
+272: 	at org.apache.spark.rdd.RDD.saveAsTextFile(RDD.scala:1470)
+273: 	at cn.ac.ict.bigdatabench.WordCount$.main(WordCount.scala:31)
+274: 	at cn.ac.ict.bigdatabench.WordCount.main(WordCount.scala)
+275: 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+276: 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+277: 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+278: 	at java.lang.reflect.Method.invoke(Method.java:498)
+279: 	at org.apache.spark.deploy.SparkSubmit$.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:842)
+280: 	at org.apache.spark.deploy.SparkSubmit$.doRunMain$1(SparkSubmit.scala:188)
+281: 	at org.apache.spark.deploy.SparkSubmit$.submit(SparkSubmit.scala:218)
+282: 	at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:127)
+283: 	at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+284: Exception in thread "main" org.apache.spark.SparkException: Job aborted.
+285: 	at org.apache.spark.internal.io.SparkHadoopWriter$.write(SparkHadoopWriter.scala:96)
+286: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopDataset$1.apply$mcV$sp(PairRDDFunctions.scala:1096)
+287: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopDataset$1.apply(PairRDDFunctions.scala:1094)
+288: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopDataset$1.apply(PairRDDFunctions.scala:1094)
+289: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+290: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+291: 	at org.apache.spark.rdd.RDD.withScope(RDD.scala:363)
+292: 	at org.apache.spark.rdd.PairRDDFunctions.saveAsHadoopDataset(PairRDDFunctions.scala:1094)
+293: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopFile$4.apply$mcV$sp(PairRDDFunctions.scala:1067)
+294: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopFile$4.apply(PairRDDFunctions.scala:1032)
+295: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopFile$4.apply(PairRDDFunctions.scala:1032)
+296: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+297: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+298: 	at org.apache.spark.rdd.RDD.withScope(RDD.scala:363)
+299: 	at org.apache.spark.rdd.PairRDDFunctions.saveAsHadoopFile(PairRDDFunctions.scala:1032)
+300: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopFile$1.apply$mcV$sp(PairRDDFunctions.scala:958)
+301: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopFile$1.apply(PairRDDFunctions.scala:958)
+302: 	at org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopFile$1.apply(PairRDDFunctions.scala:958)
+303: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+304: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+305: 	at org.apache.spark.rdd.RDD.withScope(RDD.scala:363)
+306: 	at org.apache.spark.rdd.PairRDDFunctions.saveAsHadoopFile(PairRDDFunctions.scala:957)
+307: 	at org.apache.spark.rdd.RDD$$anonfun$saveAsTextFile$1.apply$mcV$sp(RDD.scala:1491)
+308: 	at org.apache.spark.rdd.RDD$$anonfun$saveAsTextFile$1.apply(RDD.scala:1470)
+309: 	at org.apache.spark.rdd.RDD$$anonfun$saveAsTextFile$1.apply(RDD.scala:1470)
+310: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+311: 	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+312: 	at org.apache.spark.rdd.RDD.withScope(RDD.scala:363)
+313: 	at org.apache.spark.rdd.RDD.saveAsTextFile(RDD.scala:1470)
+314: 	at cn.ac.ict.bigdatabench.WordCount$.main(WordCount.scala:31)
+315: 	at cn.ac.ict.bigdatabench.WordCount.main(WordCount.scala)
+316: 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+317: 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+318: 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+319: 	at java.lang.reflect.Method.invoke(Method.java:498)
+320: 	at org.apache.spark.deploy.SparkSubmit$.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:842)
+321: 	at org.apache.spark.deploy.SparkSubmit$.doRunMain$1(SparkSubmit.scala:188)
+322: 	at org.apache.spark.deploy.SparkSubmit$.submit(SparkSubmit.scala:218)
+323: 	at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:127)
+324: 	at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+325: Caused by: org.apache.spark.SparkException: Job 0 cancelled 
+326: 	at org.apache.spark.scheduler.DAGScheduler.org$apache$spark$scheduler$DAGScheduler$$failJobAndIndependentStages(DAGScheduler.scala:1581)
+327: 	at org.apache.spark.scheduler.DAGScheduler.handleJobCancellation(DAGScheduler.scala:1521)
+328: 	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:1768)
+329: 	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1751)
+330: 	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1740)
+331: 	at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:48)
+332: 	at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:642)
+333: 	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2023)
+334: 	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2044)
+335: 	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2076)
+336: 	at org.apache.spark.internal.io.SparkHadoopWriter$.write(SparkHadoopWriter.scala:78)
+337: 	... 39 more
+338: 18/01/31 16:42:39 INFO SparkContext: Invoking stop() from shutdown hook
+339: 18/01/31 16:42:40 INFO SparkUI: Stopped Spark web UI at http://tawfiq-pc.mobility.unimelb.net.au:4040
+340: 18/01/31 16:42:40 INFO MesosCoarseGrainedSchedulerBackend: Shutting down all executors
+341: 18/01/31 16:42:40 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Asking each executor to shut down
+342: I0131 16:42:40.086042 14118 sched.cpp:2021] Asked to stop the driver
+343: I0131 16:42:40.086228 12963 sched.cpp:1203] Stopping framework 0aacf5fd-ccc5-45dd-8d32-8221046eb0ee-0009
+344: 18/01/31 16:42:40 INFO MesosCoarseGrainedSchedulerBackend: driver.run() returned with code DRIVER_STOPPED
+345: 18/01/31 16:42:40 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+346: 18/01/31 16:42:40 INFO MemoryStore: MemoryStore cleared
+347: 18/01/31 16:42:40 INFO BlockManager: BlockManager stopped
+348: 18/01/31 16:42:40 INFO BlockManagerMaster: BlockManagerMaster stopped
+349: 18/01/31 16:42:40 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+350: 18/01/31 16:42:40 INFO SparkContext: Successfully stopped SparkContext
+351: 18/01/31 16:42:40 INFO ShutdownHookManager: Shutdown hook called
+352: 18/01/31 16:42:40 INFO ShutdownHookManager: Deleting directory /tmp/spark-a34664bb-41a3-4f3e-8399-bbdd0064ab88
+353: 18/01/31 16:42:40 INFO ShutdownHookManager: Deleting directory /tmp/spark-fefa3716-d1fe-4805-beac-500016f48b27

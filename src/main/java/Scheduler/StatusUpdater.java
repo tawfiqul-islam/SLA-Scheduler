@@ -60,13 +60,18 @@ public class StatusUpdater extends Thread{
                 Log.SchedulerLogging.log(Level.INFO,StatusUpdater.class.getName()+" Added a new agent with id: "+updatedAgentList.get(i).getId()+" to the agent list");
             }
         }
+
+        //update total resources in each agent, used for bfhscheduler
+        for(int i=0;i<SchedulerUtil.agentList.size();i++) {
+            SchedulerUtil.agentList.get(i).setResourceTotal();
+        }
     }
 
     //update frameworks (jobs)...find newly submitted jobs with matching roles in internal structures and update their framework id
     //check whether any job/framework is finished and is in partial/fully submitted queue. if so move them to finished queue.
     //unreserve resources for finished frameworks, update agent available resources.
 
-    public static void updateJobs()
+    public static void updateJobsRR()
     {
         ArrayList<Framework> frameworkList = HTTPAPI.GET_FRAMEWORK();
         for(int i=0;i<frameworkList.size();i++)
@@ -96,10 +101,6 @@ public class StatusUpdater extends Thread{
                         //add in finished job list
                         SchedulerUtil.finishedJobList.add(currentJob);
                         Log.SchedulerLogging.log(Level.INFO,StatusUpdater.class.getName()+": Added Job: "+currentJob.getJobID()+" to finishedJobList");
-                    }
-                    else
-                    {
-                        Log.SchedulerLogging.log(Level.INFO,StatusUpdater.class.getName()+": Job with ID: "+currentJob.getJobID()+" is still Active");
                     }
                     break;
                 }
@@ -138,35 +139,37 @@ public class StatusUpdater extends Thread{
 
             if(found)
             {
-                //unreserve the current job's reserved resources in all the used agents
-                for(int j=0;j<currentJob.getAgentList().size();j++)
-                {
-                    //unreseving resources in an agent when a job is finished
-                    HTTPAPI.UNRESERVE(currentJob.getRole(),currentJob.getCoresPerExecutor(),Math.ceil(currentJob.getTotalExecutorMemory()),currentJob.getAgentList().get(j));
-                    Log.SchedulerLogging.log(Level.INFO,StatusUpdater.class.getName()+" Unreserved CPU: "+currentJob.getCoresPerExecutor()+" Mem: "+Math.ceil(currentJob.getTotalExecutorMemory())+" from Job: "+currentJob.getJobID()+" with Role: "+currentJob.getRole());
-                    //give back these resources by reserving to the default scheduler-role
-                    HTTPAPI.RESERVE(SchedulerUtil.schedulerRole,currentJob.getCoresPerExecutor(),Math.ceil(currentJob.getTotalExecutorMemory()),currentJob.getAgentList().get(j));
-                    Log.SchedulerLogging.log(Level.INFO,StatusUpdater.class.getName()+" Reserved back CPU: "+currentJob.getCoresPerExecutor()+" Mem: "+Math.ceil(currentJob.getTotalExecutorMemory())+" to the default scheduler-role");
+                if(!currentJob.isAlive()&&currentJob.getFinishTime()>0) {
+                    //unreserve the current job's reserved resources in all the used agents
+                    for (int j = 0; j < currentJob.getAgentList().size(); j++) {
+                        //unreseving resources in an agent when a job is finished
+                        HTTPAPI.UNRESERVE(currentJob.getRole(), currentJob.getCoresPerExecutor(), Math.ceil(currentJob.getTotalExecutorMemory()), currentJob.getAgentList().get(j));
+                        Log.SchedulerLogging.log(Level.INFO, StatusUpdater.class.getName() + " Unreserved CPU: " + currentJob.getCoresPerExecutor() + " Mem: " + Math.ceil(currentJob.getTotalExecutorMemory()) + " from Job: " + currentJob.getJobID() + " with Role: " + currentJob.getRole());
+                        //give back these resources by reserving to the default scheduler-role
+                        HTTPAPI.RESERVE(SchedulerUtil.schedulerRole, currentJob.getCoresPerExecutor(), Math.ceil(currentJob.getTotalExecutorMemory()), currentJob.getAgentList().get(j));
+                        Log.SchedulerLogging.log(Level.INFO, StatusUpdater.class.getName() + " Reserved back CPU: " + currentJob.getCoresPerExecutor() + " Mem: " + Math.ceil(currentJob.getTotalExecutorMemory()) + " to the default scheduler-role");
 
-                    for(int k=0;k<SchedulerUtil.agentList.size();k++)
-                    {
-                        if(SchedulerUtil.agentList.get(k).getId().equalsIgnoreCase(currentJob.getAgentList().get(j)))
-                        {
-                            Agent agentObj = SchedulerUtil.agentList.get(k);
-                            agentObj.setCpu(agentObj.getCpu()+currentJob.getCoresPerExecutor());
-                            agentObj.setMem(agentObj.getMem()+Math.ceil(currentJob.getTotalExecutorMemory()));
-                            //if all the resources of this node are unused, mark it as not used or alive=false
-                            //use APIs here to shut down this agent if needed (to optimize VM cost)
-                            if(agentObj.getCpu()==agentObj.getDefaultCPU() && agentObj.getMem()==agentObj.getDefaultMEM()) {
-                                agentObj.setAlive(false);
+                        for (int k = 0; k < SchedulerUtil.agentList.size(); k++) {
+                            if (SchedulerUtil.agentList.get(k).getId().equalsIgnoreCase(currentJob.getAgentList().get(j))) {
+                                Agent agentObj = SchedulerUtil.agentList.get(k);
+                                agentObj.setCpu(agentObj.getCpu() + currentJob.getCoresPerExecutor());
+                                agentObj.setMem(agentObj.getMem() + Math.ceil(currentJob.getTotalExecutorMemory()));
+                                //if all the resources of this node are unused, mark it as not used or alive=false
+                                //use APIs here to shut down this agent if needed (to optimize VM cost)
+                                if (agentObj.getCpu() == agentObj.getDefaultCPU() && agentObj.getMem() == agentObj.getDefaultMEM()) {
+                                    agentObj.setAlive(false);
+                                }
+                                Log.SchedulerLogging.log(Level.INFO, StatusUpdater.class.getName() + " Current Status of Agent: " + SchedulerUtil.agentList.get(k).getId() + "-> CPU: " + SchedulerUtil.agentList.get(k).getCpu() + " Mem: " + SchedulerUtil.agentList.get(k).getMem());
+                                //updating agent resources
+                                SchedulerUtil.agentList.set(k, agentObj);
+                                break;
                             }
-                            Log.SchedulerLogging.log(Level.INFO,StatusUpdater.class.getName()+" Current Status of Agent: "+ SchedulerUtil.agentList.get(k).getId()+"-> CPU: "+ SchedulerUtil.agentList.get(k).getCpu()+" Mem: "+ SchedulerUtil.agentList.get(k).getMem());
-                            //updating agent resources
-                            SchedulerUtil.agentList.set(k,agentObj);
-                            break;
+                            //TODO add exception if the agent is not found on agentlist
                         }
-                        //TODO add exception if the agent is not found on agentlist
                     }
+                }
+                else {
+                    //job is active
                 }
             }
             //the current framework was not found in any list
@@ -175,10 +178,14 @@ public class StatusUpdater extends Thread{
                 //already added to finish list
                 //log error
                 //maybe the framework was launched by any past scheduler?
-                //Log.SchedulerLogging.log(Level.SEVERE,StatusUpdater.class.getName()+"Framework with id: "+frameworkList.get(i).getID()+"with role: "+frameworkList.get(i).getRole()+" was not found! Launched by any previous scheduler?");
+                Log.SchedulerLogging.log(Level.SEVERE,StatusUpdater.class.getName()+"Framework with id: "+frameworkList.get(i).getID()+"with role: "+frameworkList.get(i).getRole()+" was not found! Launched by any previous scheduler?");
                 continue;
             }
         }
+    }
+    public static void updateJobsBFHS()
+    {
+
     }
 
     public void run()

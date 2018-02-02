@@ -1,11 +1,16 @@
 package Entity;
 
+import Scheduler.SchedulerUtil;
+
+import java.util.Comparator;
+
 public class Agent {
 
     private double defaultCPU;
     private double defaultMEM;
     private double cpu;
     private double mem;
+    private double resourceTotal;
     private double disk;
     private int portStart;
     private int portEnd;
@@ -44,6 +49,14 @@ public class Agent {
 
     public void setMem(double mem) {
         this.mem = mem;
+    }
+
+    public double getResourceTotal() {
+        return resourceTotal;
+    }
+
+    public void setResourceTotal() {
+        this.resourceTotal = cpu + mem * SchedulerUtil.resourceSplitThreshold;
     }
 
     public double getDisk() {
@@ -103,6 +116,7 @@ public class Agent {
         double memWeight = this.mem/mem;
         this.weight = cpuWeight<memWeight?cpuWeight:memWeight;
     }
+
 
     @Override
     public String toString() {

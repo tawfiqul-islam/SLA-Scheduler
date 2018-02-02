@@ -34,6 +34,7 @@ public class JobProcessor extends Thread {
             jobObj.setCoresPerExecutor(requestJson.getInt("coresPerExecutor"));
             jobObj.setMemPerExecutor(requestJson.getDouble("memoryPerExecutor")*1024.0);
             jobObj.setExecutorMemoryOverhead();
+            jobObj.setResourceSplit();
             jobObj.setInputPath(requestJson.getString("inputPath"));
             jobObj.setOutputPath(requestJson.getString("outputPath")+"/"+jobObj.getJobID());
             jobObj.setAppJarPath(requestJson.getString("appJarPath"));

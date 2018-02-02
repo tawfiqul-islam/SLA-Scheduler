@@ -1,7 +1,5 @@
 package Scheduler;
 
-
-import java.util.logging.Level;
 import JobMananger.JobRequestHandler;
 import Operator.HTTPAPI;
 import Settings.SettingsLoader;

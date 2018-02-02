@@ -1,6 +1,9 @@
 package Entity;
 
+import Scheduler.SchedulerUtil;
+
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Job {
 
@@ -27,6 +30,7 @@ public class Job {
     private double executorMemoryOverhead;
     private double totalExecutorMemory;
     private double inputSize;
+    private double resourceSplit;
 
     //Environment Information
     private String inputPath;
@@ -186,6 +190,14 @@ public class Job {
         this.inputSize = inputSize;
     }
 
+    public double getResourceSplit() {
+        return resourceSplit;
+    }
+
+    public void setResourceSplit() {
+        this.resourceSplit = this.coresPerExecutor * this.executors + (this.memPerExecutor * this.executors) * SchedulerUtil.resourceSplitThreshold;
+    }
+
     public String getInputPath() {
         return inputPath;
     }
@@ -243,4 +255,5 @@ public class Job {
                 ", appArgs='" + appArgs + '\'' +
                 '}';
     }
+
 }

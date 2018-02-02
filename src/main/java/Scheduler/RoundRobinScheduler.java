@@ -14,7 +14,7 @@ public class RoundRobinScheduler extends Thread{
 
             //update agents, update jobs
             StatusUpdater.updateAgents();
-            StatusUpdater.updateJobs();
+            StatusUpdater.updateJobsRR();
             Job currentJob;
 
             //allocate more resources to partial submitted jobs
@@ -44,7 +44,7 @@ public class RoundRobinScheduler extends Thread{
 
             //schedule new jobs
 
-            if(!SchedulerUtil.newJobQueue.isEmpty()) {
+            if(!SchedulerUtil.newJobQueueRR.isEmpty()) {
 
                 Log.SchedulerLogging.log(Level.INFO,RoundRobinScheduler.class.getName()+": Trying to place executors for new jobs");
                 currentJob=SchedulerUtil.queueOperation(null,2);
