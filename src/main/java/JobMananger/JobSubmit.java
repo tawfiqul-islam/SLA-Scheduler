@@ -30,9 +30,9 @@ public class JobSubmit {
     }
 
     public static void main(String args[])  {
-        for(int i=0;i<1;i++) {
+        for(int i=0;i<10;i++) {
 
-            JSONObject jsonObj = constructJobRequest(2, 2, 8.0,
+            JSONObject jsonObj = constructJobRequest(1, 1, 2.0,
                     "/home/tawfiq/research/spark/myinput",
                     "/home/tawfiq/research/spark/myoutput",
                     "/home/tawfiq/research/spark/bigdatabench-spark_1.3.0-hadoop_1.0.4.jar",

@@ -42,6 +42,11 @@ public class SchedulerManager {
             HTTPAPI.RESERVE(SchedulerUtil.schedulerRole,SchedulerUtil.agentList.get(i).getCpu(),SchedulerUtil.agentList.get(i).getMem(),SchedulerUtil.agentList.get(i).getId());
         }
 
+        //start job handler
+        JobRequestHandler jobRequestHandlerObj = new JobRequestHandler();
+        jobRequestHandlerObj.start();
+        Log.SchedulerLogging.log(Level.INFO,SchedulerManager.class.getName()+": Started JobRequestHandler");
+
         //start scheduler
         if(SchedulerUtil.schedulerAlgorithm==Algorithm.RoundRobin) {
             RoundRobinScheduler rrSchedulerObj = new RoundRobinScheduler();
@@ -50,15 +55,15 @@ public class SchedulerManager {
         }
         else if(SchedulerUtil.schedulerAlgorithm==Algorithm.BFHeuristic) {
             Log.SchedulerLogging.log(Level.INFO,SchedulerManager.class.getName()+": Started BFHeuristic Scheduler");
+            BestFitScheduler bfSchedulerObj = new BestFitScheduler();
+            bfSchedulerObj.start();
+            Log.SchedulerLogging.log(Level.INFO,SchedulerManager.class.getName()+": Started BestFitScheduler");
         }
         else {
             //log error..not scheduling algorithm is chosen...or use a defautl scheduler
             Log.SchedulerLogging.log(Level.SEVERE,SchedulerManager.class.getName()+": No Scheduler Algorithm was selected in configuration");
         }
-        //start job handler
-        JobRequestHandler jobRequestHandlerObj = new JobRequestHandler();
-        jobRequestHandlerObj.start();
-        Log.SchedulerLogging.log(Level.INFO,SchedulerManager.class.getName()+": Started JobRequestHandler");
+
     }
 }
 

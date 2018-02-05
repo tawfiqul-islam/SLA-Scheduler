@@ -2,8 +2,6 @@ package Entity;
 
 import Scheduler.SchedulerUtil;
 
-import java.util.Comparator;
-
 public class Agent {
 
     private double defaultCPU;

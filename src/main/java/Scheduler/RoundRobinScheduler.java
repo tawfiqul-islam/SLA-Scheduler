@@ -12,83 +12,49 @@ public class RoundRobinScheduler extends Thread{
 
         while(true) {
 
-            //update agents, update jobs
+            //update agents
             StatusUpdater.updateAgents();
-            StatusUpdater.updateJobsRR();
-            Job currentJob;
+            //update jobs
+            StatusUpdater.updateJobs();
 
-            //allocate more resources to partial submitted jobs
+            synchronized (SchedulerUtil.jobQueue) {
 
-            for(int i=0;i<SchedulerUtil.partialSubmittedJobList.size();i++) {
+                Job currentJob;
 
-                Log.SchedulerLogging.log(Level.INFO,RoundRobinScheduler.class.getName()+": Trying to place executors for jobs submitted with partial resources");
-                currentJob=SchedulerUtil.partialSubmittedJobList.get(i);
+                Log.SchedulerLogging.log(Level.INFO,RoundRobinScheduler.class.getName()+": Trying to place executors for jobs from jobQueue");
 
-                if(placeExecutor(currentJob)) {
-                     Log.SchedulerLogging.log(Level.INFO,RoundRobinScheduler.class.getName()+": Placed executor(s) for Job: "+currentJob.getJobID());
-                }
-                else {
-                    Log.SchedulerLogging.log(Level.INFO,RoundRobinScheduler.class.getName()+":Could not place any executor(s) for the Partially Submitted Job: "+currentJob.getJobID());
-                }
-                if(currentJob.getAllocatedExecutors()==currentJob.getExecutors()) {
-                    Log.SchedulerLogging.log(Level.INFO,RoundRobinScheduler.class.getName()+": All executors are placed for Job: "+currentJob.getJobID());
-                    //remove job from job queue
-                    SchedulerUtil.partialSubmittedJobList.remove(i);
-                    Log.SchedulerLogging.log(Level.INFO,RoundRobinScheduler.class.getName()+": Removed Job: "+currentJob.getJobID()+" from partialSubmittedJobList");
-                    //add job to fully submitted job list
-                    SchedulerUtil.fullySubmittedJobList.add(currentJob);
-                    Log.SchedulerLogging.log(Level.INFO,RoundRobinScheduler.class.getName()+": Added Job: "+currentJob.getJobID()+" to fullySubmittedJobList");
-                    i--;
-                }
-            }
+                for (int i = 0; i < SchedulerUtil.jobQueue.size(); i++) {
 
-            //schedule new jobs
+                    currentJob = SchedulerUtil.jobQueue.get(i);
 
-            if(!SchedulerUtil.newJobQueueRR.isEmpty()) {
+                    if (placeExecutor(currentJob)) {
+                        Log.SchedulerLogging.log(Level.INFO, RoundRobinScheduler.class.getName() + ": Placed executor(s) for Job: " + currentJob.getJobID());
+                        //if the job is new submit it in the cluster
+                        if(!currentJob.isSubmitted()) {
+                            currentJob.setSubmitted(true);
+                            new SparkLauncherAPI(currentJob).start();
+                        }
+                        if (currentJob.getAllocatedExecutors() == currentJob.getExecutors()) {
+                            Log.SchedulerLogging.log(Level.INFO, RoundRobinScheduler.class.getName() + ": All executors are placed for Job: " + currentJob.getJobID());
+                            //remove job from job queue
+                            SchedulerUtil.jobQueue.remove(i);
+                            Log.SchedulerLogging.log(Level.INFO, RoundRobinScheduler.class.getName() + ": Removed Job: " + currentJob.getJobID() + " from jobQueue");
+                            //add job to fully submitted job list
+                            SchedulerUtil.fullySubmittedJobList.add(currentJob);
+                            Log.SchedulerLogging.log(Level.INFO, RoundRobinScheduler.class.getName() + ": Added Job: " + currentJob.getJobID() + " to fullySubmittedJobList");
+                            i--;
+                        }
 
-                Log.SchedulerLogging.log(Level.INFO,RoundRobinScheduler.class.getName()+": Trying to place executors for new jobs");
-                currentJob=SchedulerUtil.queueOperation(null,2);
-                if(placeExecutor(currentJob)) {
-                    Log.SchedulerLogging.log(Level.INFO,RoundRobinScheduler.class.getName()+": Placed executor(s) for Job: "+currentJob.getJobID());
-                }
-                else {
-                    Log.SchedulerLogging.log(Level.INFO,RoundRobinScheduler.class.getName()+":Could not place any executor(s) for the New Job: "+currentJob.getJobID());
-                }
-                //job submitted with all the required resource
-                if(currentJob.getAllocatedExecutors()==currentJob.getExecutors()) {
-                    //remove job from job queue
-                    SchedulerUtil.queueOperation(null,3);
-                    //add job to fully submitted job list
-                    SchedulerUtil.fullySubmittedJobList.add(currentJob);
-                    Log.SchedulerLogging.log(Level.INFO,RoundRobinScheduler.class.getName()+": Added Job: "+currentJob.getJobID()+" to fullySubmittedJobList");
-                    //launch this new job in the cluster through the sparklauncher API
-                    new SparkLauncherAPI(currentJob).start();
-                }
-                //job submitted with partial resources
-                else if(currentJob.getAllocatedExecutors()>0)  {
-                    //remove job from job queue
-                    SchedulerUtil.queueOperation(null,3);
-                    //add job to partial submitted job list
-                    SchedulerUtil.partialSubmittedJobList.add(currentJob);
-                    Log.SchedulerLogging.log(Level.INFO,RoundRobinScheduler.class.getName()+": Added Job: "+currentJob.getJobID()+" to partialSubmittedJobList");
-                    Log.SchedulerLogging.log(Level.INFO,RoundRobinScheduler.class.getName()+": Launching Job: "+currentJob.getJobID()+" in the cluster via SparkLaunchAPI");
-                    //launch this new job in the cluster through the sparklauncher API
-                    new SparkLauncherAPI(currentJob).start();
-                }
-                else {
-                    //No resources was assigned for this job. Do nothing and the job will remain on the top of the queue
-                    try {
-                        Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                        Log.SchedulerLogging.log(Level.SEVERE,RoundRobinScheduler.class.getName()+e.toString());
+                    } else {
+                        Log.SchedulerLogging.log(Level.INFO, RoundRobinScheduler.class.getName() + ":Could not place any executor(s) for Job: " + currentJob.getJobID());
                     }
                 }
-            }
-            else {
+
+                //sleep
                 try {
                     Thread.sleep(5000);
                 } catch (InterruptedException e) {
-                    Log.SchedulerLogging.log(Level.SEVERE,RoundRobinScheduler.class.getName()+e.toString());
+                    e.printStackTrace();
                 }
             }
         }
@@ -111,10 +77,10 @@ public class RoundRobinScheduler extends Thread{
 
                 // use http api unreserve-method to first unreserve the resources from the default scheduler-role
                 HTTPAPI.UNRESERVE(SchedulerUtil.schedulerRole,currentJob.getCoresPerExecutor(), Math.ceil(currentJob.getTotalExecutorMemory()),SchedulerUtil.agentList.get(i).getId());
-                Log.SchedulerLogging.log(Level.INFO,RoundRobinScheduler.class.getName()+" Unreserved CPU: "+currentJob.getCoresPerExecutor()+" Mem: "+Math.ceil(currentJob.getTotalExecutorMemory())+" from the default scheduler-role");
+                Log.SchedulerLogging.log(Level.INFO,RoundRobinScheduler.class.getName()+" Unreserved CPU: "+currentJob.getCoresPerExecutor()+" Mem: "+Math.ceil(currentJob.getTotalExecutorMemory())+" from the default scheduler-role"+" in agent "+SchedulerUtil.agentList.get(i).getId());
                 // use http api reserve-method to reserve resources in this agent
                 HTTPAPI.RESERVE(currentJob.getRole(),currentJob.getCoresPerExecutor(), Math.ceil(currentJob.getTotalExecutorMemory()),SchedulerUtil.agentList.get(i).getId());
-                Log.SchedulerLogging.log(Level.INFO,RoundRobinScheduler.class.getName()+" Reserved CPU: "+currentJob.getCoresPerExecutor()+" Mem: "+Math.ceil(currentJob.getTotalExecutorMemory())+" to Job: "+currentJob.getJobID()+" with Role: "+currentJob.getRole());
+                Log.SchedulerLogging.log(Level.INFO,RoundRobinScheduler.class.getName()+" Reserved CPU: "+currentJob.getCoresPerExecutor()+" Mem: "+Math.ceil(currentJob.getTotalExecutorMemory())+" to Job: "+currentJob.getJobID()+" with Role: "+currentJob.getRole()+" in agent "+SchedulerUtil.agentList.get(i).getId());
                 Log.SchedulerLogging.log(Level.INFO,RoundRobinScheduler.class.getName()+" Current Status of Agent: "+ SchedulerUtil.agentList.get(i).getId()+"-> CPU: "+ SchedulerUtil.agentList.get(i).getCpu()+" Mem: "+ SchedulerUtil.agentList.get(i).getMem());
                 //add agent Id to the job
                 ArrayList<String> temp = currentJob.getAgentList();

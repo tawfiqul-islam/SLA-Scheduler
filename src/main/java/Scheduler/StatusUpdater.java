@@ -68,10 +68,10 @@ public class StatusUpdater extends Thread{
     }
 
     //update frameworks (jobs)...find newly submitted jobs with matching roles in internal structures and update their framework id
-    //check whether any job/framework is finished and is in partial/fully submitted queue. if so move them to finished queue.
+    //check whether any job/framework is finished and is in job/fully submitted list. if so move them to finished queue.
     //unreserve resources for finished frameworks, update agent available resources.
 
-    public static void updateJobsRR()
+    public static void updateJobs()
     {
         ArrayList<Framework> frameworkList = HTTPAPI.GET_FRAMEWORK();
         for(int i=0;i<frameworkList.size();i++)
@@ -106,32 +106,31 @@ public class StatusUpdater extends Thread{
                 }
             }
 
-            //try to find the current framework in partialsubmittedjoblist
+            //try to find the current framework in joblist
             if(!found)
             {
-                for(int j=0;j<SchedulerUtil.partialSubmittedJobList.size();j++)
-                {
-                    if(frameworkList.get(i).getRole().equalsIgnoreCase(SchedulerUtil.partialSubmittedJobList.get(j).getRole()))
-                    {
-                        found=true;
-                        currentJob = SchedulerUtil.partialSubmittedJobList.get(j);
-                        currentJob.setFrameworkID(frameworkList.get(i).getID());
-                        currentJob.setStartTime(frameworkList.get(i).getStartTime());
-                        currentJob.setFinishTime(frameworkList.get(i).getFinishTime());
-                        currentJob.setAlive(frameworkList.get(i).isActive());
+                synchronized (SchedulerUtil.jobQueue) {
+                    for (int j = 0; j < SchedulerUtil.jobQueue.size(); j++) {
+                        if (frameworkList.get(i).getRole().equalsIgnoreCase(SchedulerUtil.jobQueue.get(j).getRole())) {
+                            found = true;
+                            currentJob = SchedulerUtil.jobQueue.get(j);
+                            currentJob.setFrameworkID(frameworkList.get(i).getID());
+                            currentJob.setStartTime(frameworkList.get(i).getStartTime());
+                            currentJob.setFinishTime(frameworkList.get(i).getFinishTime());
+                            currentJob.setAlive(frameworkList.get(i).isActive());
 
-                        //TODO handle failed jobs here
-                        if(!currentJob.isAlive()&&currentJob.getFinishTime()>0)
-                        {
-                            //log job finished with id ...
-                            //remove from fullySubmittedList
-                            SchedulerUtil.partialSubmittedJobList.remove(j);
-                            Log.SchedulerLogging.log(Level.INFO,StatusUpdater.class.getName()+": Removed Job: "+currentJob.getJobID()+" from partialSubmittedJobList");
-                            //add in finished job list
-                            SchedulerUtil.finishedJobList.add(currentJob);
-                            Log.SchedulerLogging.log(Level.INFO,StatusUpdater.class.getName()+": Added Job: "+currentJob.getJobID()+" to finishedJobList");
+                            //TODO handle failed jobs here
+                            if (!currentJob.isAlive() && currentJob.getFinishTime() > 0) {
+                                Log.SchedulerLogging.log(Level.INFO, StatusUpdater.class.getName() + ": Job: " + currentJob.getJobID() + " is finished");
+                                //remove from jobList
+                                SchedulerUtil.jobQueue.remove(j);
+                                Log.SchedulerLogging.log(Level.INFO, StatusUpdater.class.getName() + ": Removed Job: " + currentJob.getJobID() + " from jobQueue");
+                                //add in finished job list
+                                SchedulerUtil.finishedJobList.add(currentJob);
+                                Log.SchedulerLogging.log(Level.INFO, StatusUpdater.class.getName() + ": Added Job: " + currentJob.getJobID() + " to finishedJobList");
+                            }
+                            break;
                         }
-                        break;
                     }
                 }
             }
@@ -170,6 +169,8 @@ public class StatusUpdater extends Thread{
                 }
                 else {
                     //job is active
+                    Log.SchedulerLogging.log(Level.INFO, StatusUpdater.class.getName() + ": Job: " + currentJob.getJobID() + " is still active");
+
                 }
             }
             //the current framework was not found in any list
@@ -182,10 +183,6 @@ public class StatusUpdater extends Thread{
                 continue;
             }
         }
-    }
-    public static void updateJobsBFHS()
-    {
-
     }
 
     public void run()
