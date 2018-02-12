@@ -32,14 +32,14 @@ public class JobSubmit {
     public static void main(String args[])  {
         for(int i=0;i<10;i++) {
 
-            JSONObject jsonObj = constructJobRequest(1, 1, 2.0,
-                    "/home/tawfiq/research/spark/myinput",
-                    "/home/tawfiq/research/spark/myoutput",
-                    "/home/tawfiq/research/spark/bigdatabench-spark_1.3.0-hadoop_1.0.4.jar",
+            JSONObject jsonObj = constructJobRequest(2, 3, 6.0,
+                    "/home/ubuntu/research/data/myinput",
+                    "/home/ubuntu/research/data/myoutput",
+                    "/home/ubuntu/experiments/bigdatabench-spark_1.3.0-hadoop_1.0.4.jar",
                     "cn.ac.ict.bigdatabench.WordCount",
                             "");
             try {
-                Socket clientSocket = new Socket("127.0.0.1",9066);
+                Socket clientSocket = new Socket("115.146.92.100",9066);
                 DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
                 outToServer.writeBytes(jsonObj.toString());
                 clientSocket.close();

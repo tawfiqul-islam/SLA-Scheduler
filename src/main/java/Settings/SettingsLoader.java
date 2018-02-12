@@ -23,7 +23,7 @@ public class SettingsLoader {
 	try {
 
 		//specify properties file with full path... or only file name if it's in current directory
-		input = new FileInputStream("src/main/resources/profiler.ini");
+		input = new FileInputStream("profiler.ini");
 
 		// load a properties file
 		prop.load(input);

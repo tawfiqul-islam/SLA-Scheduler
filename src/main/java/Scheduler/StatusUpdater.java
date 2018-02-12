@@ -92,6 +92,8 @@ public class StatusUpdater extends Thread{
                     currentJob.setAlive(frameworkList.get(i).isActive());
 
                     //TODO handle failed jobs here
+
+                    //current job is finished, add it to finishedjoblist
                     if(!currentJob.isAlive()&&currentJob.getFinishTime()>0)
                     {
                         //log job finished with id ...
@@ -120,6 +122,8 @@ public class StatusUpdater extends Thread{
                             currentJob.setAlive(frameworkList.get(i).isActive());
 
                             //TODO handle failed jobs here
+
+                            //current job is finished, add it to finishedjoblist
                             if (!currentJob.isAlive() && currentJob.getFinishTime() > 0) {
                                 Log.SchedulerLogging.log(Level.INFO, StatusUpdater.class.getName() + ": Job: " + currentJob.getJobID() + " is finished");
                                 //remove from jobList
@@ -138,6 +142,7 @@ public class StatusUpdater extends Thread{
 
             if(found)
             {
+                //job is finished, and found in either joblist or fullysubmittedlist. Now unreserve resources for this job
                 if(!currentJob.isAlive()&&currentJob.getFinishTime()>0) {
                     //unreserve the current job's reserved resources in all the used agents
                     for (int j = 0; j < currentJob.getAgentList().size(); j++) {
@@ -179,7 +184,7 @@ public class StatusUpdater extends Thread{
                 //already added to finish list
                 //log error
                 //maybe the framework was launched by any past scheduler?
-                Log.SchedulerLogging.log(Level.SEVERE,StatusUpdater.class.getName()+"Framework with id: "+frameworkList.get(i).getID()+"with role: "+frameworkList.get(i).getRole()+" was not found! Launched by any previous scheduler?");
+                //Log.SchedulerLogging.log(Level.SEVERE,StatusUpdater.class.getName()+"Framework with id: "+frameworkList.get(i).getID()+"with role: "+frameworkList.get(i).getRole()+" was not found! Launched by any previous scheduler?");
                 continue;
             }
         }
