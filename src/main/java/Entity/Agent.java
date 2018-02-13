@@ -12,10 +12,12 @@ public class Agent {
     private double disk;
     private int portStart;
     private int portEnd;
-    private boolean isAlive;
+    private boolean isUsed;
+    private boolean isActive;
     private String id;
     private long registeredTime;
     private double weight;
+    private long runTime=0;
 
     public double getDefaultCPU() {
         return defaultCPU;
@@ -81,12 +83,20 @@ public class Agent {
         this.portEnd = portEnd;
     }
 
-    public boolean isAlive() {
-        return isAlive;
+    public boolean isUsed() {
+        return isUsed;
     }
 
-    public void setAlive(boolean alive) {
-        isAlive = alive;
+    public void setUsed(boolean used) {
+        isUsed = used;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 
     public String getId() {
@@ -115,6 +125,13 @@ public class Agent {
         this.weight = cpuWeight<memWeight?cpuWeight:memWeight;
     }
 
+    public long getRunTime() {
+        return runTime;
+    }
+
+    public void setRunTime(long runTime) {
+        this.runTime = runTime;
+    }
 
     @Override
     public String toString() {
@@ -125,7 +142,7 @@ public class Agent {
                 ", disk=" + disk +
                 ", portStart=" + portStart +
                 ", portEnd=" + portEnd +
-                ", isAlive=" + isAlive +
+                ", isActive=" + isActive +
                 ", registeredTime=" + registeredTime +
                 '}';
     }

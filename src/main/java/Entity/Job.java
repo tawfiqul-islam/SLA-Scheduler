@@ -37,7 +37,7 @@ public class Job {
     private String appJarPath;
     private String mainClassName;
     private String appArgs;
-
+    private boolean shutdown;
 
 
     public String getJobID() {
@@ -235,6 +235,14 @@ public class Job {
 
     public void setAppArgs(String appArgs) {
         this.appArgs = appArgs;
+    }
+
+    public boolean isShutdown() {
+        return shutdown;
+    }
+
+    public void setShutdown(boolean shutdown) {
+        this.shutdown = shutdown;
     }
 
     @Override

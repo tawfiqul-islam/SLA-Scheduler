@@ -1,1 +1,0 @@
-0: Result has been saved to: /home/tawfiq/research/spark/myoutput/1b72ac9c-13dd-49ac-97e3-ff769779cf4f

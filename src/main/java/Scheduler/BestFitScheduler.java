@@ -42,7 +42,15 @@ public class BestFitScheduler extends Thread {
 
     public void run() {
 
+        boolean shutdown= false;
+
         while(true) {
+
+            if (shutdown) {
+                Log.SchedulerLogging.log(Level.INFO, BestFitScheduler.class.getName() + "Shutting Down Best Fit Scheduler. Job Queue is Empty...");
+                SchedulerManager.ShutDown=true;
+                break;
+            }
             //update agents
             StatusUpdater.updateAgents();
 
@@ -50,42 +58,53 @@ public class BestFitScheduler extends Thread {
             Collections.sort(SchedulerUtil.agentList, new AgentComparator());
 
             //update jobs
-            StatusUpdater.updateJobs();
+            //StatusUpdater.updateJobs();
 
             synchronized (SchedulerUtil.jobQueue) {
-                //sort all the Jobs according to decreasing resource requirements
-                Collections.sort(SchedulerUtil.jobQueue, new JobComparator());
+                synchronized (SchedulerUtil.fullySubmittedJobList) {
+                    //sort all the Jobs according to decreasing resource requirements
+                    Collections.sort(SchedulerUtil.jobQueue, new JobComparator());
 
-                Job currentJob;
+                    Job currentJob;
 
-                Log.SchedulerLogging.log(Level.INFO,BestFitScheduler.class.getName()+": Trying to place executors for jobs from JobQueue");
+                    //Log.SchedulerLogging.log(Level.INFO,BestFitScheduler.class.getName()+": Trying to place executors for jobs from JobQueue");
 
-                for (int i = 0; i < SchedulerUtil.jobQueue.size(); i++) {
+                    for (int i = 0; i < SchedulerUtil.jobQueue.size(); i++) {
 
-                    currentJob = SchedulerUtil.jobQueue.get(i);
+                        currentJob = SchedulerUtil.jobQueue.get(i);
 
-                    if (placeExecutor(currentJob)) {
-                        Log.SchedulerLogging.log(Level.INFO, BestFitScheduler.class.getName() + ": Placed executor(s) for Job: " + currentJob.getJobID());
-                        //if the job is new submit it in the cluster
-                        if(!currentJob.isSubmitted())
-                        {
-                            currentJob.setSubmitted(true);
-                            new SparkLauncherAPI(currentJob).start();
+                        //shutDown check
+                        if (currentJob.isShutdown()) {
+                            if (SchedulerUtil.jobQueue.size() == 1) {
+                                shutdown = true;
+                                break;
+                            } else {
+                                continue;
+                            }
                         }
-                        if (currentJob.getAllocatedExecutors() == currentJob.getExecutors()) {
-                            Log.SchedulerLogging.log(Level.INFO, BestFitScheduler.class.getName() + ": All executors are placed for Job: " + currentJob.getJobID());
-                            //remove job from job queue
-                            SchedulerUtil.jobQueue.remove(i);
-                            Log.SchedulerLogging.log(Level.INFO, BestFitScheduler.class.getName() + ": Removed Job: " + currentJob.getJobID() + " from jobQueue");
-                            //add job to fully submitted job list
-                            SchedulerUtil.fullySubmittedJobList.add(currentJob);
-                            Log.SchedulerLogging.log(Level.INFO, BestFitScheduler.class.getName() + ": Added Job: " + currentJob.getJobID() + " to fullySubmittedJobList");
-                            i--;
+
+                        if (placeExecutor(currentJob)) {
+                            Log.SchedulerLogging.log(Level.INFO, BestFitScheduler.class.getName() + ": Placed executor(s) for Job: " + currentJob.getJobID());
+                            //if the job is new submit it in the cluster
+                            if (!currentJob.isSubmitted()) {
+                                currentJob.setSubmitted(true);
+                                new SparkLauncherAPI(currentJob).start();
+                            }
+                            if (currentJob.getAllocatedExecutors() == currentJob.getExecutors()) {
+                                Log.SchedulerLogging.log(Level.INFO, BestFitScheduler.class.getName() + ": All executors are placed for Job: " + currentJob.getJobID());
+                                //remove job from job queue
+                                SchedulerUtil.jobQueue.remove(i);
+                                Log.SchedulerLogging.log(Level.INFO, BestFitScheduler.class.getName() + ": Removed Job: " + currentJob.getJobID() + " from jobQueue");
+                                //add job to fully submitted job list
+                                SchedulerUtil.fullySubmittedJobList.add(currentJob);
+                                Log.SchedulerLogging.log(Level.INFO, BestFitScheduler.class.getName() + ": Added Job: " + currentJob.getJobID() + " to fullySubmittedJobList");
+                                i--;
+                            }
+                        } else {
+                            Log.SchedulerLogging.log(Level.INFO, BestFitScheduler.class.getName() + ":Could not place any executor(s) for Job: " + currentJob.getJobID());
                         }
-                    } else {
-                        Log.SchedulerLogging.log(Level.INFO, BestFitScheduler.class.getName() + ":Could not place any executor(s) for Job: " + currentJob.getJobID());
+
                     }
-
                 }
             }
 
@@ -111,7 +130,7 @@ public class BestFitScheduler extends Thread {
                     //update the available resources in this agent
                     SchedulerUtil.agentList.get(i).setCpu(SchedulerUtil.agentList.get(i).getCpu() - currentJob.getCoresPerExecutor());
                     SchedulerUtil.agentList.get(i).setMem(SchedulerUtil.agentList.get(i).getMem() - Math.ceil(currentJob.getTotalExecutorMemory()));
-                    SchedulerUtil.agentList.get(i).setAlive(true);
+                    SchedulerUtil.agentList.get(i).setUsed(true);
 
                     // use http api unreserve-method to first unreserve the resources from the default scheduler-role
                     HTTPAPI.UNRESERVE(SchedulerUtil.schedulerRole, currentJob.getCoresPerExecutor(), Math.ceil(currentJob.getTotalExecutorMemory()), SchedulerUtil.agentList.get(i).getId());

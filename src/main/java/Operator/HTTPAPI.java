@@ -212,7 +212,7 @@ public class HTTPAPI {
             for (int i = 0; i < agents.length(); i++) {
 
                 Agent agentObj = new Agent();
-                agentObj.setAlive(agents.getJSONObject(i).getBoolean("active"));
+                agentObj.setActive(agents.getJSONObject(i).getBoolean("active"));
                 agentObj.setId(agents.getJSONObject(i).getJSONObject("agent_info").getJSONObject("id").getString("value"));
 
                 JSONArray resources = agents.getJSONObject(i).getJSONObject("agent_info").getJSONArray("resources");

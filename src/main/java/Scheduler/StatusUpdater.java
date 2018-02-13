@@ -4,13 +4,19 @@ import Entity.Agent;
 import Entity.Framework;
 import Entity.Job;
 import Operator.HTTPAPI;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 
 public class StatusUpdater extends Thread{
 
     //update agents....if new agents are found add them to agent list. if agent is unreachable/inactive then delete them from agent list
 
+    static StringBuilder sb = new StringBuilder();
+
+    static boolean end=false;
     public static void updateAgents()
     {
         ArrayList<Agent> updatedAgentList;
@@ -44,7 +50,7 @@ public class StatusUpdater extends Thread{
                 if(updatedAgentList.get(i).getId().equalsIgnoreCase(SchedulerUtil.agentList.get(j).getId()))
                 {
                     exists=true;
-                    if(!updatedAgentList.get(i).isAlive())
+                    if(!updatedAgentList.get(i).isActive())
                     {
                         //agent is inactive, delete it from agentlist
                         SchedulerUtil.agentList.remove(j);
@@ -74,48 +80,18 @@ public class StatusUpdater extends Thread{
     public static void updateJobs()
     {
         ArrayList<Framework> frameworkList = HTTPAPI.GET_FRAMEWORK();
-        for(int i=0;i<frameworkList.size();i++)
-        {
-            boolean found=false;
+        for(int i=0;i<frameworkList.size();i++) {
+            boolean found = false;
             Job currentJob = null;
 
-            //try to find the current framework in fullysubmittedjoblist
-            for(int j=0;j<SchedulerUtil.fullySubmittedJobList.size();j++)
-            {
-                if(frameworkList.get(i).getRole().equalsIgnoreCase(SchedulerUtil.fullySubmittedJobList.get(j).getRole()))
-                {
-                    found=true;
-                    currentJob = SchedulerUtil.fullySubmittedJobList.get(j);
-                    currentJob.setFrameworkID(frameworkList.get(i).getID());
-                    currentJob.setStartTime(frameworkList.get(i).getStartTime());
-                    currentJob.setFinishTime(frameworkList.get(i).getFinishTime());
-                    currentJob.setAlive(frameworkList.get(i).isActive());
+            synchronized (SchedulerUtil.jobQueue) {
+                synchronized (SchedulerUtil.fullySubmittedJobList) {
 
-                    //TODO handle failed jobs here
-
-                    //current job is finished, add it to finishedjoblist
-                    if(!currentJob.isAlive()&&currentJob.getFinishTime()>0)
-                    {
-                        //log job finished with id ...
-                        //remove from fullySubmittedList
-                        SchedulerUtil.fullySubmittedJobList.remove(j);
-                        Log.SchedulerLogging.log(Level.INFO,StatusUpdater.class.getName()+": Removed Job: "+currentJob.getJobID()+" from fullySubmittedJobList");
-                        //add in finished job list
-                        SchedulerUtil.finishedJobList.add(currentJob);
-                        Log.SchedulerLogging.log(Level.INFO,StatusUpdater.class.getName()+": Added Job: "+currentJob.getJobID()+" to finishedJobList");
-                    }
-                    break;
-                }
-            }
-
-            //try to find the current framework in joblist
-            if(!found)
-            {
-                synchronized (SchedulerUtil.jobQueue) {
-                    for (int j = 0; j < SchedulerUtil.jobQueue.size(); j++) {
-                        if (frameworkList.get(i).getRole().equalsIgnoreCase(SchedulerUtil.jobQueue.get(j).getRole())) {
+                    //try to find the current framework in fullysubmittedjoblist
+                    for (int j = 0; j < SchedulerUtil.fullySubmittedJobList.size(); j++) {
+                        if (frameworkList.get(i).getRole().equalsIgnoreCase(SchedulerUtil.fullySubmittedJobList.get(j).getRole())) {
                             found = true;
-                            currentJob = SchedulerUtil.jobQueue.get(j);
+                            currentJob = SchedulerUtil.fullySubmittedJobList.get(j);
                             currentJob.setFrameworkID(frameworkList.get(i).getID());
                             currentJob.setStartTime(frameworkList.get(i).getStartTime());
                             currentJob.setFinishTime(frameworkList.get(i).getFinishTime());
@@ -125,16 +101,46 @@ public class StatusUpdater extends Thread{
 
                             //current job is finished, add it to finishedjoblist
                             if (!currentJob.isAlive() && currentJob.getFinishTime() > 0) {
-                                Log.SchedulerLogging.log(Level.INFO, StatusUpdater.class.getName() + ": Job: " + currentJob.getJobID() + " is finished");
-                                //remove from jobList
-                                SchedulerUtil.jobQueue.remove(j);
-                                Log.SchedulerLogging.log(Level.INFO, StatusUpdater.class.getName() + ": Removed Job: " + currentJob.getJobID() + " from jobQueue");
+                                //log job finished with id ...
+                                //remove from fullySubmittedList
+                                SchedulerUtil.fullySubmittedJobList.remove(j);
+                                Log.SchedulerLogging.log(Level.INFO, StatusUpdater.class.getName() + ": Removed Job: " + currentJob.getJobID() + " from fullySubmittedJobList");
                                 //add in finished job list
                                 SchedulerUtil.finishedJobList.add(currentJob);
                                 Log.SchedulerLogging.log(Level.INFO, StatusUpdater.class.getName() + ": Added Job: " + currentJob.getJobID() + " to finishedJobList");
                             }
                             break;
                         }
+                    }
+
+                    //try to find the current framework in joblist
+                    if (!found) {
+
+                        for (int j = 0; j < SchedulerUtil.jobQueue.size(); j++) {
+                            if (frameworkList.get(i).getRole().equalsIgnoreCase(SchedulerUtil.jobQueue.get(j).getRole())) {
+                                found = true;
+                                currentJob = SchedulerUtil.jobQueue.get(j);
+                                currentJob.setFrameworkID(frameworkList.get(i).getID());
+                                currentJob.setStartTime(frameworkList.get(i).getStartTime());
+                                currentJob.setFinishTime(frameworkList.get(i).getFinishTime());
+                                currentJob.setAlive(frameworkList.get(i).isActive());
+
+                                //TODO handle failed jobs here
+
+                                //current job is finished, add it to finishedjoblist
+                                if (!currentJob.isAlive() && currentJob.getFinishTime() > 0) {
+                                    Log.SchedulerLogging.log(Level.INFO, StatusUpdater.class.getName() + ": Job: " + currentJob.getJobID() + " is finished");
+                                    //remove from jobList
+                                    SchedulerUtil.jobQueue.remove(j);
+                                    Log.SchedulerLogging.log(Level.INFO, StatusUpdater.class.getName() + ": Removed Job: " + currentJob.getJobID() + " from jobQueue");
+                                    //add in finished job list
+                                    SchedulerUtil.finishedJobList.add(currentJob);
+                                    Log.SchedulerLogging.log(Level.INFO, StatusUpdater.class.getName() + ": Added Job: " + currentJob.getJobID() + " to finishedJobList");
+                                }
+                                break;
+                            }
+                        }
+
                     }
                 }
             }
@@ -161,7 +167,7 @@ public class StatusUpdater extends Thread{
                                 //if all the resources of this node are unused, mark it as not used or alive=false
                                 //use APIs here to shut down this agent if needed (to optimize VM cost)
                                 if (agentObj.getCpu() == agentObj.getDefaultCPU() && agentObj.getMem() == agentObj.getDefaultMEM()) {
-                                    agentObj.setAlive(false);
+                                    agentObj.setUsed(false);
                                 }
                                 Log.SchedulerLogging.log(Level.INFO, StatusUpdater.class.getName() + " Current Status of Agent: " + SchedulerUtil.agentList.get(k).getId() + "-> CPU: " + SchedulerUtil.agentList.get(k).getCpu() + " Mem: " + SchedulerUtil.agentList.get(k).getMem());
                                 //updating agent resources
@@ -171,6 +177,9 @@ public class StatusUpdater extends Thread{
                             //TODO add exception if the agent is not found on agentlist
                         }
                     }
+
+                    //save this job's scheduling details in result str
+                    saveCompletedJobDetails(currentJob);
                 }
                 else {
                     //job is active
@@ -190,12 +199,46 @@ public class StatusUpdater extends Thread{
         }
     }
 
+    public static void saveCompletedJobDetails(Job currentJob) {
+
+        StatusUpdater.sb.append(currentJob.getJobID());
+        StatusUpdater.sb.append(',');
+        StatusUpdater.sb.append(currentJob.getArrivalTime());
+        StatusUpdater.sb.append(',');
+        StatusUpdater.sb.append(getCurrentTimeStamp((long) (currentJob.getStartTime()*0.000001))); //converting from nano to millis
+        StatusUpdater.sb.append(',');
+        StatusUpdater.sb.append(getCurrentTimeStamp((long) (currentJob.getFinishTime()*0.000001)));
+        StatusUpdater.sb.append(',');
+        StatusUpdater.sb.append(currentJob.getExecutors());
+        StatusUpdater.sb.append(',');
+        StatusUpdater.sb.append(currentJob.getCoresPerExecutor());
+        StatusUpdater.sb.append(',');
+        StatusUpdater.sb.append(currentJob.getMemPerExecutor());
+        StatusUpdater.sb.append(',');
+        StatusUpdater.sb.append(currentJob.getAgentList().stream().distinct().count());
+        StatusUpdater.sb.append('\n');
+
+    }
+    public static String getCurrentTimeStamp(long time) {
+        SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        Date now = new Date(time);
+        String strDate = sdfDate.format(now);
+        return strDate;
+    }
     public void run()
     {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        while(true) {
+            updateJobs();
+            if(SchedulerManager.ShutDown&&SchedulerUtil.fullySubmittedJobList.size()==0) {
+                Log.SchedulerLogging.log(Level.INFO, StatusUpdater.class.getName() + " Shutting down StatusUpdater. Total Job Run-Time: " + (System.currentTimeMillis() - SchedulerManager.startTime) / 1000 + " seconds");
+                SchedulerManager.shutDown();
+                break;
+            }
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

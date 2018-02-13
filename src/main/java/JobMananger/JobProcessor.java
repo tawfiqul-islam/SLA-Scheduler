@@ -40,6 +40,7 @@ public class JobProcessor extends Thread {
             jobObj.setAppJarPath(requestJson.getString("appJarPath"));
             jobObj.setMainClassName(requestJson.getString("mainClassName"));
             jobObj.setAppArgs(requestJson.getString("appArgs"));
+            jobObj.setShutdown(requestJson.getBoolean("shutDown"));
             jobObj.setArrivalTime(getCurrentTimeStamp());
             jobObj.setRole("role"+getRole());
         }catch(Exception e) {
