@@ -56,6 +56,8 @@ public class BestFitScheduler extends Thread {
 
             //sort all the Agents according to increasing resource capacity
             Collections.sort(SchedulerUtil.agentList, new AgentComparator());
+            for(int i=0;i< SchedulerUtil.agentList.size();i++)
+                System.out.println((i+1)+". Agent: "+SchedulerUtil.agentList.get(i).getId()+": "+SchedulerUtil.agentList.get(i).getResourceTotal());
 
             //update jobs
             //StatusUpdater.updateJobs();
@@ -64,6 +66,8 @@ public class BestFitScheduler extends Thread {
                 synchronized (SchedulerUtil.fullySubmittedJobList) {
                     //sort all the Jobs according to decreasing resource requirements
                     Collections.sort(SchedulerUtil.jobQueue, new JobComparator());
+                    for(int i=0;i<SchedulerUtil.jobQueue.size();i++)
+                        System.out.println((i+1)+". Job: "+SchedulerUtil.jobQueue.get(i).getJobID()+": "+SchedulerUtil.jobQueue.get(i).getResourceSplit());
 
                     Job currentJob;
 
@@ -157,6 +161,7 @@ public class BestFitScheduler extends Thread {
                 }
             }
         }
+        currentJob.setAllocatedExecutors(currentJob.getAllocatedExecutors()+executorCount);
         return placed;
     }
 }

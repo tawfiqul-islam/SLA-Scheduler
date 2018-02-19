@@ -41,8 +41,9 @@ public class JobProcessor extends Thread {
             jobObj.setMainClassName(requestJson.getString("mainClassName"));
             jobObj.setAppArgs(requestJson.getString("appArgs"));
             jobObj.setShutdown(requestJson.getBoolean("shutDown"));
-            jobObj.setArrivalTime(getCurrentTimeStamp());
+            jobObj.setArrivalTime(System.currentTimeMillis());
             jobObj.setRole("role"+getRole());
+            jobObj.setResultID(requestJson.getInt("resultID"));
         }catch(Exception e) {
             Log.SchedulerLogging.log(Level.SEVERE,JobProcessor.class.getName()+" Exception in parseMessage"+e.toString());
         }

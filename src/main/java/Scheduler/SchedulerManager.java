@@ -67,7 +67,13 @@ public class SchedulerManager {
             StatusUpdater.sb.append(',');
             StatusUpdater.sb.append("finish-time");
             StatusUpdater.sb.append(',');
+            StatusUpdater.sb.append("scheduling-delay");
+            StatusUpdater.sb.append(',');
+            StatusUpdater.sb.append("duration");
+            StatusUpdater.sb.append(',');
             StatusUpdater.sb.append("E");
+            StatusUpdater.sb.append(',');
+            StatusUpdater.sb.append("E-allocated");
             StatusUpdater.sb.append(',');
             StatusUpdater.sb.append("CPE");
             StatusUpdater.sb.append(',');

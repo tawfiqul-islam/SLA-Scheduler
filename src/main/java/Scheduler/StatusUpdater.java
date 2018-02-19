@@ -201,20 +201,41 @@ public class StatusUpdater extends Thread{
 
     public static void saveCompletedJobDetails(Job currentJob) {
 
-        StatusUpdater.sb.append(currentJob.getJobID());
+        double arrivalTime=(currentJob.getArrivalTime()-SchedulerManager.startTime)/1000.0;
+        double startTime=((currentJob.getStartTime()*0.000001)-SchedulerManager.startTime)/1000.0;
+        double finishTime=((currentJob.getFinishTime()*0.000001)-SchedulerManager.startTime)/1000.0;
+
+        //resultID as jobID
+        StatusUpdater.sb.append(currentJob.getResultID());
         StatusUpdater.sb.append(',');
-        StatusUpdater.sb.append(currentJob.getArrivalTime());
+        //arrival time
+        StatusUpdater.sb.append(arrivalTime);
         StatusUpdater.sb.append(',');
-        StatusUpdater.sb.append(getCurrentTimeStamp((long) (currentJob.getStartTime()*0.000001))); //converting from nano to millis
+        //job start time
+        StatusUpdater.sb.append(startTime); //converting from nano to millis
         StatusUpdater.sb.append(',');
-        StatusUpdater.sb.append(getCurrentTimeStamp((long) (currentJob.getFinishTime()*0.000001)));
+        //job finish time
+        StatusUpdater.sb.append(finishTime);
         StatusUpdater.sb.append(',');
+        //scheduling delay
+        StatusUpdater.sb.append(startTime-arrivalTime);
+        StatusUpdater.sb.append(',');
+        //job duration
+        StatusUpdater.sb.append(finishTime-startTime);
+        StatusUpdater.sb.append(',');
+        //executors
         StatusUpdater.sb.append(currentJob.getExecutors());
         StatusUpdater.sb.append(',');
+        //allocated executors
+        StatusUpdater.sb.append(currentJob.getAllocatedExecutors());
+        StatusUpdater.sb.append(',');
+        //cores
         StatusUpdater.sb.append(currentJob.getCoresPerExecutor());
         StatusUpdater.sb.append(',');
+        //memory
         StatusUpdater.sb.append(currentJob.getMemPerExecutor());
         StatusUpdater.sb.append(',');
+        //number of distinct agents used
         StatusUpdater.sb.append(currentJob.getAgentList().stream().distinct().count());
         StatusUpdater.sb.append('\n');
 

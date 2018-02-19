@@ -7,13 +7,14 @@ import java.util.ArrayList;
 public class Job {
 
     private String jobID;
+    private int resultID;
     private String role;
     private String frameworkID;
     private int allocatedExecutors;
     //stats
-    private String arrivalTime;
-    private double startTime;
-    private double finishTime;
+    private long arrivalTime;
+    private long startTime;
+    private long finishTime;
     private double totalPredictedTime;
     private boolean isSubmitted;
     private boolean isAlive;
@@ -48,6 +49,14 @@ public class Job {
         this.jobID = jobID;
     }
 
+    public int getResultID() {
+        return resultID;
+    }
+
+    public void setResultID(int resultID) {
+        this.resultID = resultID;
+    }
+
     public String getFrameworkID() {
         return frameworkID;
     }
@@ -72,27 +81,27 @@ public class Job {
         this.allocatedExecutors = allocatedExecutors;
     }
 
-    public String getArrivalTime() {
+    public long getArrivalTime() {
         return arrivalTime;
     }
 
-    public void setArrivalTime(String arrivalTime) {
+    public void setArrivalTime(long arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 
-    public double getStartTime() {
+    public long getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(double startTime) {
+    public void setStartTime(long startTime) {
         this.startTime = startTime;
     }
 
-    public double getFinishTime() {
+    public long getFinishTime() {
         return finishTime;
     }
 
-    public void setFinishTime(double finishTime) {
+    public void setFinishTime(long finishTime) {
         this.finishTime = finishTime;
     }
 

@@ -281,7 +281,6 @@ public class HTTPAPI {
         } catch(JSONException e){
             Log.SchedulerLogging.log(Level.SEVERE,HTTPAPI.class.getName()+" Exception in parseFrameworks: "+ e.toString());
         }
-
         return frameworkList;
     }
 }
