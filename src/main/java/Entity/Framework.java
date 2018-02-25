@@ -7,6 +7,7 @@ public class Framework {
     private String role;
     private String ID;
     private boolean active;
+    private int executors;
 
     public long getStartTime() {
         return startTime;
@@ -46,6 +47,14 @@ public class Framework {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public int getExecutors() {
+        return executors;
+    }
+
+    public void setExecutors(int executors) {
+        this.executors = executors;
     }
 }
 

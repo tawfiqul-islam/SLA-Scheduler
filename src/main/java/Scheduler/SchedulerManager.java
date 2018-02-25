@@ -75,6 +75,8 @@ public class SchedulerManager {
             StatusUpdater.sb.append(',');
             StatusUpdater.sb.append("E-allocated");
             StatusUpdater.sb.append(',');
+            StatusUpdater.sb.append("E-allocated_C");
+            StatusUpdater.sb.append(',');
             StatusUpdater.sb.append("CPE");
             StatusUpdater.sb.append(',');
             StatusUpdater.sb.append("MPE");
@@ -99,6 +101,12 @@ public class SchedulerManager {
             startTime=System.currentTimeMillis();
             BestFitScheduler bfSchedulerObj = new BestFitScheduler();
             bfSchedulerObj.start();
+        }
+        else if(SchedulerUtil.schedulerAlgorithm==Algorithm.FirstFit) {
+            Log.SchedulerLogging.log(Level.INFO,SchedulerManager.class.getName()+": Started FirstFitScheduler ");
+            startTime=System.currentTimeMillis();
+            FirstFitScheduler ffSchedulerObj = new FirstFitScheduler();
+            ffSchedulerObj.start();
         }
         else {
             //log error..not scheduling algorithm is chosen...or use a defautl scheduler

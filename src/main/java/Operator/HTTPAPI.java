@@ -35,7 +35,7 @@ public class HTTPAPI {
     {
         JSONObject statusJSONObj = constructStatusJSON(Constants.GET_HEALTH);
         ServerResponse serverResponseObj = statusHTTPPOST(statusJSONObj,Settings.mesosMasterURI+"/api/v1");
-        return parseGetHealthResponse(serverResponseObj.responseString);
+        return parseGetHealthResponse(serverResponseObj.getResponseString());
     }
 
     public static ArrayList<Agent> GET_AGENT()
@@ -43,7 +43,7 @@ public class HTTPAPI {
         JSONObject statusJSONObj = constructStatusJSON(Constants.GET_STATE);
         ServerResponse serverResponseObj = statusHTTPPOST(statusJSONObj,Settings.mesosMasterURI+"/api/v1");
         //System.out.println("GET agent response: "+serverResponseObj.responseString);
-        return parseAgents(serverResponseObj.responseString);
+        return parseAgents(serverResponseObj.getResponseString());
     }
 
     public static ArrayList<Framework> GET_FRAMEWORK()
@@ -51,7 +51,7 @@ public class HTTPAPI {
         JSONObject statusJSONObj = constructStatusJSON(Constants.GET_STATE);
         ServerResponse serverResponseObj = statusHTTPPOST(statusJSONObj,Settings.mesosMasterURI+"/api/v1");
         //System.out.println("Get framework response: "+serverResponseObj.responseString);
-        return parseFrameworks(serverResponseObj.responseString);
+        return parseFrameworks(serverResponseObj.getResponseString());
     }
 
     private static ServerResponse reservationHTTPPost(JSONArray obj, String agentId, String httpURI) {
@@ -74,7 +74,7 @@ public class HTTPAPI {
                 post.setHeader("Accept", "application/json");
                 response = httpClient.execute(post);
                 //System.out.println(response.getStatusLine());
-                serverResponseObj.statusCode=response.getStatusLine().getStatusCode();
+                serverResponseObj.setStatusCode(response.getStatusLine().getStatusCode());
                 BufferedReader br = new BufferedReader(
                         new InputStreamReader((response.getEntity().getContent())));
 
@@ -93,7 +93,7 @@ public class HTTPAPI {
             Log.SchedulerLogging.log(Level.SEVERE,HTTPAPI.class.getName()+" Exception in reservationHTTPPost: "+ e.toString());
         }
 
-        serverResponseObj.responseString=outputStr;
+        serverResponseObj.setResponseString(outputStr);
 
         return serverResponseObj;
     }
@@ -117,7 +117,7 @@ public class HTTPAPI {
             CloseableHttpResponse response = httpClient.execute(postRequest);
 
             //System.out.println(response.getStatusLine());
-            serverResponseObj.statusCode=response.getStatusLine().getStatusCode();
+            serverResponseObj.setStatusCode(response.getStatusLine().getStatusCode());
 
             BufferedReader br = new BufferedReader(
                     new InputStreamReader((response.getEntity().getContent())));
@@ -133,7 +133,7 @@ public class HTTPAPI {
             Log.SchedulerLogging.log(Level.SEVERE,HTTPAPI.class.getName()+" Exception in statusHTTPPost: "+ e.toString());
         }
 
-        serverResponseObj.responseString=outputStr;
+        serverResponseObj.setResponseString(outputStr);
         return serverResponseObj;
     }
 
@@ -274,6 +274,10 @@ public class HTTPAPI {
                     frameworkObj.setID(frameworks.getJSONObject(i).getJSONObject("framework_info").getJSONObject("id").getString("value"));
                     //framework role
                     frameworkObj.setRole(frameworks.getJSONObject(i).getJSONObject("framework_info").getString("role"));
+
+                    System.out.println(frameworks.getJSONObject(i));
+                    //JSONArray tmpArray = (JSONArray)frameworks.getJSONObject(i).get("completed_tasks");
+                    //frameworkObj.setExecutors(tmpArray.length());
 
                     frameworkList.add(frameworkObj);
                 }

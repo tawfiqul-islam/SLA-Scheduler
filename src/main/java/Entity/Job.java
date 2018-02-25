@@ -11,6 +11,7 @@ public class Job {
     private String role;
     private String frameworkID;
     private int allocatedExecutors;
+    private int allocatedExecutorsCluster;
     //stats
     private long arrivalTime;
     private long startTime;
@@ -79,6 +80,14 @@ public class Job {
 
     public void setAllocatedExecutors(int allocatedExecutors) {
         this.allocatedExecutors = allocatedExecutors;
+    }
+
+    public int getAllocatedExecutorsCluster() {
+        return allocatedExecutorsCluster;
+    }
+
+    public void setAllocatedExecutorsCluster(int allocatedExecutorsCluster) {
+        this.allocatedExecutorsCluster = allocatedExecutorsCluster;
     }
 
     public long getArrivalTime() {

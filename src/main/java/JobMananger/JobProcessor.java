@@ -87,6 +87,6 @@ public class JobProcessor extends Thread {
         Job jobObj = parseMessage(readData());
         SchedulerUtil.jobQueue.add(jobObj);
         Log.SchedulerLogging.log(Level.INFO,JobProcessor.class.getName()+": New Job Added to job queue with id: " + jobObj.getJobID());
-        SchedulerUtil.printJobQueue();
+        //SchedulerUtil.printJobQueue();
     }
 }
