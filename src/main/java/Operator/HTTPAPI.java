@@ -275,7 +275,6 @@ public class HTTPAPI {
                     //framework role
                     frameworkObj.setRole(frameworks.getJSONObject(i).getJSONObject("framework_info").getString("role"));
 
-                    System.out.println(frameworks.getJSONObject(i));
                     //JSONArray tmpArray = (JSONArray)frameworks.getJSONObject(i).get("completed_tasks");
                     //frameworkObj.setExecutors(tmpArray.length());
 

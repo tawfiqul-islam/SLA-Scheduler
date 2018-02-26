@@ -152,32 +152,52 @@ public class StatusUpdater extends Thread{
                 if(!currentJob.isAlive()&&currentJob.getFinishTime()>0) {
                     //unreserve the current job's reserved resources in all the used agents
                     for (int j = 0; j < currentJob.getAgentList().size(); j++) {
-                        //unreseving resources in an agent when a job is finished
-                        resObj=HTTPAPI.UNRESERVE(currentJob.getRole(), currentJob.getCoresPerExecutor(), Math.ceil(currentJob.getTotalExecutorMemory()), currentJob.getAgentList().get(j));
-                        Log.SchedulerLogging.log(Level.INFO, StatusUpdater.class.getName() + " Unreserved CPU: " + currentJob.getCoresPerExecutor() + " Mem: " + Math.ceil(currentJob.getTotalExecutorMemory()) + " from Job: " + currentJob.getJobID() + " with Role: " + currentJob.getRole()+" in Agent: "+currentJob.getAgentList().get(j)+" ServerResponse: "+resObj.getResponseString()+" Status Code: "+resObj.getStatusCode());
-                        if(resObj.getStatusCode()!=409) {
 
-                            //give back these resources by reserving to the default scheduler-role
-                            resObj = HTTPAPI.RESERVE(SchedulerUtil.schedulerRole, currentJob.getCoresPerExecutor(), Math.ceil(currentJob.getTotalExecutorMemory()), currentJob.getAgentList().get(j));
-                            Log.SchedulerLogging.log(Level.INFO, StatusUpdater.class.getName() + " Reserved back CPU: " + currentJob.getCoresPerExecutor() + " Mem: " + Math.ceil(currentJob.getTotalExecutorMemory()) + " to the default scheduler-role" + " in Agent: " + currentJob.getAgentList().get(j) + " ServerResponse: " + resObj.getResponseString() + " Status Code: " + resObj.getStatusCode());
+                        boolean httpOperation=false;
+                        //unreseving resources in an agent when a job is finished
+                        while(true) {
+                            resObj = HTTPAPI.UNRESERVE(currentJob.getRole(), currentJob.getCoresPerExecutor(), Math.ceil(currentJob.getTotalExecutorMemory()), currentJob.getAgentList().get(j));
+                            Log.SchedulerLogging.log(Level.INFO, StatusUpdater.class.getName() + " Trying to UnReserve CPU: " + currentJob.getCoresPerExecutor() + " Mem: " + Math.ceil(currentJob.getTotalExecutorMemory()) + " from Job: " + currentJob.getJobID() + " with Role: " + currentJob.getRole() + " in Agent: " + currentJob.getAgentList().get(j) + " ServerResponse: " + resObj.getResponseString() + " Status Code: " + resObj.getStatusCode());
                             if (resObj.getStatusCode() != 409) {
-                                for (int k = 0; k < SchedulerUtil.agentList.size(); k++) {
-                                    if (SchedulerUtil.agentList.get(k).getId().equalsIgnoreCase(currentJob.getAgentList().get(j))) {
-                                        Agent agentObj = SchedulerUtil.agentList.get(k);
-                                        agentObj.setCpu(agentObj.getCpu() + currentJob.getCoresPerExecutor());
-                                        agentObj.setMem(agentObj.getMem() + Math.ceil(currentJob.getTotalExecutorMemory()));
-                                        //if all the resources of this node are unused, mark it as not used or alive=false
-                                        //use APIs here to shut down this agent if needed (to optimize VM cost)
-                                        if (agentObj.getCpu() == agentObj.getDefaultCPU() && agentObj.getMem() == agentObj.getDefaultMEM()) {
-                                            agentObj.setUsed(false);
+                                while(true) {
+                                    //give back these resources by reserving to the default scheduler-role
+                                    resObj = HTTPAPI.RESERVE(SchedulerUtil.schedulerRole, currentJob.getCoresPerExecutor(), Math.ceil(currentJob.getTotalExecutorMemory()), currentJob.getAgentList().get(j));
+                                    Log.SchedulerLogging.log(Level.INFO, StatusUpdater.class.getName() + " Trying to Reserve CPU: " + currentJob.getCoresPerExecutor() + " Mem: " + Math.ceil(currentJob.getTotalExecutorMemory()) + " to the default scheduler-role" + " in Agent: " + currentJob.getAgentList().get(j) + " ServerResponse: " + resObj.getResponseString() + " Status Code: " + resObj.getStatusCode());
+                                    if (resObj.getStatusCode() != 409) {
+                                        for (int k = 0; k < SchedulerUtil.agentList.size(); k++) {
+                                            if (SchedulerUtil.agentList.get(k).getId().equalsIgnoreCase(currentJob.getAgentList().get(j))) {
+                                                Agent agentObj = SchedulerUtil.agentList.get(k);
+                                                agentObj.setCpu(agentObj.getCpu() + currentJob.getCoresPerExecutor());
+                                                agentObj.setMem(agentObj.getMem() + Math.ceil(currentJob.getTotalExecutorMemory()));
+                                                //if all the resources of this node are unused, mark it as not used or alive=false
+                                                //use APIs here to shut down this agent if needed (to optimize VM cost)
+                                                if (agentObj.getCpu() == agentObj.getDefaultCPU() && agentObj.getMem() == agentObj.getDefaultMEM()) {
+                                                    agentObj.setUsed(false);
+                                                }
+                                                Log.SchedulerLogging.log(Level.INFO, StatusUpdater.class.getName() + "*RESERVATION SUCCESSFUL* -->  Current Status of Agent: " + SchedulerUtil.agentList.get(k).getId() + "-> CPU: " + SchedulerUtil.agentList.get(k).getCpu() + " Mem: " + SchedulerUtil.agentList.get(k).getMem());
+                                                //updating agent resources
+                                                SchedulerUtil.agentList.set(k, agentObj);
+                                                httpOperation=true;
+                                                break;
+                                            }
+                                            //TODO add exception if the agent is not found on agentlist
                                         }
-                                        Log.SchedulerLogging.log(Level.INFO, StatusUpdater.class.getName() + " Current Status of Agent: " + SchedulerUtil.agentList.get(k).getId() + "-> CPU: " + SchedulerUtil.agentList.get(k).getCpu() + " Mem: " + SchedulerUtil.agentList.get(k).getMem());
-                                        //updating agent resources
-                                        SchedulerUtil.agentList.set(k, agentObj);
                                         break;
                                     }
-                                    //TODO add exception if the agent is not found on agentlist
+                                    try {
+                                        Thread.sleep(5000);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
                                 }
+                            }
+                            if(httpOperation) {
+                                break;
+                            }
+                            try {
+                                Thread.sleep(5000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
                             }
                         }
                     }
@@ -269,11 +289,11 @@ public class StatusUpdater extends Thread{
                 SchedulerManager.shutDown();
                 break;
             }
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        }
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }

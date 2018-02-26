@@ -116,8 +116,8 @@ public class SchedulerManager {
         //start job updater
         Log.SchedulerLogging.log(Level.INFO,SchedulerManager.class.getName()+": Started job updater ");
 
-        StatusUpdater StatusUpdaterObj = new StatusUpdater();
-        StatusUpdaterObj.start();
+        //StatusUpdater StatusUpdaterObj = new StatusUpdater();
+        //StatusUpdaterObj.start();
 
         //start agent timer
         Timer timer = new Timer();

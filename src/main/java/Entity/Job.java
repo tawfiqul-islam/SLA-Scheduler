@@ -17,6 +17,7 @@ public class Job {
     private long startTime;
     private long finishTime;
     private double totalPredictedTime;
+    private boolean resourceReserved;
     private boolean isSubmitted;
     private boolean isAlive;
     private boolean isSuccessful;
@@ -120,6 +121,14 @@ public class Job {
 
     public void setTotalPredictedTime(double totalPredictedTime) {
         this.totalPredictedTime = totalPredictedTime;
+    }
+
+    public boolean isResourceReserved() {
+        return resourceReserved;
+    }
+
+    public void setResourceReserved(boolean resourceReserved) {
+        this.resourceReserved = resourceReserved;
     }
 
     public boolean isSubmitted() {
