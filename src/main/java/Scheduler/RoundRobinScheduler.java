@@ -16,27 +16,17 @@ public class RoundRobinScheduler extends Thread{
 
         while(true) {
 
-            if (shutdown) {
-                //sleep
-                try {
-                    Thread.sleep(50000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            if (shutdown&&SchedulerUtil.fullySubmittedJobList.size()==0) {
                 Log.SchedulerLogging.log(Level.INFO, RoundRobinScheduler.class.getName() + "Shutting Down Round Robin Scheduler. Job Queue is Empty...");
-                SchedulerManager.ShutDown=true;
                 SchedulerManager.shutDown();
                 break;
             }
-            //update agents
-            //StatusUpdater.updateAgents();
-            //update jobs
-            //StatusUpdater.updateJobs();
 
             synchronized (SchedulerUtil.jobQueue) {
                 synchronized (SchedulerUtil.fullySubmittedJobList) {
                     synchronized (SchedulerUtil.agentList) {
 
+                        //update jobs
                         StatusUpdater.updateJobs();
                         //sleep
                         try {

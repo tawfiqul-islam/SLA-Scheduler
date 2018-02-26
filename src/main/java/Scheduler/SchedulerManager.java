@@ -14,7 +14,6 @@ public class SchedulerManager {
 
     private static PrintWriter pw;
     static long startTime;
-    static boolean ShutDown=false;
 
     public static void main(String args[]) {
 
@@ -105,8 +104,8 @@ public class SchedulerManager {
         else if(SchedulerUtil.schedulerAlgorithm==Algorithm.FirstFit) {
             Log.SchedulerLogging.log(Level.INFO,SchedulerManager.class.getName()+": Started FirstFitScheduler ");
             startTime=System.currentTimeMillis();
-            FirstFitScheduler ffSchedulerObj = new FirstFitScheduler();
-            ffSchedulerObj.start();
+            FirstFitDScheduler ffdSchedulerObj = new FirstFitDScheduler();
+            ffdSchedulerObj.start();
         }
         else {
             //log error..not scheduling algorithm is chosen...or use a defautl scheduler
@@ -160,6 +159,7 @@ public class SchedulerManager {
         pw.close();
 
         Log.SchedulerLogging.log(Level.INFO,SchedulerManager.class.getName()+": Finished writing results for scheduler");
+        Log.SchedulerLogging.log(Level.INFO,SchedulerManager.class.getName()+": ***Shutting down SchedulerManager*** ==>Total MakeSpan: "+(System.currentTimeMillis()-startTime)/1000+" seconds.");
         System.exit(0);
     }
 }
