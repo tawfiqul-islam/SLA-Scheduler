@@ -9,7 +9,9 @@ import java.util.logging.Level;
 public class RoundRobinScheduler extends Thread{
 
     private static ServerResponse resObj;
+    private static long placementTime;
     private static int index=0;
+
     public void run() {
 
         boolean shutdown= false;
@@ -54,6 +56,7 @@ public class RoundRobinScheduler extends Thread{
 
                                     Log.SchedulerLogging.log(Level.INFO, RoundRobinScheduler.class.getName() + ": Placed executor(s) for Job: " + currentJob.getJobID());
                                     currentJob.setResourceReserved(true);
+                                    currentJob.setSchedulingDelay(currentJob.getSchedulingDelay()+placementTime);
 
                                     if (currentJob.getAllocatedExecutors() == currentJob.getExecutors()) {
                                         Log.SchedulerLogging.log(Level.INFO, RoundRobinScheduler.class.getName() + ": All executors are placed for Job: " + currentJob.getJobID());
@@ -120,6 +123,7 @@ public class RoundRobinScheduler extends Thread{
         int executorCount=0;
         boolean placed=false;
         boolean reserved=false;
+        placementTime=System.currentTimeMillis();
 
         for( ;index<SchedulerUtil.agentList.size();index++) {
 
@@ -189,6 +193,7 @@ public class RoundRobinScheduler extends Thread{
                 }
             }
         }
+        placementTime=System.currentTimeMillis()-placementTime;
         return placed;
     }
 }

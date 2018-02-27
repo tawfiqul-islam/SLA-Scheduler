@@ -5,10 +5,7 @@ import Entity.Framework;
 import Entity.Job;
 import Operator.HTTPAPI;
 import Operator.ServerResponse;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.logging.Level;
 
 public class StatusUpdater extends Thread{
@@ -242,7 +239,7 @@ public class StatusUpdater extends Thread{
         StatusUpdater.sb.append(finishTime);
         StatusUpdater.sb.append(',');
         //scheduling delay
-        StatusUpdater.sb.append(startTime-arrivalTime);
+        StatusUpdater.sb.append(currentJob.getSchedulingDelay()/1000.0);
         StatusUpdater.sb.append(',');
         //job duration
         StatusUpdater.sb.append(finishTime-startTime);
@@ -252,9 +249,6 @@ public class StatusUpdater extends Thread{
         StatusUpdater.sb.append(',');
         //allocated executors by algo
         StatusUpdater.sb.append(currentJob.getAllocatedExecutors());
-        StatusUpdater.sb.append(',');
-        //allocated executors in cluster
-        StatusUpdater.sb.append(currentJob.getAllocatedExecutorsCluster());
         StatusUpdater.sb.append(',');
         //cores
         StatusUpdater.sb.append(currentJob.getCoresPerExecutor());
@@ -266,34 +260,5 @@ public class StatusUpdater extends Thread{
         StatusUpdater.sb.append(currentJob.getAgentList().stream().distinct().count());
         StatusUpdater.sb.append('\n');
 
-    }
-    public static String getCurrentTimeStamp(long time) {
-        SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-        Date now = new Date(time);
-        String strDate = sdfDate.format(now);
-        return strDate;
-    }
-    public void run()
-    {
-        while(true) {
-            synchronized (SchedulerUtil.jobQueue) {
-                synchronized (SchedulerUtil.fullySubmittedJobList) {
-                    synchronized (SchedulerUtil.agentList) {
-
-                        updateJobs();
-                    }
-                }
-            }
-            if(SchedulerManager.ShutDown&&SchedulerUtil.fullySubmittedJobList.size()==0) {
-                Log.SchedulerLogging.log(Level.INFO, StatusUpdater.class.getName() + " Shutting down StatusUpdater. Total Job Run-Time: " + (System.currentTimeMillis() - SchedulerManager.startTime) / 1000 + " seconds");
-                SchedulerManager.shutDown();
-                break;
-            }
-        }
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 }

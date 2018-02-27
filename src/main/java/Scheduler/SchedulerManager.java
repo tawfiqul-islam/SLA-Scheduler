@@ -74,8 +74,6 @@ public class SchedulerManager {
             StatusUpdater.sb.append(',');
             StatusUpdater.sb.append("E-allocated");
             StatusUpdater.sb.append(',');
-            StatusUpdater.sb.append("E-allocated_C");
-            StatusUpdater.sb.append(',');
             StatusUpdater.sb.append("CPE");
             StatusUpdater.sb.append(',');
             StatusUpdater.sb.append("MPE");

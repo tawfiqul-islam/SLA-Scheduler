@@ -13,6 +13,7 @@ import java.util.logging.Level;
 public class FirstFitDScheduler extends Thread {
 
     private static ServerResponse resObj;
+    private static long placementTime;
 
     class AgentComparator implements Comparator<Agent> {
         @Override
@@ -22,6 +23,21 @@ public class FirstFitDScheduler extends Thread {
             if (a.getResourceTotal() > b.getResourceTotal()) {
                 return -1;
             } else if (a.getResourceTotal() < b.getResourceTotal()) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+    }
+
+    class JobComparator implements Comparator<Job> {
+        @Override
+        public int compare(Job a, Job b) {
+
+            //to sort jobs in a decreasing order of resource demands (big to small)
+            if (a.getResourceSplit() > b.getResourceSplit() ) {
+                return -1;
+            } else if (a.getResourceSplit()  < b.getResourceSplit() ) {
                 return 1;
             } else {
                 return 0;
@@ -48,10 +64,13 @@ public class FirstFitDScheduler extends Thread {
                         StatusUpdater.updateAgents();
 
                         //sort all the Agents according to decreasing resource capacity
-                        Collections.sort(SchedulerUtil.agentList, new AgentComparator());
+                        //Collections.sort(SchedulerUtil.agentList, new AgentComparator());
 
                         //update jobs
                         StatusUpdater.updateJobs();
+
+                        //sort all the Jobs according to decreasing resource requirements
+                        Collections.sort(SchedulerUtil.jobQueue, new JobComparator());
 
                         //sleep
                         try {
@@ -76,8 +95,10 @@ public class FirstFitDScheduler extends Thread {
                             }
                             else {
                                 if (placeExecutor(currentJob)) {
+
                                     Log.SchedulerLogging.log(Level.INFO, FirstFitDScheduler.class.getName() + ": Placed executor(s) for Job: " + currentJob.getJobID());
                                     currentJob.setResourceReserved(true);
+                                    currentJob.setSchedulingDelay(currentJob.getSchedulingDelay()+placementTime);
 
                                     if (currentJob.getAllocatedExecutors() == currentJob.getExecutors()) {
                                         Log.SchedulerLogging.log(Level.INFO, FirstFitDScheduler.class.getName() + ": All executors are placed for Job: " + currentJob.getJobID());
@@ -142,6 +163,8 @@ public class FirstFitDScheduler extends Thread {
 
         int executorCount=0;
         boolean placed=false;
+        placementTime=System.currentTimeMillis();
+
         for(int i=0;i<SchedulerUtil.agentList.size();i++) {
 
             while(true) {
@@ -197,11 +220,13 @@ public class FirstFitDScheduler extends Thread {
                 // all the executors for the current job is placed
                 if ((executorCount + currentJob.getAllocatedExecutors()) == currentJob.getExecutors()) {
                     currentJob.setAllocatedExecutors(currentJob.getExecutors());
+                    placementTime=System.currentTimeMillis()-placementTime;
                     return placed;
                 }
             }
         }
         currentJob.setAllocatedExecutors(currentJob.getAllocatedExecutors()+executorCount);
+        placementTime=System.currentTimeMillis()-placementTime;
         return placed;
     }
 }

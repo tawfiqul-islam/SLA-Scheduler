@@ -21,6 +21,7 @@ public class Job {
     private boolean isSubmitted;
     private boolean isAlive;
     private boolean isSuccessful;
+    private long schedulingDelay=0;
     private ArrayList<String> agentList = new ArrayList<>();
 
     private int priority;
@@ -155,6 +156,14 @@ public class Job {
         isSuccessful = successful;
     }
 
+    public long getSchedulingDelay() {
+        return schedulingDelay;
+    }
+
+    public void setSchedulingDelay(long schedulingDelay) {
+        this.schedulingDelay = schedulingDelay;
+    }
+
     public ArrayList<String> getAgentList() {
         return agentList;
     }
@@ -220,6 +229,9 @@ public class Job {
         return resourceSplit;
     }
 
+    /*public void setResourceSplit() {
+        this.resourceSplit = this.coresPerExecutor  + this.memPerExecutor  * SchedulerUtil.resourceSplitThreshold;
+    }*/
     public void setResourceSplit() {
         this.resourceSplit = this.coresPerExecutor * this.executors + (this.memPerExecutor * this.executors) * SchedulerUtil.resourceSplitThreshold;
     }

@@ -12,6 +12,7 @@ import java.util.logging.Level;
 public class BestFitScheduler extends Thread {
 
     private static ServerResponse resObj;
+    private static long placementTime;
 
     class AgentComparator implements Comparator<Agent> {
         @Override
@@ -96,6 +97,7 @@ public class BestFitScheduler extends Thread {
                                 if (placeExecutor(currentJob)) {
                                     Log.SchedulerLogging.log(Level.INFO, BestFitScheduler.class.getName() + ": Placed executor(s) for Job: " + currentJob.getJobID());
                                     currentJob.setResourceReserved(true);
+                                    currentJob.setSchedulingDelay(currentJob.getSchedulingDelay()+placementTime);
 
                                     if (currentJob.getAllocatedExecutors() == currentJob.getExecutors()) {
                                         Log.SchedulerLogging.log(Level.INFO, BestFitScheduler.class.getName() + ": All executors are placed for Job: " + currentJob.getJobID());
@@ -160,6 +162,8 @@ public class BestFitScheduler extends Thread {
 
         int executorCount=0;
         boolean placed=false;
+        placementTime=System.currentTimeMillis();
+
         for(int i=0;i<SchedulerUtil.agentList.size();i++) {
 
             while(true) {
@@ -215,11 +219,13 @@ public class BestFitScheduler extends Thread {
                 // all the executors for the current job is placed
                 if ((executorCount + currentJob.getAllocatedExecutors()) == currentJob.getExecutors()) {
                     currentJob.setAllocatedExecutors(currentJob.getExecutors());
+                    placementTime=System.currentTimeMillis()-placementTime;
                     return placed;
                 }
             }
         }
         currentJob.setAllocatedExecutors(currentJob.getAllocatedExecutors()+executorCount);
+        placementTime=System.currentTimeMillis()-placementTime;
         return placed;
     }
 }
