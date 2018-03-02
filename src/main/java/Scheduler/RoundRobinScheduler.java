@@ -1,9 +1,12 @@
 package Scheduler;
 
+import Entity.Agent;
 import Entity.Job;
 import JobMananger.SparkLauncherAPI;
 import Operator.HTTPAPI;
 import Operator.ServerResponse;
+
+import java.util.ArrayList;
 import java.util.logging.Level;
 
 public class RoundRobinScheduler extends Thread{
@@ -30,16 +33,8 @@ public class RoundRobinScheduler extends Thread{
 
                         //update jobs
                         StatusUpdater.updateJobs();
-                        //sleep
-                        try {
-                            Thread.sleep(5000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
 
                         Job currentJob;
-
-                        //Log.SchedulerLogging.log(Level.INFO,RoundRobinScheduler.class.getName()+": Trying to place executors for jobs from jobQueue");
 
                         for (int i = 0; i < SchedulerUtil.jobQueue.size(); i++) {
 
@@ -75,13 +70,6 @@ public class RoundRobinScheduler extends Thread{
                                 }
                             }
 
-
-                        }
-                        //sleep
-                        try {
-                            Thread.sleep(5000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
                         }
 
                         //Submitting new jobs (with fully placed executors) to the cluster
@@ -93,25 +81,14 @@ public class RoundRobinScheduler extends Thread{
                                 currentJob.setSubmitted(true);
                                 Log.SchedulerLogging.log(Level.INFO, RoundRobinScheduler.class.getName() + ": Submitting Job: " + currentJob.getJobID() +" with role: "+currentJob.getRole()+ " to the Cluster");
                                 new SparkLauncherAPI(currentJob).start();
-                                try {
-                                    Thread.sleep(5000);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
                             }
-                        }
-
-                        try {
-                            Thread.sleep(10000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
                         }
                     }
                 }
             }
             //sleep
             try {
-                Thread.sleep(5000);
+                Thread.sleep(10000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -120,80 +97,104 @@ public class RoundRobinScheduler extends Thread{
 
     public boolean placeExecutor(Job currentJob)  {
 
-        int executorCount=0;
-        boolean placed=false;
-        boolean reserved=false;
+        int executorCount=0,storedIndex=index,lastPlaced=index;
+
+        ArrayList<Agent> placedAgents = new ArrayList<>();
         placementTime=System.currentTimeMillis();
 
-        for( ;index<SchedulerUtil.agentList.size();index++) {
+        for(int visited=0 ;index<SchedulerUtil.agentList.size()&&visited<SchedulerUtil.agentList.size();index++,visited++) {
 
             // all the executors for the current job is placed
-            if((executorCount+currentJob.getAllocatedExecutors())==currentJob.getExecutors()) {
-                currentJob.setAllocatedExecutors(currentJob.getExecutors());
+            if(executorCount==currentJob.getExecutors()) {
                 break;
             }
 
             if(SchedulerUtil.agentList.get(index).getCpu()>=currentJob.getCoresPerExecutor() &&
-                    SchedulerUtil.agentList.get(index).getMem()>=Math.ceil(currentJob.getTotalExecutorMemory()) ){
-                boolean httpOperation=false;
-                while(true) {
+                    SchedulerUtil.agentList.get(index).getMem()>=Math.ceil(currentJob.getTotalExecutorMemory()) ) {
+
+                SchedulerUtil.agentList.get(index).setCpu(SchedulerUtil.agentList.get(index).getCpu() - currentJob.getCoresPerExecutor());
+                SchedulerUtil.agentList.get(index).setMem(SchedulerUtil.agentList.get(index).getMem() - Math.ceil(currentJob.getTotalExecutorMemory()));
+                placedAgents.add(SchedulerUtil.agentList.get(index));
+                executorCount++;
+                visited=-1;
+                lastPlaced=index;
+
+            }
+
+            // we have traversed all the agents, now set the index to start so that executors are placed in a round-robin fashion
+            if(index==SchedulerUtil.agentList.size()-1) {
+                index=-1;
+            }
+        }
+
+        // All the executors of the current-job can be placed
+        // So Reserve Resources in the Agents
+        if(executorCount==currentJob.getExecutors()) {
+
+            currentJob.setAllocatedExecutors(currentJob.getExecutors());
+
+            if((lastPlaced+1)==SchedulerUtil.agentList.size()) {
+                index=0;
+            }
+            else {
+                index=lastPlaced+1;
+            }
+
+            for(int i=0;i<placedAgents.size();i++) {
+
+                boolean httpOperation = false;
+                while (true) {
                     // use http api unreserve-method to first unreserve the resources from the default scheduler-role
-                    resObj = HTTPAPI.UNRESERVE(SchedulerUtil.schedulerRole, currentJob.getCoresPerExecutor(), Math.ceil(currentJob.getTotalExecutorMemory()), SchedulerUtil.agentList.get(index).getId());
-                    Log.SchedulerLogging.log(Level.INFO, RoundRobinScheduler.class.getName() + " Trying to UnReserve CPU: " + currentJob.getCoresPerExecutor() + " Mem: " + Math.ceil(currentJob.getTotalExecutorMemory()) + " from the default scheduler-role" + " in agent " + SchedulerUtil.agentList.get(index).getId() + " ServerResponse: " + resObj.getResponseString() + " Status Code: " + resObj.getStatusCode());
+                    resObj = HTTPAPI.UNRESERVE(SchedulerUtil.schedulerRole, currentJob.getCoresPerExecutor(), Math.ceil(currentJob.getTotalExecutorMemory()), placedAgents.get(i).getId());
+                    Log.SchedulerLogging.log(Level.INFO, RoundRobinScheduler.class.getName() + " Trying to UnReserve CPU: " + currentJob.getCoresPerExecutor() + " Mem: " + Math.ceil(currentJob.getTotalExecutorMemory()) + " from the default scheduler-role" + " in agent " + placedAgents.get(i) + " ServerResponse: " + resObj.getResponseString() + " Status Code: " + resObj.getStatusCode());
                     // use http api reserve-method to reserve resources in this agent
                     if (resObj.getStatusCode() != 409) {
 
-                        while(true) {
-                            resObj = HTTPAPI.RESERVE(currentJob.getRole(), currentJob.getCoresPerExecutor(), Math.ceil(currentJob.getTotalExecutorMemory()), SchedulerUtil.agentList.get(index).getId());
-                            Log.SchedulerLogging.log(Level.INFO, RoundRobinScheduler.class.getName() + " Trying to Reserve CPU: " + currentJob.getCoresPerExecutor() + " Mem: " + Math.ceil(currentJob.getTotalExecutorMemory()) + " to Job: " + currentJob.getJobID() + " with Role: " + currentJob.getRole() + " in agent " + SchedulerUtil.agentList.get(index).getId() + " ServerResponse: " + resObj.getResponseString() + " Status Code: " + resObj.getStatusCode());
+                        while (true) {
+                            resObj = HTTPAPI.RESERVE(currentJob.getRole(), currentJob.getCoresPerExecutor(), Math.ceil(currentJob.getTotalExecutorMemory()), placedAgents.get(i).getId());
+                            Log.SchedulerLogging.log(Level.INFO, RoundRobinScheduler.class.getName() + " Trying to Reserve CPU: " + currentJob.getCoresPerExecutor() + " Mem: " + Math.ceil(currentJob.getTotalExecutorMemory()) + " to Job: " + currentJob.getJobID() + " with Role: " + currentJob.getRole() + " in agent " + placedAgents.get(i) + " ServerResponse: " + resObj.getResponseString() + " Status Code: " + resObj.getStatusCode());
 
                             if (resObj.getStatusCode() != 409) {
-                                Log.SchedulerLogging.log(Level.INFO, RoundRobinScheduler.class.getName() + "*RESERVATION SUCCESSFUL* --> Current Status of Agent: " + SchedulerUtil.agentList.get(index).getId() + "-> CPU: " + SchedulerUtil.agentList.get(index).getCpu() + " Mem: " + SchedulerUtil.agentList.get(index).getMem());
+                                Log.SchedulerLogging.log(Level.INFO, RoundRobinScheduler.class.getName() + "*RESERVATION SUCCESSFUL* --> Current Status of Agent: " + placedAgents.get(i) + "-> CPU: " + placedAgents.get(i).getCpu() + " Mem: " + placedAgents.get(i).getMem());
                                 //update the available resources in this agent
-                                SchedulerUtil.agentList.get(index).setCpu(SchedulerUtil.agentList.get(index).getCpu() - currentJob.getCoresPerExecutor());
-                                SchedulerUtil.agentList.get(index).setMem(SchedulerUtil.agentList.get(index).getMem() - Math.ceil(currentJob.getTotalExecutorMemory()));
-                                SchedulerUtil.agentList.get(index).setUsed(true);
+                                placedAgents.get(i).setUsed(true);
                                 //add agent Id to the job
-                                currentJob.getAgentList().add(SchedulerUtil.agentList.get(index).getId());
-                                executorCount++;
-                                placed = true;
-                                reserved = true;
+                                currentJob.getAgentList().add(placedAgents.get(i).getId());
                                 httpOperation = true;
                                 break;
                             }
                             try {
-                                Thread.sleep(5000);
+                                Thread.sleep(1000);
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
                         }
                     }
-                    if(httpOperation) {
+                    if (httpOperation) {
                         break;
                     }
                     try {
-                        Thread.sleep(5000);
+                        Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
             }
 
-            // we have traversed all the agents, now set the index to start so that executors are placed in a round-robin fashion
-            if(index==SchedulerUtil.agentList.size()-1) {
-                index=-1;
-                if(reserved) {
-                    reserved = false;
-                }
-                // no more executors can be placed in any agent
-                else{
-                    currentJob.setAllocatedExecutors(currentJob.getAllocatedExecutors()+executorCount);
-                    index=0;
-                    break;
-                }
-            }
+            placementTime=System.currentTimeMillis()-placementTime;
+            return true;
         }
-        placementTime=System.currentTimeMillis()-placementTime;
-        return placed;
+
+        //Could not place all the executors, take back the resources in Agent data structure..
+        //Also set the initial position of the index
+        else {
+            index=storedIndex;
+            for(int i=0;i<placedAgents.size();i++){
+                placedAgents.get(i).setCpu(placedAgents.get(i).getCpu() + currentJob.getCoresPerExecutor());
+                placedAgents.get(i).setMem(placedAgents.get(i).getMem() + Math.ceil(currentJob.getTotalExecutorMemory()));
+            }
+            return false;
+        }
     }
 }
+
