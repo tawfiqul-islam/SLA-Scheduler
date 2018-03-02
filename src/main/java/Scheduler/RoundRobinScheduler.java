@@ -3,7 +3,6 @@ package Scheduler;
 import Entity.Agent;
 import Entity.Job;
 import JobMananger.SparkLauncherAPI;
-import Operator.HTTPAPI;
 import Operator.ServerResponse;
 
 import java.util.ArrayList;
@@ -95,7 +94,7 @@ public class RoundRobinScheduler extends Thread{
         }
     }
 
-    public boolean placeExecutor(Job currentJob)  {
+    private boolean placeExecutor(Job currentJob)  {
 
         int executorCount=0,storedIndex=index,lastPlaced=index;
 
@@ -118,7 +117,6 @@ public class RoundRobinScheduler extends Thread{
                 executorCount++;
                 visited=-1;
                 lastPlaced=index;
-
             }
 
             // we have traversed all the agents, now set the index to start so that executors are placed in a round-robin fashion
@@ -140,46 +138,7 @@ public class RoundRobinScheduler extends Thread{
                 index=lastPlaced+1;
             }
 
-            for(int i=0;i<placedAgents.size();i++) {
-
-                boolean httpOperation = false;
-                while (true) {
-                    // use http api unreserve-method to first unreserve the resources from the default scheduler-role
-                    resObj = HTTPAPI.UNRESERVE(SchedulerUtil.schedulerRole, currentJob.getCoresPerExecutor(), Math.ceil(currentJob.getTotalExecutorMemory()), placedAgents.get(i).getId());
-                    Log.SchedulerLogging.log(Level.INFO, RoundRobinScheduler.class.getName() + " Trying to UnReserve CPU: " + currentJob.getCoresPerExecutor() + " Mem: " + Math.ceil(currentJob.getTotalExecutorMemory()) + " from the default scheduler-role" + " in agent " + placedAgents.get(i) + " ServerResponse: " + resObj.getResponseString() + " Status Code: " + resObj.getStatusCode());
-                    // use http api reserve-method to reserve resources in this agent
-                    if (resObj.getStatusCode() != 409) {
-
-                        while (true) {
-                            resObj = HTTPAPI.RESERVE(currentJob.getRole(), currentJob.getCoresPerExecutor(), Math.ceil(currentJob.getTotalExecutorMemory()), placedAgents.get(i).getId());
-                            Log.SchedulerLogging.log(Level.INFO, RoundRobinScheduler.class.getName() + " Trying to Reserve CPU: " + currentJob.getCoresPerExecutor() + " Mem: " + Math.ceil(currentJob.getTotalExecutorMemory()) + " to Job: " + currentJob.getJobID() + " with Role: " + currentJob.getRole() + " in agent " + placedAgents.get(i) + " ServerResponse: " + resObj.getResponseString() + " Status Code: " + resObj.getStatusCode());
-
-                            if (resObj.getStatusCode() != 409) {
-                                Log.SchedulerLogging.log(Level.INFO, RoundRobinScheduler.class.getName() + "*RESERVATION SUCCESSFUL* --> Current Status of Agent: " + placedAgents.get(i) + "-> CPU: " + placedAgents.get(i).getCpu() + " Mem: " + placedAgents.get(i).getMem());
-                                //update the available resources in this agent
-                                placedAgents.get(i).setUsed(true);
-                                //add agent Id to the job
-                                currentJob.getAgentList().add(placedAgents.get(i).getId());
-                                httpOperation = true;
-                                break;
-                            }
-                            try {
-                                Thread.sleep(1000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                    if (httpOperation) {
-                        break;
-                    }
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
+            SchedulerUtil.resourceReservation(placedAgents,currentJob,this.getClass());
 
             placementTime=System.currentTimeMillis()-placementTime;
             return true;

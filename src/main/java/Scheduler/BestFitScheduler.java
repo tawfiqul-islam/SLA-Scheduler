@@ -2,9 +2,10 @@ package Scheduler;
 
 import Entity.Agent;
 import Entity.Job;
-import Operator.HTTPAPI;
 import JobMananger.SparkLauncherAPI;
 import Operator.ServerResponse;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.logging.Level;
@@ -69,12 +70,6 @@ public class BestFitScheduler extends Thread {
                         //update jobs
                         StatusUpdater.updateJobs();
 
-                        //sleep
-                        try {
-                            Thread.sleep(5000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
 
                         //sort all the Jobs according to decreasing resource requirements
                         Collections.sort(SchedulerUtil.jobQueue, new JobComparator());
@@ -94,7 +89,7 @@ public class BestFitScheduler extends Thread {
                                 }
                             }
                             else {
-                                if (placeExecutor(currentJob)) {
+                                if (placeExecutor(currentJob,BestFitScheduler.class)) {
                                     Log.SchedulerLogging.log(Level.INFO, BestFitScheduler.class.getName() + ": Placed executor(s) for Job: " + currentJob.getJobID());
                                     currentJob.setResourceReserved(true);
                                     currentJob.setSchedulingDelay(currentJob.getSchedulingDelay()+placementTime);
@@ -116,12 +111,7 @@ public class BestFitScheduler extends Thread {
                             }
 
                         }
-                        //sleep
-                        try {
-                            Thread.sleep(5000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+
 
                         //Submitting new jobs (with fully placed executors) to the cluster
                         for(int i=0;i<SchedulerUtil.fullySubmittedJobList.size();i++)
@@ -132,18 +122,7 @@ public class BestFitScheduler extends Thread {
                                 currentJob.setSubmitted(true);
                                 Log.SchedulerLogging.log(Level.INFO, BestFitScheduler.class.getName() + ": Submitting Job: " + currentJob.getJobID() +" with role: "+currentJob.getRole()+ " to the Cluster");
                                 new SparkLauncherAPI(currentJob).start();
-                                try {
-                                    Thread.sleep(5000);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
                             }
-                        }
-
-                        try {
-                            Thread.sleep(10000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
                         }
                     }
                 }
@@ -151,17 +130,17 @@ public class BestFitScheduler extends Thread {
 
             //sleep
             try {
-                Thread.sleep(5000);
+                Thread.sleep(10000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public boolean placeExecutor(Job currentJob)  {
+    static boolean placeExecutor(Job currentJob, Class classVar)  {
 
         int executorCount=0;
-        boolean placed=false;
+        ArrayList<Agent> placedAgents = new ArrayList<>();
         placementTime=System.currentTimeMillis();
 
         for(int i=0;i<SchedulerUtil.agentList.size();i++) {
@@ -170,62 +149,38 @@ public class BestFitScheduler extends Thread {
 
                 if (SchedulerUtil.agentList.get(i).getCpu() >= currentJob.getCoresPerExecutor() &&
                         SchedulerUtil.agentList.get(i).getMem() >= Math.ceil(currentJob.getTotalExecutorMemory())) {
-                    boolean httpOperation=false;
 
-                    while(true) {
-                        // use http api unreserve-method to first unreserve the resources from the default scheduler-role
-                        resObj = HTTPAPI.UNRESERVE(SchedulerUtil.schedulerRole, currentJob.getCoresPerExecutor(), Math.ceil(currentJob.getTotalExecutorMemory()), SchedulerUtil.agentList.get(i).getId());
-                        Log.SchedulerLogging.log(Level.INFO, BestFitScheduler.class.getName() + " Trying to UnReserve CPU: " + currentJob.getCoresPerExecutor() + " Mem: " + Math.ceil(currentJob.getTotalExecutorMemory()) + " from the default scheduler-role" + " in agent " + SchedulerUtil.agentList.get(i).getId() + " ServerResponse: " + resObj.getResponseString() + " Status Code: " + resObj.getStatusCode());
-
-                        if (resObj.getStatusCode() != 409) {
-
-                            while(true) {
-                                // use http api reserve-method to reserve resources in this agent
-                                resObj = HTTPAPI.RESERVE(currentJob.getRole(), currentJob.getCoresPerExecutor(), Math.ceil(currentJob.getTotalExecutorMemory()), SchedulerUtil.agentList.get(i).getId());
-                                Log.SchedulerLogging.log(Level.INFO, BestFitScheduler.class.getName() + " Trying to Reserve CPU: " + currentJob.getCoresPerExecutor() + " Mem: " + Math.ceil(currentJob.getTotalExecutorMemory()) + " to Job: " + currentJob.getJobID() + " with Role: " + currentJob.getRole() + " in agent " + SchedulerUtil.agentList.get(i).getId() + " ServerResponse: " + resObj.getResponseString() + " Status Code: " + resObj.getStatusCode());
-                                if (resObj.getStatusCode() != 409) {
-                                    Log.SchedulerLogging.log(Level.INFO, BestFitScheduler.class.getName() + " *RESERVATION SUCCESSFUL* --> Current Status of Agent: " + SchedulerUtil.agentList.get(i).getId() + "-> CPU: " + SchedulerUtil.agentList.get(i).getCpu() + " Mem: " + SchedulerUtil.agentList.get(i).getMem());
-                                    //update the available resources in this agent
-                                    SchedulerUtil.agentList.get(i).setCpu(SchedulerUtil.agentList.get(i).getCpu() - currentJob.getCoresPerExecutor());
-                                    SchedulerUtil.agentList.get(i).setMem(SchedulerUtil.agentList.get(i).getMem() - Math.ceil(currentJob.getTotalExecutorMemory()));
-                                    SchedulerUtil.agentList.get(i).setUsed(true);
-                                    //add agent Id to the job
-                                    currentJob.getAgentList().add(SchedulerUtil.agentList.get(i).getId());
-                                    executorCount++;
-                                    placed = true;
-                                    httpOperation = true;
-                                    break;
-                                }
-                                try {
-                                    Thread.sleep(5000);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }
-                        if(httpOperation) {
-                            break;
-                        }
-                        try {
-                            Thread.sleep(5000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
+                    SchedulerUtil.agentList.get(i).setCpu(SchedulerUtil.agentList.get(i).getCpu() - currentJob.getCoresPerExecutor());
+                    SchedulerUtil.agentList.get(i).setMem(SchedulerUtil.agentList.get(i).getMem() - Math.ceil(currentJob.getTotalExecutorMemory()));
+                    placedAgents.add(SchedulerUtil.agentList.get(i));
+                    executorCount++;
                 }
                 else {
                     break;
                 }
                 // all the executors for the current job is placed
-                if ((executorCount + currentJob.getAllocatedExecutors()) == currentJob.getExecutors()) {
-                    currentJob.setAllocatedExecutors(currentJob.getExecutors());
-                    placementTime=System.currentTimeMillis()-placementTime;
-                    return placed;
+                if (executorCount == currentJob.getExecutors()){
+                    break;
                 }
             }
         }
-        currentJob.setAllocatedExecutors(currentJob.getAllocatedExecutors()+executorCount);
-        placementTime=System.currentTimeMillis()-placementTime;
-        return placed;
+
+        // All the executors of the current-job can be placed
+        // So Reserve Resources in the Agents
+        if (executorCount == currentJob.getExecutors() ){
+            currentJob.setAllocatedExecutors(currentJob.getExecutors());
+            SchedulerUtil.resourceReservation(placedAgents,currentJob,classVar);
+            placementTime=System.currentTimeMillis()-placementTime;
+            return true;
+        }
+        //Could not place all the executors, take back the resources in Agent data structure..
+        //Also set the initial position of the index
+        else {
+            for(int i=0;i<placedAgents.size();i++){
+                placedAgents.get(i).setCpu(placedAgents.get(i).getCpu() + currentJob.getCoresPerExecutor());
+                placedAgents.get(i).setMem(placedAgents.get(i).getMem() + Math.ceil(currentJob.getTotalExecutorMemory()));
+            }
+            return false;
+        }
     }
 }
