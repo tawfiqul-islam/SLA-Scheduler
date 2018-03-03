@@ -3,7 +3,6 @@ package Scheduler;
 import Entity.Agent;
 import Entity.Job;
 import JobMananger.SparkLauncherAPI;
-import Operator.ServerResponse;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,8 +11,7 @@ import java.util.logging.Level;
 
 public class BestFitScheduler extends Thread {
 
-    private static ServerResponse resObj;
-    private static long placementTime;
+    static long placementTime;
 
     class AgentComparator implements Comparator<Agent> {
         @Override
@@ -140,6 +138,7 @@ public class BestFitScheduler extends Thread {
     static boolean placeExecutor(Job currentJob, Class classVar)  {
 
         int executorCount=0;
+        boolean fullyPlaced=false;
         ArrayList<Agent> placedAgents = new ArrayList<>();
         placementTime=System.currentTimeMillis();
 
@@ -160,14 +159,18 @@ public class BestFitScheduler extends Thread {
                 }
                 // all the executors for the current job is placed
                 if (executorCount == currentJob.getExecutors()){
+                    fullyPlaced=true;
                     break;
                 }
+            }
+            if(fullyPlaced) {
+                break;
             }
         }
 
         // All the executors of the current-job can be placed
         // So Reserve Resources in the Agents
-        if (executorCount == currentJob.getExecutors() ){
+        if (fullyPlaced){
             currentJob.setAllocatedExecutors(currentJob.getExecutors());
             SchedulerUtil.resourceReservation(placedAgents,currentJob,classVar);
             placementTime=System.currentTimeMillis()-placementTime;

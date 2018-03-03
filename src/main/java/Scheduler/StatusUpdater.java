@@ -201,6 +201,10 @@ public class StatusUpdater extends Thread{
 
                     //save this job's scheduling details in result str
                     saveCompletedJobDetails(currentJob);
+                    //delete the output directory of the job
+                    runCommand("rm -rf "+currentJob.getOutputPath());
+
+
                 }
                 else {
                     //job is active
@@ -260,5 +264,24 @@ public class StatusUpdater extends Thread{
         StatusUpdater.sb.append(currentJob.getAgentList().stream().distinct().count());
         StatusUpdater.sb.append('\n');
 
+    }
+
+    static void runCommand(String cmd)
+    {
+        Runtime run = Runtime.getRuntime();
+        Process pr = null;
+        try {
+            pr = run.exec(cmd);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        try {
+            pr.waitFor();
+            //break;
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }

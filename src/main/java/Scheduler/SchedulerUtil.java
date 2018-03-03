@@ -26,12 +26,14 @@ public class SchedulerUtil {
             System.out.println(jobQueue.get(i).toString());
         }
     }
+
     public static void printAgentList()
     {
         System.out.println("Printing Agent Details: ");
         for(int i=0;i<agentList.size();i++)
             System.out.println("Agent #"+(i+1)+": "+agentList.get(i).toString());
     }
+
     public static void resourceReservation(ArrayList<Agent> placedAgents, Job currentJob, Class classVar)
     {
         for(int i=0;i<placedAgents.size();i++) {

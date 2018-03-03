@@ -13,9 +13,6 @@ import java.util.logging.Level;
 
 public class FirstFitDScheduler extends Thread {
 
-    private static ServerResponse resObj;
-    private static long placementTime;
-
     class AgentComparator implements Comparator<Agent> {
         @Override
         public int compare(Agent a, Agent b) {
@@ -73,12 +70,6 @@ public class FirstFitDScheduler extends Thread {
                         //sort all the Jobs according to decreasing resource requirements
                         Collections.sort(SchedulerUtil.jobQueue, new JobComparator());
 
-                        //sleep
-                        try {
-                            Thread.sleep(5000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
 
                         Job currentJob;
 
@@ -99,7 +90,7 @@ public class FirstFitDScheduler extends Thread {
 
                                     Log.SchedulerLogging.log(Level.INFO, FirstFitDScheduler.class.getName() + ": Placed executor(s) for Job: " + currentJob.getJobID());
                                     currentJob.setResourceReserved(true);
-                                    currentJob.setSchedulingDelay(currentJob.getSchedulingDelay()+placementTime);
+                                    currentJob.setSchedulingDelay(currentJob.getSchedulingDelay()+BestFitScheduler.placementTime);
 
                                     if (currentJob.getAllocatedExecutors() == currentJob.getExecutors()) {
                                         Log.SchedulerLogging.log(Level.INFO, FirstFitDScheduler.class.getName() + ": All executors are placed for Job: " + currentJob.getJobID());
@@ -118,12 +109,6 @@ public class FirstFitDScheduler extends Thread {
                             }
 
                         }
-                        //sleep
-                        try {
-                            Thread.sleep(5000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
 
                         //Submitting new jobs (with fully placed executors) to the cluster
                         for(int i=0;i<SchedulerUtil.fullySubmittedJobList.size();i++)
@@ -134,18 +119,7 @@ public class FirstFitDScheduler extends Thread {
                                 currentJob.setSubmitted(true);
                                 Log.SchedulerLogging.log(Level.INFO, FirstFitDScheduler.class.getName() + ": Submitting Job: " + currentJob.getJobID() +" with role: "+currentJob.getRole()+ " to the Cluster");
                                 new SparkLauncherAPI(currentJob).start();
-                                try {
-                                    Thread.sleep(5000);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
                             }
-                        }
-
-                        try {
-                            Thread.sleep(10000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
                         }
                     }
                 }
@@ -153,11 +127,10 @@ public class FirstFitDScheduler extends Thread {
 
             //sleep
             try {
-                Thread.sleep(5000);
+                Thread.sleep(10000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
-
 }
