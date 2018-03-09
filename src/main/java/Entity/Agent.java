@@ -52,6 +52,7 @@ public class Agent {
     }
 
     public double getResourceTotal() {
+        setResourceTotal();
         return resourceTotal;
     }
 

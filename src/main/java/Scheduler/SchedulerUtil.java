@@ -17,10 +17,17 @@ public class SchedulerUtil {
     public static int schedulerAlgorithm;
     public static double resourceSplitThreshold;
     public static long schedulingInterval;
+    public static List<Job> jobBuffer = Collections.synchronizedList(new ArrayList<Job>());
     public static List<Job> jobQueue = Collections.synchronizedList(new ArrayList<Job>());
     public static List<Job> fullySubmittedJobList = Collections.synchronizedList(new ArrayList<Job>());
     public static List<Job> finishedJobList = Collections.synchronizedList(new ArrayList<Job>());
     public static List<Agent> agentList;
+
+    public static void printJobBuffer() {
+        for (int i=0;i<jobBuffer.size();i++) {
+            System.out.println(jobBuffer.get(i).toString());
+        }
+    }
 
     public static void printJobQueue() {
         for (int i=0;i<jobQueue.size();i++) {
@@ -33,6 +40,15 @@ public class SchedulerUtil {
         System.out.println("Printing Agent Details: ");
         for(int i=0;i<agentList.size();i++)
             System.out.println("Agent #"+(i+1)+": "+agentList.get(i).toString());
+    }
+
+    public static void fetchJobs()
+    {
+        synchronized (SchedulerUtil.jobBuffer) {
+            for(int i=0; i<SchedulerUtil.jobBuffer.size(); i++)  {
+                SchedulerUtil.jobQueue.add(SchedulerUtil.jobBuffer.get(i));
+            }
+        }
     }
 
     public static void resourceReservation(ArrayList<Agent> placedAgents, Job currentJob, Class classVar)

@@ -85,7 +85,7 @@ public class JobProcessor extends Thread {
             Log.SchedulerLogging.log(Level.SEVERE,JobProcessor.class.getName()+" Exception in run method"+e.toString());
         }
         Job jobObj = parseMessage(readData());
-        SchedulerUtil.jobQueue.add(jobObj);
+        SchedulerUtil.jobBuffer.add(jobObj);
         Log.SchedulerLogging.log(Level.INFO,JobProcessor.class.getName()+": New Job Added to job queue with id: " + jobObj.getJobID());
         //SchedulerUtil.printJobQueue();
     }

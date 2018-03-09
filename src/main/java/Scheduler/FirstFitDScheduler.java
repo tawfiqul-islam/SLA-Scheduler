@@ -1,6 +1,5 @@
 package Scheduler;
 
-import Entity.Agent;
 import Entity.Job;
 import JobMananger.SparkLauncherAPI;
 import java.util.Collections;
@@ -9,20 +8,6 @@ import java.util.logging.Level;
 
 public class FirstFitDScheduler extends Thread {
 
-    class AgentComparator implements Comparator<Agent> {
-        @Override
-        public int compare(Agent a, Agent b) {
-
-            //to sort agents in a decreasing order of resource capacity (big to small)
-            if (a.getResourceTotal() > b.getResourceTotal()) {
-                return -1;
-            } else if (a.getResourceTotal() < b.getResourceTotal()) {
-                return 1;
-            } else {
-                return 0;
-            }
-        }
-    }
 
     class JobComparator implements Comparator<Job> {
         @Override
@@ -50,25 +35,25 @@ public class FirstFitDScheduler extends Thread {
                 SchedulerManager.shutDown();
                 break;
             }
-            //if job_queue is empty -> lock job_buffer and try to fetch jobs from job_buffer to job_queue
 
-            //otherwise keep working on the current jobqueue
             synchronized (SchedulerUtil.jobQueue) {
                 synchronized (SchedulerUtil.fullySubmittedJobList) {
                     synchronized (SchedulerUtil.agentList) {
 
+                        //if job_queue is empty, fetch jobs from job_buffer to job_queue
+                        //otherwise keep working on the current jobqueue
+                        if(SchedulerUtil.jobQueue.size()==0) {
+                            SchedulerUtil.fetchJobs();
+                        }
+
                         //update agents
                         StatusUpdater.updateAgents();
-
-                        //sort all the Agents according to decreasing resource capacity
-                        //Collections.sort(SchedulerUtil.agentList, new AgentComparator());
 
                         //update jobs
                         StatusUpdater.updateJobs();
 
-                        //sort all the Jobs according to decreasing resource requirements
+                        //sort all the Jobs according to decreasing resource requirements / jobSize
                         Collections.sort(SchedulerUtil.jobQueue, new JobComparator());
-
 
                         Job currentJob;
 

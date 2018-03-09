@@ -27,6 +27,12 @@ public class RoundRobinScheduler extends Thread{
                 synchronized (SchedulerUtil.fullySubmittedJobList) {
                     synchronized (SchedulerUtil.agentList) {
 
+                        //if job_queue is empty, fetch jobs from job_buffer to job_queue
+                        //otherwise keep working on the current jobqueue
+                        if(SchedulerUtil.jobQueue.size()==0) {
+                            SchedulerUtil.fetchJobs();
+                        }
+
                         //update jobs
                         StatusUpdater.updateJobs();
 
