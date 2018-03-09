@@ -123,15 +123,54 @@ public class SchedulerManager {
     }
     public static void shutDown()
     {
+        //finish writing results in output.csv file
         pw.write(StatusUpdater.sb.toString());
         pw.close();
+        //writing per agent execution time in agent-times.csv file
+        writeAgentResults();
+        //writing per second cost and cumulative cost in cost.csv file
+        writeCostResults();
 
-        //writing agent runtimes in a file
+        Log.SchedulerLogging.log(Level.INFO,SchedulerManager.class.getName()+": Finished writing results for scheduler");
+        Log.SchedulerLogging.log(Level.INFO,SchedulerManager.class.getName()+": ***Shutting down SchedulerManager*** ==>Total MakeSpan: "+(System.currentTimeMillis()-startTime)/1000+" seconds.");
+        System.exit(0);
+    }
+
+    public static void writeCostResults()
+    {
+        try {
+            pw = new PrintWriter(new File(SchedulerUtil.schedulerHome+"/cost.csv"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append("time");
+        sb.append(',');
+        sb.append("cost");
+        sb.append(',');
+        sb.append("cumulative cost");
+        sb.append('\n');
+
+        for(int i=0;i< AgentTimer.costList.size();i++) {
+            sb.append(i+1);
+            sb.append(',');
+            sb.append(AgentTimer.costList.get(i));
+            sb.append(',');
+            sb.append(AgentTimer.cumulativeCostList.get(i));
+            sb.append('\n');
+        }
+        pw.write(sb.toString());
+        pw.close();
+    }
+
+    public static void writeAgentResults()
+    {
         try {
             pw = new PrintWriter(new File(SchedulerUtil.schedulerHome+"/agent-times.csv"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
         StringBuilder sb = new StringBuilder();
         sb.append("id");
         sb.append(',');
@@ -139,7 +178,7 @@ public class SchedulerManager {
         sb.append(',');
         sb.append("mem");
         sb.append(',');
-        sb.append("time");
+        sb.append("execution-time");
         sb.append('\n');
 
         for(int i=0;i< SchedulerUtil.agentList.size();i++) {
@@ -155,10 +194,6 @@ public class SchedulerManager {
         }
         pw.write(sb.toString());
         pw.close();
-
-        Log.SchedulerLogging.log(Level.INFO,SchedulerManager.class.getName()+": Finished writing results for scheduler");
-        Log.SchedulerLogging.log(Level.INFO,SchedulerManager.class.getName()+": ***Shutting down SchedulerManager*** ==>Total MakeSpan: "+(System.currentTimeMillis()-startTime)/1000+" seconds.");
-        System.exit(0);
     }
 }
 

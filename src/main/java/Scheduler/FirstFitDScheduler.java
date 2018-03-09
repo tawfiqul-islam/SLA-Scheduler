@@ -54,6 +54,9 @@ public class FirstFitDScheduler extends Thread {
                 SchedulerManager.shutDown();
                 break;
             }
+            //if job_queue is empty -> lock job_buffer and try to fetch jobs from job_buffer to job_queue
+
+            //otherwise keep working on the current jobqueue
             synchronized (SchedulerUtil.jobQueue) {
                 synchronized (SchedulerUtil.fullySubmittedJobList) {
                     synchronized (SchedulerUtil.agentList) {
