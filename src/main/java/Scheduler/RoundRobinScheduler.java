@@ -3,14 +3,11 @@ package Scheduler;
 import Entity.Agent;
 import Entity.Job;
 import JobMananger.SparkLauncherAPI;
-import Operator.ServerResponse;
-
 import java.util.ArrayList;
 import java.util.logging.Level;
 
 public class RoundRobinScheduler extends Thread{
 
-    private static ServerResponse resObj;
     private static long placementTime;
     private static int index=0;
 
@@ -87,7 +84,7 @@ public class RoundRobinScheduler extends Thread{
             }
             //sleep
             try {
-                Thread.sleep(10000);
+                Thread.sleep(SchedulerUtil.schedulingInterval);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

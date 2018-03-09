@@ -15,7 +15,8 @@ public class SchedulerUtil {
     public static int jobHandlerPort;
     public static String schedulerIP;
     public static int schedulerAlgorithm;
-    public static double resourceSplitThreshold=0.25;
+    public static double resourceSplitThreshold;
+    public static long schedulingInterval;
     public static List<Job> jobQueue = Collections.synchronizedList(new ArrayList<Job>());
     public static List<Job> fullySubmittedJobList = Collections.synchronizedList(new ArrayList<Job>());
     public static List<Job> finishedJobList = Collections.synchronizedList(new ArrayList<Job>());

@@ -3,7 +3,6 @@ package Scheduler;
 import Entity.Agent;
 import Entity.Job;
 import JobMananger.SparkLauncherAPI;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -128,7 +127,7 @@ public class BestFitScheduler extends Thread {
 
             //sleep
             try {
-                Thread.sleep(10000);
+                Thread.sleep(SchedulerUtil.schedulingInterval);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

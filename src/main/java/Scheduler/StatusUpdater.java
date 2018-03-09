@@ -83,7 +83,6 @@ public class StatusUpdater extends Thread{
             boolean found = false;
             Job currentJob = null;
 
-
             //try to find the current framework in fullysubmittedjoblist
             for (int j = 0; j < SchedulerUtil.fullySubmittedJobList.size(); j++) {
                 if (frameworkList.get(i).getRole().equalsIgnoreCase(SchedulerUtil.fullySubmittedJobList.get(j).getRole())) {

@@ -3,10 +3,6 @@ package Scheduler;
 import Entity.Agent;
 import Entity.Job;
 import JobMananger.SparkLauncherAPI;
-import Operator.HTTPAPI;
-import Operator.ServerResponse;
-
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.logging.Level;
@@ -110,7 +106,6 @@ public class FirstFitDScheduler extends Thread {
                                     //Log.SchedulerLogging.log(Level.INFO, FirstFitDScheduler.class.getName() + ":Could not place any executor(s) for Job: " + currentJob.getJobID());
                                 }
                             }
-
                         }
 
                         //Submitting new jobs (with fully placed executors) to the cluster
@@ -130,7 +125,7 @@ public class FirstFitDScheduler extends Thread {
 
             //sleep
             try {
-                Thread.sleep(10000);
+                Thread.sleep(SchedulerUtil.schedulingInterval);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

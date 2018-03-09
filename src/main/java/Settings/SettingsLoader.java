@@ -33,6 +33,8 @@ public class SettingsLoader {
         SchedulerUtil.schedulerAlgorithm=Integer.parseInt(prop.getProperty("scheduler.algorithm"));
         SchedulerUtil.schedulerIP=prop.getProperty("scheduler.ip");
         SchedulerUtil.jobHandlerPort=Integer.parseInt(prop.getProperty("scheduler.port"));
+        SchedulerUtil.schedulingInterval=Long.parseLong(prop.getProperty("schedulingInterval"));
+        SchedulerUtil.resourceSplitThreshold=Double.parseDouble(prop.getProperty("unificationThreshold"));
 		Settings.sparkHome=prop.getProperty("spark.home");
 		Settings.mesosMasterURI=prop.getProperty("mesos.masterURI");
 		Settings.mesosMasterSpark=prop.getProperty("mesos.masterURIspark");
