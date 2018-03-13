@@ -44,9 +44,13 @@ public class SchedulerUtil {
 
     public static void fetchJobs()
     {
-        synchronized (SchedulerUtil.jobBuffer) {
-            for(int i=0; i<SchedulerUtil.jobBuffer.size(); i++)  {
-                SchedulerUtil.jobQueue.add(SchedulerUtil.jobBuffer.get(i));
+        synchronized (jobBuffer) {
+            for(int i=0; i<jobBuffer.size(); i++)  {
+                jobQueue.add(jobBuffer.get(i));
+            }
+            //remove all the jobs from jobBuffer
+            while(jobBuffer.size()!=0) {
+                jobBuffer.remove(0);
             }
         }
     }
@@ -64,7 +68,6 @@ public class SchedulerUtil {
                 if (resObj.getStatusCode() != 409) {
 
                     while (true) {
-
                         try {
                             Thread.sleep(1000);
                         } catch (InterruptedException e) {
@@ -83,7 +86,6 @@ public class SchedulerUtil {
                             httpOperation = true;
                             break;
                         }
-
                     }
                 }
                 if (httpOperation) {

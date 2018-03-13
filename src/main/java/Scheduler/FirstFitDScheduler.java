@@ -110,7 +110,7 @@ public class FirstFitDScheduler extends Thread {
 
             //sleep
             try {
-                Thread.sleep(SchedulerUtil.schedulingInterval);
+                Thread.sleep(SchedulerUtil.schedulingInterval*1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

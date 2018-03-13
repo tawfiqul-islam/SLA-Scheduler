@@ -32,6 +32,8 @@ public class SparkLauncherAPI extends Thread{
             sl.setConf("spark.executor.cores", Integer.toString(jobObj.getCoresPerExecutor()));
             int execMem = (int)(jobObj.getMemPerExecutor()/1024.0);
             sl.setConf("spark.executor.memory", Integer.toString(execMem)+"g");
+            sl.setConf("spark.driver.maxResultSize","3g");
+            sl.setConf("spark.driver.memory","3g");
             sl.setConf("spark.cores.max", Integer.toString(jobObj.getCoresPerExecutor()*jobObj.getExecutors()));
             sl.setConf("spark.mesos.role",jobObj.getRole());
             sl.setAppResource(jobObj.getAppJarPath());
