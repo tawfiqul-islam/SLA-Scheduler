@@ -12,7 +12,7 @@ public class BestFitScheduler extends Thread {
 
     static long placementTime;
 
-    class AgentComparator implements Comparator<Agent> {
+    static class AgentComparator implements Comparator<Agent> {
         @Override
         public int compare(Agent a, Agent b) {
 
@@ -27,7 +27,7 @@ public class BestFitScheduler extends Thread {
         }
     }
 
-    class JobComparator implements Comparator<Job> {
+    static class JobComparator implements Comparator<Job> {
         @Override
         public int compare(Job a, Job b) {
 
@@ -113,7 +113,6 @@ public class BestFitScheduler extends Thread {
                                     //Log.SchedulerLogging.log(Level.INFO, BestFitScheduler.class.getName() + ":Could not place any executor(s) for Job: " + currentJob.getJobID());
                                 }
                             }
-
                         }
 
 

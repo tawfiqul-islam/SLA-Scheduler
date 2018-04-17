@@ -3,26 +3,10 @@ package Scheduler;
 import Entity.Job;
 import JobMananger.SparkLauncherAPI;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.logging.Level;
 
 public class FirstFitDScheduler extends Thread {
 
-
-    class JobComparator implements Comparator<Job> {
-        @Override
-        public int compare(Job a, Job b) {
-
-            //to sort jobs in a decreasing order of resource demands (big to small)
-            if (a.getResourceSplit() > b.getResourceSplit() ) {
-                return -1;
-            } else if (a.getResourceSplit()  < b.getResourceSplit() ) {
-                return 1;
-            } else {
-                return 0;
-            }
-        }
-    }
 
     public void run() {
 
@@ -53,7 +37,7 @@ public class FirstFitDScheduler extends Thread {
                         StatusUpdater.updateJobs();
 
                         //sort all the Jobs according to decreasing resource requirements / jobSize
-                        Collections.sort(SchedulerUtil.jobQueue, new JobComparator());
+                        Collections.sort(SchedulerUtil.jobQueue, new BestFitScheduler.JobComparator());
 
                         Job currentJob;
 
