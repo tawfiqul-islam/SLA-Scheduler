@@ -34,6 +34,7 @@ public class Job {
     private double totalExecutorMemory;
     private double inputSize;
     private double resourceSplit;
+    private double lowCostThreshold;
 
     //Environment Information
     private String inputPath;
@@ -234,6 +235,21 @@ public class Job {
     }*/
     public void setResourceSplit() {
         this.resourceSplit = this.coresPerExecutor * this.executors + (this.memPerExecutor * this.executors) * SchedulerUtil.resourceSplitThreshold;
+    }
+
+    public double getLowCostThreshold() {
+        return lowCostThreshold;
+    }
+
+    public void setLowCostThreshold(double clusterCPULoad, double clusterCPUCapacity, double clusterMEMLoad, double clusterMEMCapacity) {
+        double memT, cpuT;
+
+        cpuT=(clusterCPULoad+executors*coresPerExecutor)/clusterCPUCapacity;
+        memT=(clusterMEMLoad+executors*memPerExecutor)/clusterMEMCapacity;
+        if(cpuT>memT)
+            this.lowCostThreshold=cpuT;
+        else
+            this.lowCostThreshold=memT;
     }
 
     public String getInputPath() {

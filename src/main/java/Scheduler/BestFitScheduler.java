@@ -74,7 +74,6 @@ public class BestFitScheduler extends Thread {
                         //update jobs
                         StatusUpdater.updateJobs();
 
-
                         //sort all the Jobs according to decreasing resource requirements / jobSize
                         Collections.sort(SchedulerUtil.jobQueue, new JobComparator());
 
@@ -83,6 +82,8 @@ public class BestFitScheduler extends Thread {
                         //Log.SchedulerLogging.log(Level.INFO,BestFitScheduler.class.getName()+": Trying to place executors for jobs from JobQueue");
 
                         for (int i = 0; i < SchedulerUtil.jobQueue.size(); i++) {
+                            //sort all the Agents according to increasing resource capacity
+                            Collections.sort(SchedulerUtil.agentList, new AgentComparator());
 
                             currentJob = SchedulerUtil.jobQueue.get(i);
 

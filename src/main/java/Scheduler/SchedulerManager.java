@@ -105,6 +105,12 @@ public class SchedulerManager {
             FirstFitDScheduler ffdSchedulerObj = new FirstFitDScheduler();
             ffdSchedulerObj.start();
         }
+        else if(SchedulerUtil.schedulerAlgorithm==Algorithm.Morpheus) {
+            Log.SchedulerLogging.log(Level.INFO,SchedulerManager.class.getName()+": Started Morpheus Scheduler ");
+            startTime=System.currentTimeMillis();
+            MorpheusScheduler morpheusSchedulerObj = new MorpheusScheduler();
+            morpheusSchedulerObj.start();
+        }
         else {
             //log error..not scheduling algorithm is chosen...or use a defautl scheduler
             Log.SchedulerLogging.log(Level.SEVERE,SchedulerManager.class.getName()+": No Scheduler Algorithm was selected in configuration");

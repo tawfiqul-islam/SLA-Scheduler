@@ -19,6 +19,7 @@ public class SchedulerUtil {
     public static long schedulingInterval;
     public static List<Job> jobBuffer = Collections.synchronizedList(new ArrayList<Job>());
     public static List<Job> jobQueue = Collections.synchronizedList(new ArrayList<Job>());
+    public static List<Job> PriorityJobQueue = Collections.synchronizedList(new ArrayList<Job>());
     public static List<Job> fullySubmittedJobList = Collections.synchronizedList(new ArrayList<Job>());
     public static List<Job> finishedJobList = Collections.synchronizedList(new ArrayList<Job>());
     public static List<Agent> agentList;
