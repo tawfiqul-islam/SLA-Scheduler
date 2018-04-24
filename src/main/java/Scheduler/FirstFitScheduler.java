@@ -5,7 +5,7 @@ import JobMananger.SparkLauncherAPI;
 import java.util.Collections;
 import java.util.logging.Level;
 
-public class FirstFitDScheduler extends Thread {
+public class FirstFitScheduler extends Thread {
 
 
     public void run() {
@@ -34,7 +34,7 @@ public class FirstFitDScheduler extends Thread {
 
                         Job currentJob;
 
-                        //Log.SchedulerLogging.log(Level.INFO,FirstFitDScheduler.class.getName()+": Trying to place executors for jobs from JobQueue");
+                        //Log.SchedulerLogging.log(Level.INFO,FirstFitScheduler.class.getName()+": Trying to place executors for jobs from JobQueue");
 
                         for (int i = 0; i < SchedulerUtil.jobQueue.size(); i++) {
 
@@ -49,23 +49,23 @@ public class FirstFitDScheduler extends Thread {
                             else {
                                 if (BestFitScheduler.placeExecutor(currentJob,this.getClass())) {
 
-                                    Log.SchedulerLogging.log(Level.INFO, FirstFitDScheduler.class.getName() + ": Placed executor(s) for Job: " + currentJob.getJobID());
+                                    Log.SchedulerLogging.log(Level.INFO, FirstFitScheduler.class.getName() + ": Placed executor(s) for Job: " + currentJob.getJobID());
                                     currentJob.setResourceReserved(true);
                                     currentJob.setSchedulingDelay(currentJob.getSchedulingDelay()+BestFitScheduler.placementTime);
 
                                     if (currentJob.getAllocatedExecutors() == currentJob.getExecutors()) {
-                                        Log.SchedulerLogging.log(Level.INFO, FirstFitDScheduler.class.getName() + ": All executors are placed for Job: " + currentJob.getJobID());
+                                        Log.SchedulerLogging.log(Level.INFO, FirstFitScheduler.class.getName() + ": All executors are placed for Job: " + currentJob.getJobID());
                                         //remove job from job queue
                                         SchedulerUtil.jobQueue.remove(i);
-                                        Log.SchedulerLogging.log(Level.INFO, FirstFitDScheduler.class.getName() + ": Removed Job: " + currentJob.getJobID() + " from jobQueue");
+                                        Log.SchedulerLogging.log(Level.INFO, FirstFitScheduler.class.getName() + ": Removed Job: " + currentJob.getJobID() + " from jobQueue");
                                         //add job to fully submitted job list
                                         SchedulerUtil.fullySubmittedJobList.add(currentJob);
-                                        Log.SchedulerLogging.log(Level.INFO, FirstFitDScheduler.class.getName() + ": Added Job: " + currentJob.getJobID() + " to fullySubmittedJobList");
+                                        Log.SchedulerLogging.log(Level.INFO, FirstFitScheduler.class.getName() + ": Added Job: " + currentJob.getJobID() + " to fullySubmittedJobList");
                                         i--;
                                     }
                                 } else {
                                     //could not place any executors for the current job
-                                    //Log.SchedulerLogging.log(Level.INFO, FirstFitDScheduler.class.getName() + ":Could not place any executor(s) for Job: " + currentJob.getJobID());
+                                    //Log.SchedulerLogging.log(Level.INFO, FirstFitScheduler.class.getName() + ":Could not place any executor(s) for Job: " + currentJob.getJobID());
                                 }
                             }
                         }
@@ -77,7 +77,7 @@ public class FirstFitDScheduler extends Thread {
                             //if the job is new submit it in the cluster
                             if (!currentJob.isSubmitted()&&currentJob.isResourceReserved()) {
                                 currentJob.setSubmitted(true);
-                                Log.SchedulerLogging.log(Level.INFO, FirstFitDScheduler.class.getName() + ": Submitting Job: " + currentJob.getJobID() +" with role: "+currentJob.getRole()+ " to the Cluster");
+                                Log.SchedulerLogging.log(Level.INFO, FirstFitScheduler.class.getName() + ": Submitting Job: " + currentJob.getJobID() +" with role: "+currentJob.getRole()+ " to the Cluster");
                                 new SparkLauncherAPI(currentJob).start();
                             }
                         }
@@ -86,7 +86,7 @@ public class FirstFitDScheduler extends Thread {
             }
 
             if (shutdown&&SchedulerUtil.fullySubmittedJobList.size()==0) {
-                Log.SchedulerLogging.log(Level.INFO, FirstFitDScheduler.class.getName() + "Shutting Down FirstFitDecreasing Scheduler. Job Queue is Empty...");
+                Log.SchedulerLogging.log(Level.INFO, FirstFitScheduler.class.getName() + "Shutting Down FirstFitDecreasing Scheduler. Job Queue is Empty...");
                 SchedulerManager.shutDown();
                 break;
             }

@@ -102,7 +102,7 @@ public class SchedulerManager {
         else if(SchedulerUtil.schedulerAlgorithm==Algorithm.FirstFit) {
             Log.SchedulerLogging.log(Level.INFO,SchedulerManager.class.getName()+": Started FirstFit Scheduler ");
             startTime=System.currentTimeMillis();
-            FirstFitDScheduler ffdSchedulerObj = new FirstFitDScheduler();
+            FirstFitScheduler ffdSchedulerObj = new FirstFitScheduler();
             ffdSchedulerObj.start();
         }
         else if(SchedulerUtil.schedulerAlgorithm==Algorithm.Morpheus) {
