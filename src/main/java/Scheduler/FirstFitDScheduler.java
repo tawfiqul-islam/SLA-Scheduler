@@ -13,13 +13,6 @@ public class FirstFitDScheduler extends Thread {
         boolean shutdown= false;
 
         while(true) {
-
-            if (shutdown&&SchedulerUtil.fullySubmittedJobList.size()==0) {
-                Log.SchedulerLogging.log(Level.INFO, FirstFitDScheduler.class.getName() + "Shutting Down FirstFitDecreasing Scheduler. Job Queue is Empty...");
-                SchedulerManager.shutDown();
-                break;
-            }
-
             synchronized (SchedulerUtil.jobQueue) {
                 synchronized (SchedulerUtil.fullySubmittedJobList) {
                     synchronized (SchedulerUtil.agentList) {
@@ -90,6 +83,12 @@ public class FirstFitDScheduler extends Thread {
                         }
                     }
                 }
+            }
+
+            if (shutdown&&SchedulerUtil.fullySubmittedJobList.size()==0) {
+                Log.SchedulerLogging.log(Level.INFO, FirstFitDScheduler.class.getName() + "Shutting Down FirstFitDecreasing Scheduler. Job Queue is Empty...");
+                SchedulerManager.shutDown();
+                break;
             }
 
             //sleep

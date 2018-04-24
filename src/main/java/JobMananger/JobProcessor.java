@@ -44,6 +44,15 @@ public class JobProcessor extends Thread {
             jobObj.setArrivalTime(System.currentTimeMillis());
             jobObj.setRole("role"+getRole());
             jobObj.setResultID(requestJson.getInt("resultID"));
+            if(requestJson.has("priority"))
+            {
+                jobObj.setPriority(requestJson.getBoolean("priority"));
+            }
+            if(requestJson.has("deadline"))
+            {
+                jobObj.setDeadline(requestJson.getDouble("deadline"));
+            }
+
         }catch(Exception e) {
             Log.SchedulerLogging.log(Level.SEVERE,JobProcessor.class.getName()+" Exception in parseMessage"+e.toString());
         }

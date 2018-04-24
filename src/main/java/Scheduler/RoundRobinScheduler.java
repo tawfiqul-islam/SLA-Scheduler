@@ -16,13 +16,6 @@ public class RoundRobinScheduler extends Thread{
         boolean shutdown= false;
 
         while(true) {
-
-            if (shutdown&&SchedulerUtil.fullySubmittedJobList.size()==0) {
-                Log.SchedulerLogging.log(Level.INFO, RoundRobinScheduler.class.getName() + "Shutting Down Round Robin Scheduler. Job Queue is Empty...");
-                SchedulerManager.shutDown();
-                break;
-            }
-
             synchronized (SchedulerUtil.jobQueue) {
                 synchronized (SchedulerUtil.fullySubmittedJobList) {
                     synchronized (SchedulerUtil.agentList) {
@@ -49,7 +42,7 @@ public class RoundRobinScheduler extends Thread{
                                 }
                             }
                             else {
-                                if (placeExecutor(currentJob)) {
+                                if (placeExecutor(currentJob,this.getClass())) {
 
                                     Log.SchedulerLogging.log(Level.INFO, RoundRobinScheduler.class.getName() + ": Placed executor(s) for Job: " + currentJob.getJobID());
                                     currentJob.setResourceReserved(true);
@@ -88,6 +81,11 @@ public class RoundRobinScheduler extends Thread{
                     }
                 }
             }
+            if (shutdown&&SchedulerUtil.fullySubmittedJobList.size()==0) {
+                Log.SchedulerLogging.log(Level.INFO, RoundRobinScheduler.class.getName() + "Shutting Down Round Robin Scheduler. Job Queue is Empty...");
+                SchedulerManager.shutDown();
+                break;
+            }
             //sleep
             try {
                 Thread.sleep(SchedulerUtil.schedulingInterval*1000);
@@ -97,7 +95,7 @@ public class RoundRobinScheduler extends Thread{
         }
     }
 
-    private boolean placeExecutor(Job currentJob)  {
+    private boolean placeExecutor(Job currentJob, Class classVar)  {
 
         int executorCount=0,storedIndex=index,lastPlaced=index;
 
@@ -141,7 +139,7 @@ public class RoundRobinScheduler extends Thread{
                 index=lastPlaced+1;
             }
 
-            SchedulerUtil.resourceReservation(placedAgents,currentJob,this.getClass());
+            SchedulerUtil.resourceReservation(placedAgents,currentJob,classVar.getClass());
 
             placementTime=System.currentTimeMillis()-placementTime;
             return true;

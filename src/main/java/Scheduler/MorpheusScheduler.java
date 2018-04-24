@@ -17,6 +17,7 @@ public class MorpheusScheduler extends Thread{
     private static double clusterMEMLoad;
     private static double clusterCPUCap;
     private static double clusterMEMCap;
+
     static class JobComparatorLowCost implements Comparator<Job> {
         @Override
         public int compare(Job a, Job b) {
@@ -37,12 +38,6 @@ public class MorpheusScheduler extends Thread{
         boolean shutdown= false;
 
         while(true) {
-
-            if (shutdown&&SchedulerUtil.fullySubmittedJobList.size()==0) {
-                Log.SchedulerLogging.log(Level.INFO, MorpheusScheduler.class.getName() + "Shutting Down Round Robin Scheduler. Job Queue is Empty...");
-                SchedulerManager.shutDown();
-                break;
-            }
 
             synchronized (SchedulerUtil.jobQueue) {
                 synchronized (SchedulerUtil.fullySubmittedJobList) {
@@ -75,7 +70,7 @@ public class MorpheusScheduler extends Thread{
                                 }
                             }
                             else {
-                                if (placeExecutor(currentJob)) {
+                                if (placeExecutor(currentJob,this.getClass())) {
 
                                     Log.SchedulerLogging.log(Level.INFO, MorpheusScheduler.class.getName() + ": Placed executor(s) for Job: " + currentJob.getJobID());
                                     currentJob.setResourceReserved(true);
@@ -114,6 +109,13 @@ public class MorpheusScheduler extends Thread{
                     }
                 }
             }
+
+            if (shutdown&&SchedulerUtil.fullySubmittedJobList.size()==0) {
+                Log.SchedulerLogging.log(Level.INFO, MorpheusScheduler.class.getName() + "Shutting Down Round Robin Scheduler. Job Queue is Empty...");
+                SchedulerManager.shutDown();
+                break;
+            }
+
             //sleep
             try {
                 Thread.sleep(SchedulerUtil.schedulingInterval*1000);
@@ -146,7 +148,7 @@ public class MorpheusScheduler extends Thread{
         }
     }
 
-    private boolean placeExecutor(Job currentJob)  {
+    private boolean placeExecutor(Job currentJob, Class classVar)  {
 
         int executorCount=0,storedIndex=index,lastPlaced=index;
 
@@ -190,7 +192,7 @@ public class MorpheusScheduler extends Thread{
                 index=lastPlaced+1;
             }
 
-            SchedulerUtil.resourceReservation(placedAgents,currentJob,this.getClass());
+            SchedulerUtil.resourceReservation(placedAgents,currentJob,classVar.getClass());
 
             placementTime=System.currentTimeMillis()-placementTime;
             return true;

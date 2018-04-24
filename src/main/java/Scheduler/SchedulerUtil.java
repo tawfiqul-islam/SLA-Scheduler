@@ -19,7 +19,7 @@ public class SchedulerUtil {
     public static long schedulingInterval;
     public static List<Job> jobBuffer = Collections.synchronizedList(new ArrayList<Job>());
     public static List<Job> jobQueue = Collections.synchronizedList(new ArrayList<Job>());
-    public static List<Job> PriorityJobQueue = Collections.synchronizedList(new ArrayList<Job>());
+    public static List<Job> priorityJobQueue = Collections.synchronizedList(new ArrayList<Job>());
     public static List<Job> fullySubmittedJobList = Collections.synchronizedList(new ArrayList<Job>());
     public static List<Job> finishedJobList = Collections.synchronizedList(new ArrayList<Job>());
     public static List<Agent> agentList;
@@ -52,6 +52,19 @@ public class SchedulerUtil {
             //remove all the jobs from jobBuffer
             while(jobBuffer.size()!=0) {
                 jobBuffer.remove(0);
+            }
+        }
+    }
+
+    public static void fetchPriorityJobs()
+    {
+        synchronized (jobBuffer) {
+            for(int i=0; i<jobBuffer.size(); i++)  {
+                if(jobBuffer.get(i).isPriority()) {
+                    priorityJobQueue.add(jobBuffer.get(i));
+                    jobBuffer.remove(i);
+                    i--;
+                }
             }
         }
     }

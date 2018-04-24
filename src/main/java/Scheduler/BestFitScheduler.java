@@ -48,12 +48,6 @@ public class BestFitScheduler extends Thread {
         boolean shutdown= false;
 
         while(true) {
-
-            if (shutdown&&SchedulerUtil.fullySubmittedJobList.size()==0) {
-                Log.SchedulerLogging.log(Level.INFO, BestFitScheduler.class.getName() + "Shutting Down BestFit Scheduler. Job Queue is Empty...");
-                SchedulerManager.shutDown();
-                break;
-            }
             synchronized (SchedulerUtil.jobQueue) {
                 synchronized (SchedulerUtil.fullySubmittedJobList) {
                     synchronized (SchedulerUtil.agentList) {
@@ -131,7 +125,11 @@ public class BestFitScheduler extends Thread {
                     }
                 }
             }
-
+            if (shutdown&&SchedulerUtil.fullySubmittedJobList.size()==0) {
+                Log.SchedulerLogging.log(Level.INFO, BestFitScheduler.class.getName() + "Shutting Down BestFit Scheduler. Job Queue is Empty...");
+                SchedulerManager.shutDown();
+                break;
+            }
             //sleep
             try {
                 Thread.sleep(SchedulerUtil.schedulingInterval*1000);

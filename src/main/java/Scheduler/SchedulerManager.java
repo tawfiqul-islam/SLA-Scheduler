@@ -94,13 +94,13 @@ public class SchedulerManager {
             rrSchedulerObj.start();
         }
         else if(SchedulerUtil.schedulerAlgorithm==Algorithm.BFHeuristic) {
-            Log.SchedulerLogging.log(Level.INFO,SchedulerManager.class.getName()+": Started BestFitScheduler ");
+            Log.SchedulerLogging.log(Level.INFO,SchedulerManager.class.getName()+": Started BestFit Scheduler ");
             startTime=System.currentTimeMillis();
             BestFitScheduler bfSchedulerObj = new BestFitScheduler();
             bfSchedulerObj.start();
         }
         else if(SchedulerUtil.schedulerAlgorithm==Algorithm.FirstFit) {
-            Log.SchedulerLogging.log(Level.INFO,SchedulerManager.class.getName()+": Started FirstFitScheduler ");
+            Log.SchedulerLogging.log(Level.INFO,SchedulerManager.class.getName()+": Started FirstFit Scheduler ");
             startTime=System.currentTimeMillis();
             FirstFitDScheduler ffdSchedulerObj = new FirstFitDScheduler();
             ffdSchedulerObj.start();
@@ -111,8 +111,20 @@ public class SchedulerManager {
             MorpheusScheduler morpheusSchedulerObj = new MorpheusScheduler();
             morpheusSchedulerObj.start();
         }
+        else if(SchedulerUtil.schedulerAlgorithm==Algorithm.BFDeadline) {
+            Log.SchedulerLogging.log(Level.INFO,SchedulerManager.class.getName()+": Started BestFit Deadline Scheduler ");
+            startTime=System.currentTimeMillis();
+            BestFitDeadlineScheduler bfdSchedulerObj = new BestFitDeadlineScheduler();
+            bfdSchedulerObj.start();
+        }
+        else if(SchedulerUtil.schedulerAlgorithm==Algorithm.FFDeadline) {
+            Log.SchedulerLogging.log(Level.INFO,SchedulerManager.class.getName()+": Started FirstFit Deadline Scheduler ");
+            startTime=System.currentTimeMillis();
+            FirstFitDeadlineScheduler ffdSchedulerObj = new FirstFitDeadlineScheduler();
+            ffdSchedulerObj.start();
+        }
         else {
-            //log error..not scheduling algorithm is chosen...or use a defautl scheduler
+            //log error..not scheduling algorithm is chosen...or use a default scheduler
             Log.SchedulerLogging.log(Level.SEVERE,SchedulerManager.class.getName()+": No Scheduler Algorithm was selected in configuration");
         }
 
@@ -154,7 +166,9 @@ public class SchedulerManager {
         sb.append(',');
         sb.append("cost");
         sb.append(',');
-        sb.append("cumulative cost");
+        sb.append("cumulative_cost");
+        sb.append(',');
+        sb.append("costPerMin");
         sb.append('\n');
 
         for(int i=0;i< AgentTimer.costList.size();i++) {
@@ -163,6 +177,12 @@ public class SchedulerManager {
             sb.append(AgentTimer.costList.get(i));
             sb.append(',');
             sb.append(AgentTimer.cumulativeCostList.get(i));
+
+            if(i<AgentTimer.cumulativeCostPerMinList.size()) {
+                sb.append(',');
+                sb.append(AgentTimer.cumulativeCostPerMinList.get(i));
+            }
+
             sb.append('\n');
         }
         pw.write(sb.toString());

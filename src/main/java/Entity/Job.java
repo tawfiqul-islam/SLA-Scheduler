@@ -24,7 +24,8 @@ public class Job {
     private long schedulingDelay=0;
     private ArrayList<String> agentList = new ArrayList<>();
 
-    private int priority;
+    private boolean priority;
+    private double deadline;
 
     //Resource Requirements
     private int executors;
@@ -173,12 +174,20 @@ public class Job {
         this.agentList = agentList;
     }
 
-    public int getPriority() {
+    public boolean isPriority() {
         return priority;
     }
 
-    public void setPriority(int priority) {
+    public void setPriority(boolean priority) {
         this.priority = priority;
+    }
+
+    public double getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(double deadline) {
+        this.deadline = deadline;
     }
 
     public int getExecutors() {
