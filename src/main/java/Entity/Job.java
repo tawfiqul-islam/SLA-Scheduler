@@ -243,7 +243,7 @@ public class Job {
         this.resourceSplit = this.coresPerExecutor  + this.memPerExecutor  * SchedulerUtil.resourceSplitThreshold;
     }*/
     public void setResourceSplit() {
-        this.resourceSplit = this.coresPerExecutor * this.executors + (this.memPerExecutor * this.executors) * SchedulerUtil.resourceSplitThreshold;
+        this.resourceSplit = this.coresPerExecutor *(1-SchedulerUtil.resourceSplitThreshold)* this.executors + (this.memPerExecutor * this.executors) * SchedulerUtil.resourceSplitThreshold;
     }
 
     public double getLowCostThreshold() {

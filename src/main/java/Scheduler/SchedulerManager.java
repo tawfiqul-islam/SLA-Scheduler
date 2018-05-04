@@ -13,7 +13,7 @@ import java.util.logging.Level;
 public class SchedulerManager {
 
     private static PrintWriter pw;
-    static long startTime;
+    public static long startTime;
 
     public static void main(String args[]) {
 
@@ -65,6 +65,8 @@ public class SchedulerManager {
             StatusUpdater.sb.append("start-time");
             StatusUpdater.sb.append(',');
             StatusUpdater.sb.append("finish-time");
+            StatusUpdater.sb.append(',');
+            StatusUpdater.sb.append("deadline");
             StatusUpdater.sb.append(',');
             StatusUpdater.sb.append("scheduling-delay");
             StatusUpdater.sb.append(',');

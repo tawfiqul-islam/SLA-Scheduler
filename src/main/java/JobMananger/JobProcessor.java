@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.logging.Level;
 
 import Entity.Job;
+import Scheduler.SchedulerManager;
 import Scheduler.SchedulerUtil;
 import org.json.*;
 import java.util.UUID;
@@ -50,7 +51,8 @@ public class JobProcessor extends Thread {
             }
             if(requestJson.has("deadline"))
             {
-                jobObj.setDeadline(requestJson.getDouble("deadline"));
+                double temp = (jobObj.getArrivalTime()- SchedulerManager.startTime)/1000.0;
+                jobObj.setDeadline(requestJson.getDouble("deadline")+temp);
             }
 
         }catch(Exception e) {

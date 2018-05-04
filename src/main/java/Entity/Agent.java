@@ -57,7 +57,7 @@ public class Agent {
     }
 
     public void setResourceTotal() {
-        this.resourceTotal = cpu + mem * SchedulerUtil.resourceSplitThreshold;
+        this.resourceTotal = cpu * (1-SchedulerUtil.resourceSplitThreshold) + mem * SchedulerUtil.resourceSplitThreshold;
     }
 
     public double getDisk() {

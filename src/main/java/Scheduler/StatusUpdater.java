@@ -241,6 +241,9 @@ public class StatusUpdater extends Thread{
         //job finish time
         StatusUpdater.sb.append(finishTime);
         StatusUpdater.sb.append(',');
+        //deadline
+        StatusUpdater.sb.append(currentJob.getDeadline());
+        StatusUpdater.sb.append(',');
         //scheduling delay
         StatusUpdater.sb.append(currentJob.getSchedulingDelay()/1000.0);
         StatusUpdater.sb.append(',');
