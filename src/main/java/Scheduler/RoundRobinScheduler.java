@@ -14,6 +14,7 @@ public class RoundRobinScheduler extends Thread{
     public void run() {
 
         boolean shutdown= false;
+        long shutdownJobArrivalTime=0;
 
         while(true) {
             synchronized (SchedulerUtil.jobQueue) {
@@ -39,6 +40,7 @@ public class RoundRobinScheduler extends Thread{
                             if (currentJob.isShutdown()) {
                                 if (SchedulerUtil.jobQueue.size() == 1&&SchedulerUtil.fullySubmittedJobList.size()==0) {
                                     shutdown = true;
+                                    shutdownJobArrivalTime=System.currentTimeMillis();
                                 }
                             }
                             else {
@@ -81,7 +83,7 @@ public class RoundRobinScheduler extends Thread{
                     }
                 }
             }
-            if (shutdown&&SchedulerUtil.fullySubmittedJobList.size()==0) {
+            if (shutdown&&(SchedulerUtil.fullySubmittedJobList.size()==0||(System.currentTimeMillis()-shutdownJobArrivalTime)/1000>=1200)) {
                 Log.SchedulerLogging.log(Level.INFO, RoundRobinScheduler.class.getName() + "Shutting Down Round Robin Scheduler. Job Queue is Empty...");
                 SchedulerManager.shutDown();
                 break;

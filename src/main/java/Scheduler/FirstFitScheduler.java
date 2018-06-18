@@ -11,6 +11,7 @@ public class FirstFitScheduler extends Thread {
     public void run() {
 
         boolean shutdown= false;
+        long shutdownJobArrivalTime=0;
 
         while(true) {
             synchronized (SchedulerUtil.jobQueue) {
@@ -44,6 +45,7 @@ public class FirstFitScheduler extends Thread {
                             if (currentJob.isShutdown()) {
                                 if (SchedulerUtil.jobQueue.size() == 1&&SchedulerUtil.fullySubmittedJobList.size()==0) {
                                     shutdown = true;
+                                    shutdownJobArrivalTime=System.currentTimeMillis();
                                 }
                             }
                             else {
@@ -85,7 +87,7 @@ public class FirstFitScheduler extends Thread {
                 }
             }
 
-            if (shutdown&&SchedulerUtil.fullySubmittedJobList.size()==0) {
+            if (shutdown&&(SchedulerUtil.fullySubmittedJobList.size()==0||(System.currentTimeMillis()-shutdownJobArrivalTime)/1000>=1200)) {
                 Log.SchedulerLogging.log(Level.INFO, FirstFitScheduler.class.getName() + "Shutting Down FirstFitDecreasing Scheduler. Job Queue is Empty...");
                 SchedulerManager.shutDown();
                 break;

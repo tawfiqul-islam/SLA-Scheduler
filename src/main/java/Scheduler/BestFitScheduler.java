@@ -16,13 +16,21 @@ public class BestFitScheduler extends Thread {
         @Override
         public int compare(Agent a, Agent b) {
 
-            //to sort agents in an increasing order of resource capacity (small to big)
-            if (a.getResourceTotal() < b.getResourceTotal()) {
+            if(!a.isActive()&&b.isActive()) {
                 return -1;
-            } else if (a.getResourceTotal() > b.getResourceTotal()) {
+            }
+            else if(a.isActive()&&!b.isActive()) {
                 return 1;
-            } else {
-                return 0;
+            }
+            else {
+                //to sort agents in an increasing order of resource capacity (small to big)
+                if (a.getResourceTotal() < b.getResourceTotal()) {
+                    return -1;
+                } else if (a.getResourceTotal() > b.getResourceTotal()) {
+                    return 1;
+                } else {
+                    return 0;
+                }
             }
         }
     }
@@ -46,6 +54,7 @@ public class BestFitScheduler extends Thread {
     public void run() {
 
         boolean shutdown= false;
+        long shutdownJobArrivalTime=0;
 
         while(true) {
             synchronized (SchedulerUtil.jobQueue) {
@@ -85,6 +94,7 @@ public class BestFitScheduler extends Thread {
                             if (currentJob.isShutdown()) {
                                 if (SchedulerUtil.jobQueue.size() == 1&&SchedulerUtil.fullySubmittedJobList.size()==0) {
                                     shutdown = true;
+                                    shutdownJobArrivalTime=System.currentTimeMillis();
                                 }
                             }
                             else {
@@ -125,7 +135,7 @@ public class BestFitScheduler extends Thread {
                     }
                 }
             }
-            if (shutdown&&SchedulerUtil.fullySubmittedJobList.size()==0) {
+            if (shutdown&&(SchedulerUtil.fullySubmittedJobList.size()==0||(System.currentTimeMillis()-shutdownJobArrivalTime)/1000>=1200)) {
                 Log.SchedulerLogging.log(Level.INFO, BestFitScheduler.class.getName() + "Shutting Down BestFit Scheduler. Job Queue is Empty...");
                 SchedulerManager.shutDown();
                 break;
