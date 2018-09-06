@@ -1,5 +1,7 @@
 package Entity;
 
+import java.util.ArrayList;
+
 public class Framework {
 
     private long startTime;
@@ -8,6 +10,12 @@ public class Framework {
     private String ID;
     private boolean active;
     private int executors;
+    private ArrayList<Executor> executorList = new ArrayList<>();
+    private double CPUMeanUtilization;
+    private double MEMMaxUsage;
+    private double MEMMinUsage;
+    private double MEMMeanUsage;
+
 
     public long getStartTime() {
         return startTime;
