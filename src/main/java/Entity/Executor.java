@@ -15,6 +15,8 @@ public class Executor {
     private double MEMTotalUsage;
     private double MEMMeanUsage;
     private long totalObservations;
+    private String hostVM;
+
     public int getExecutorID() {
         return ExecutorID;
     }
@@ -125,6 +127,14 @@ public class Executor {
 
     public void setTotalObservations(long totalObservations) {
         this.totalObservations = totalObservations;
+    }
+
+    public String getHostVM() {
+        return hostVM;
+    }
+
+    public void setHostVM(String hostVM) {
+        this.hostVM = hostVM;
     }
 
     @Override

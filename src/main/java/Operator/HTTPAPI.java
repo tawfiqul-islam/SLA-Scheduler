@@ -297,7 +297,6 @@ public class HTTPAPI {
 
         try {
             slaves = new JSONObject(responseStr).getJSONArray("slaves");
-            System.out.println(slaves.length());
 
             for(int i=0; i<slaves.length(); i++) {
 
@@ -312,27 +311,32 @@ public class HTTPAPI {
         }
     }
 
-    public static ArrayList<Executor> parseExecutorMetrics(String responseStr) {
+    public static ArrayList<Executor> parseExecutorMetrics(String responseStr, String hostSlave) {
         ArrayList<Executor> execList= new ArrayList<>();
-        Executor execObj = new Executor();
-        System.out.println(responseStr.length());
-        System.out.println(responseStr);
+        Executor execObj;
+        JSONArray executors;
+
         try {
-            JSONObject tmpJsonObj = new JSONObject(responseStr);
-            execObj.setExecutorID(tmpJsonObj.getInt("executor_id"));
-            execObj.setExecutorName(tmpJsonObj.getString("executor_name"));
-            execObj.setFrameworkID(tmpJsonObj.getString("framework_id"));
+            executors = new JSONArray(responseStr);
+            for (int i=0;i<executors.length();i++) {
+                execObj = new Executor();
+                JSONObject tmpJsonObj = (JSONObject) executors.get(i);
+                execObj.setExecutorID(tmpJsonObj.getInt("executor_id"));
+                execObj.setExecutorName(tmpJsonObj.getString("executor_name"));
+                execObj.setFrameworkID(tmpJsonObj.getString("framework_id"));
 
-            execObj.setCPULim(tmpJsonObj.getJSONObject("statistics").getDouble("cpus_limit"));
-            execObj.setCPUTimeSystem(tmpJsonObj.getJSONObject("statistics").getDouble("cpus_system_time_secs"));
-            execObj.setCPUTimeUser(tmpJsonObj.getJSONObject("statistics").getDouble("cpus_user_time_secs"));
-            execObj.setMEMLim(tmpJsonObj.getJSONObject("statistics").getLong("mem_limit_bytes"));
-            execObj.setMEMMinUsage(tmpJsonObj.getJSONObject("statistics").getLong("mem_rss_bytes"));
-            execObj.setMEMMaxUsage(tmpJsonObj.getJSONObject("statistics").getLong("mem_rss_bytes"));
-            execObj.setMEMTotalUsage(tmpJsonObj.getJSONObject("statistics").getLong("mem_rss_bytes"));
-            execObj.setLatestTimeStamp(tmpJsonObj.getJSONObject("statistics").getDouble("timestamp"));
+                execObj.setCPULim(tmpJsonObj.getJSONObject("statistics").getDouble("cpus_limit"));
+                execObj.setCPUTimeSystem(tmpJsonObj.getJSONObject("statistics").getDouble("cpus_system_time_secs"));
+                execObj.setCPUTimeUser(tmpJsonObj.getJSONObject("statistics").getDouble("cpus_user_time_secs"));
+                execObj.setMEMLim(tmpJsonObj.getJSONObject("statistics").getLong("mem_limit_bytes"));
+                execObj.setMEMMinUsage(tmpJsonObj.getJSONObject("statistics").getLong("mem_rss_bytes"));
+                execObj.setMEMMaxUsage(tmpJsonObj.getJSONObject("statistics").getLong("mem_rss_bytes"));
+                execObj.setMEMTotalUsage(tmpJsonObj.getJSONObject("statistics").getLong("mem_rss_bytes"));
+                execObj.setLatestTimeStamp(tmpJsonObj.getJSONObject("statistics").getDouble("timestamp"));
+                execObj.setHostVM(hostSlave);
 
-            execList.add(execObj);
+                execList.add(execObj);
+            }
 
         }catch (JSONException e) {
             Log.SchedulerLogging.log(Level.SEVERE,HTTPAPI.class.getName()+" Exception in parseExecutorMetrics: "+ e.toString());

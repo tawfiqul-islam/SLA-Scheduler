@@ -15,7 +15,7 @@ public class ExecutorTracker extends Thread {
             for (int i = 0;i<MonitorManager.slaveIPPort.size();i++ ) {
 
                 ServerResponse obj = HTTPAPI.HTTPGETSender("http://"+MonitorManager.slaveIPPort.get(i)+"/monitor/statistics");
-                ArrayList<Executor> executorList = HTTPAPI.parseExecutorMetrics(obj.getResponseString());
+                ArrayList<Executor> executorList = HTTPAPI.parseExecutorMetrics(obj.getResponseString(),MonitorManager.slaveIPPort.get(i));
 
                 for(int j=0;j<executorList.size();j++) {
                     executorObj=executorList.get(j);
@@ -35,6 +35,12 @@ public class ExecutorTracker extends Thread {
                         MonitorManager.executorTracker.put(key, executorObj);
                     }
                 }
+            }
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
