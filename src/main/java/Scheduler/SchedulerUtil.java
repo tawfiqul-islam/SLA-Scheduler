@@ -81,6 +81,8 @@ public class SchedulerUtil {
                 // use http api reserve-method to reserve resources in this agent
                 if (resObj.getStatusCode() != 409) {
 
+
+
                     while (true) {
                         try {
                             Thread.sleep(1000);
