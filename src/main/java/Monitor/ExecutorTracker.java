@@ -8,10 +8,15 @@ import java.util.ArrayList;
 
 public class ExecutorTracker extends Thread {
 
+    public static boolean shutDown=false;
     public void run() {
 
         Executor tmpExecutor,executorObj;
         while(true) {
+
+            if(shutDown) {
+                break;
+            }
             for (int i = 0;i<MonitorManager.slaveIPPort.size();i++ ) {
 
                 ServerResponse obj = HTTPAPI.HTTPGETSender("http://"+MonitorManager.slaveIPPort.get(i)+"/monitor/statistics");
@@ -20,9 +25,9 @@ public class ExecutorTracker extends Thread {
                 for(int j=0;j<executorList.size();j++) {
                     executorObj=executorList.get(j);
                     String key = executorObj.getFrameworkID() + executorObj.getExecutorID();
-                    if (MonitorManager.executorTracker.containsKey(key)) {
+                    if (MonitorManager.executorTrackerMap.containsKey(key)) {
 
-                        tmpExecutor = MonitorManager.executorTracker.get(key);
+                        tmpExecutor = MonitorManager.executorTrackerMap.get(key);
                         if (tmpExecutor.getMEMMaxUsage() > executorObj.getMEMMaxUsage())
                             executorObj.setMEMMaxUsage(tmpExecutor.getMEMMaxUsage());
                         if (tmpExecutor.getMEMMinUsage() < executorObj.getMEMMinUsage())
@@ -30,15 +35,14 @@ public class ExecutorTracker extends Thread {
                         executorObj.setMEMTotalUsage(executorObj.getMEMTotalUsage() + tmpExecutor.getMEMTotalUsage());
                         executorObj.setTotalObservations(tmpExecutor.getTotalObservations() + 1);
 
-                        MonitorManager.executorTracker.put(key, executorObj);
+                        MonitorManager.executorTrackerMap.put(key, executorObj);
                     } else {
-                        MonitorManager.executorTracker.put(key, executorObj);
+                        MonitorManager.executorTrackerMap.put(key, executorObj);
                     }
                 }
             }
-
             try {
-                Thread.sleep(1000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

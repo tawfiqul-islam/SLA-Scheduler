@@ -1,6 +1,7 @@
 package Scheduler;
 
 import JobMananger.JobRequestHandler;
+import Monitor.MonitorManager;
 import Operator.HTTPAPI;
 import Settings.SettingsLoader;
 
@@ -56,9 +57,13 @@ public class SchedulerManager {
         jobRequestHandlerObj.start();
         Log.SchedulerLogging.log(Level.INFO,SchedulerManager.class.getName()+": Started JobRequestHandler");
 
+        //start monitor
+        MonitorManager.monitorJobs();
         //open output file for writing results
         try {
-            StatusUpdater.sb.append("id");
+            StatusUpdater.sb.append("job-id");
+            StatusUpdater.sb.append(',');
+            StatusUpdater.sb.append("framework-id");
             StatusUpdater.sb.append(',');
             StatusUpdater.sb.append("arrival-time");
             StatusUpdater.sb.append(',');
@@ -81,6 +86,20 @@ public class SchedulerManager {
             StatusUpdater.sb.append("MPE");
             StatusUpdater.sb.append(',');
             StatusUpdater.sb.append("Agents");
+            StatusUpdater.sb.append(',');
+            StatusUpdater.sb.append("CPU-User-AVG");
+            StatusUpdater.sb.append(',');
+            StatusUpdater.sb.append("CPU-System-AVG");
+            StatusUpdater.sb.append(',');
+            StatusUpdater.sb.append("CPU-Mean-Uti");
+            StatusUpdater.sb.append(',');
+            StatusUpdater.sb.append("MEM-Min");
+            StatusUpdater.sb.append(',');
+            StatusUpdater.sb.append("MEM-Max");
+            StatusUpdater.sb.append(',');
+            StatusUpdater.sb.append("MEM-Mean");
+
+
             StatusUpdater.sb.append('\n');
 
             pw = new PrintWriter(new File(SchedulerUtil.schedulerHome+"/output.csv"));

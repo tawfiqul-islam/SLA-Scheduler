@@ -1,5 +1,6 @@
 package Entity;
 
+import Monitor.MonitorManager;
 import Scheduler.SchedulerUtil;
 
 import java.util.ArrayList;
@@ -45,6 +46,119 @@ public class Job {
     private String appArgs;
     private boolean shutdown;
 
+    //Resource usage stats
+    private double CPUUserTime;
+    private double CPUUserAVG;
+    private double CPUSystemAVG;
+    private double CPUSystemTime;
+    private ArrayList<Executor> executorList = new ArrayList<>();
+    private double CPUMeanUtilization;
+    private double MEMMaxUsage;
+    private double MEMMinUsage;
+    private double MEMMeanUsage;
+
+    private double jobDuration;
+
+    public double getJobDuration() {
+        return jobDuration;
+    }
+
+    public void setJobDuration(double jobDuration) {
+        this.jobDuration = jobDuration;
+    }
+
+    public double getCPUUserTime() {
+        return CPUUserTime;
+    }
+
+    public void setCPUUserTime() {
+        CPUUserTime=0;
+        for(int i=0;i<executorList.size();i++) {
+            CPUUserTime+=executorList.get(i).getCPUTimeUser();
+        }
+        CPUUserAVG=(CPUUserTime*allocatedExecutors)/jobDuration;
+    }
+
+    public double getCPUSystemTime() {
+        return CPUSystemTime;
+    }
+
+    public void setCPUSystemTime() {
+        CPUSystemTime=0;
+        for(int i=0;i<executorList.size();i++) {
+            CPUSystemTime+=executorList.get(i).getCPUTimeSystem();
+        }
+        CPUSystemAVG=(CPUSystemTime*allocatedExecutors)/jobDuration;
+    }
+    public double getCPUUserAVG() {
+        return CPUUserAVG;
+    }
+    public double getCPUSystemAVG() {
+        return CPUSystemAVG;
+    }
+
+    public ArrayList<Executor> getExecutorList() {
+        return executorList;
+    }
+
+    public void setExecutorList() {
+        for(int i=0;i<allocatedExecutors;i++) {
+            if(MonitorManager.executorTrackerMap.containsKey(frameworkID+i)) {
+                executorList.add(MonitorManager.executorTrackerMap.get(frameworkID+i));
+            }
+        }
+    }
+
+    public double getCPUMeanUtilization() {
+        return CPUMeanUtilization;
+    }
+
+    public void setCPUMeanUtilization() {
+        CPUMeanUtilization=((CPUUserTime+CPUSystemTime)/jobDuration)/(allocatedExecutors*coresPerExecutor)*100;
+    }
+
+    public double getMEMMaxUsage() {
+
+        return MEMMaxUsage;
+    }
+
+    public void setMEMMaxUsage() {
+        MEMMaxUsage=0;
+        for(int i=0;i<executorList.size();i++) {
+            if(executorList.get(i).getMEMMaxUsage()>MEMMaxUsage) {
+                MEMMaxUsage= executorList.get(i).getMEMMaxUsage();
+            }
+        }
+        MEMMaxUsage*=0.000001;
+    }
+
+    public double getMEMMinUsage() {
+        return MEMMinUsage;
+    }
+
+    public void setMEMMinUsage() {
+        MEMMinUsage=executorList.get(0).getMEMMinUsage();
+        for(int i=1;i<executorList.size();i++) {
+            if(executorList.get(i).getMEMMaxUsage()<MEMMinUsage) {
+                MEMMinUsage= executorList.get(i).getMEMMaxUsage();
+            }
+            MEMMinUsage*=0.000001;
+        }
+    }
+
+    public double getMEMMeanUsage() {
+        return MEMMeanUsage;
+    }
+
+    public void setMEMMeanUsage() {
+        MEMMeanUsage=0;
+        for(int i=0;i<executorList.size();i++) {
+            executorList.get(i).setMEMMeanUsage();
+            MEMMeanUsage+= executorList.get(i).getMEMMeanUsage();
+        }
+        MEMMeanUsage/=allocatedExecutors;
+        MEMMeanUsage*=0.000001;
+    }
 
     public String getJobID() {
         return jobID;

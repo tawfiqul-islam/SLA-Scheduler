@@ -9,10 +9,10 @@ import java.util.HashMap;
 
 public class MonitorManager {
 
-    public static HashMap<String, Executor> executorTracker = new HashMap<>();
+    public static HashMap<String, Executor> executorTrackerMap = new HashMap<>();
     public static ArrayList<String> slaveIPPort = new ArrayList<>();
 
-    public static void main(String args[]) {
+    public static void monitorJobs() {
 
         ServerResponse obj = HTTPAPI.HTTPGETSender("http://115.146.92.100:5050/master/slaves");
         HTTPAPI.parseSlaves(obj.getResponseString());

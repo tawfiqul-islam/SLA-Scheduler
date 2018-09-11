@@ -117,8 +117,8 @@ public class Executor {
         return MEMMeanUsage;
     }
 
-    public void setMEMMeanUsage(double MEMMeanUsage) {
-        this.MEMMeanUsage = MEMMeanUsage;
+    public void setMEMMeanUsage() {
+        MEMMeanUsage = MEMTotalUsage/totalObservations;
     }
 
     public long getTotalObservations() {

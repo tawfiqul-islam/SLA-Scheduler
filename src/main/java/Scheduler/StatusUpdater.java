@@ -229,8 +229,21 @@ public class StatusUpdater extends Thread{
         double startTime=((currentJob.getStartTime()*0.000001)-SchedulerManager.startTime)/1000.0;
         double finishTime=((currentJob.getFinishTime()*0.000001)-SchedulerManager.startTime)/1000.0;
 
+        currentJob.setJobDuration(finishTime-startTime);
+        currentJob.setExecutorList();
+        currentJob.setCPUUserTime();
+        currentJob.setCPUSystemTime();
+        currentJob.setCPUMeanUtilization();
+        currentJob.setMEMMaxUsage();
+        currentJob.setMEMMinUsage();
+        currentJob.setMEMMeanUsage();
+
+
         //resultID as jobID
         StatusUpdater.sb.append(currentJob.getResultID());
+        StatusUpdater.sb.append(',');
+        //framework ID
+        StatusUpdater.sb.append(currentJob.getFrameworkID());
         StatusUpdater.sb.append(',');
         //arrival time
         StatusUpdater.sb.append(arrivalTime);
@@ -248,7 +261,7 @@ public class StatusUpdater extends Thread{
         StatusUpdater.sb.append(currentJob.getSchedulingDelay()/1000.0);
         StatusUpdater.sb.append(',');
         //job duration
-        StatusUpdater.sb.append(finishTime-startTime);
+        StatusUpdater.sb.append(currentJob.getJobDuration());
         StatusUpdater.sb.append(',');
         //executors
         StatusUpdater.sb.append(currentJob.getExecutors());
@@ -264,6 +277,23 @@ public class StatusUpdater extends Thread{
         StatusUpdater.sb.append(',');
         //number of distinct agents used
         StatusUpdater.sb.append(currentJob.getAgentList().stream().distinct().count());
+        //CPU-User-AVG
+        StatusUpdater.sb.append(currentJob.getCPUUserAVG());
+        StatusUpdater.sb.append(',');
+        //CPU-System-AVG"
+        StatusUpdater.sb.append(currentJob.getCPUSystemAVG());
+        StatusUpdater.sb.append(',');
+        //CPU-Mean-Uti
+        StatusUpdater.sb.append(currentJob.getCPUMeanUtilization());
+        StatusUpdater.sb.append(',');
+        //MEM-Min
+        StatusUpdater.sb.append(currentJob.getMEMMinUsage());
+        StatusUpdater.sb.append(',');
+        //MEM-Max
+        StatusUpdater.sb.append(currentJob.getMEMMaxUsage());
+        StatusUpdater.sb.append(',');
+        //MEM-Mean
+        StatusUpdater.sb.append(currentJob.getMEMMeanUsage());
         StatusUpdater.sb.append('\n');
 
     }

@@ -1,7 +1,6 @@
 package Entity;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Framework {
 
@@ -11,12 +10,6 @@ public class Framework {
     private String ID;
     private boolean active;
     private int executors;
-    private ArrayList<Executor> executorList = new ArrayList<>();
-    private double CPUMeanUtilization;
-    private double MEMMaxUsage;
-    private double MEMMinUsage;
-    private double MEMMeanUsage;
-    private HashMap<String, Integer> hostVMList = new HashMap<>();
 
     public long getStartTime() {
         return startTime;
