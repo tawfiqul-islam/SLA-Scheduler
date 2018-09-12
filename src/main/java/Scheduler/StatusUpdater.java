@@ -277,6 +277,7 @@ public class StatusUpdater extends Thread{
         StatusUpdater.sb.append(',');
         //number of distinct agents used
         StatusUpdater.sb.append(currentJob.getAgentList().stream().distinct().count());
+        StatusUpdater.sb.append(',');
         //CPU-User-AVG
         StatusUpdater.sb.append(currentJob.getCPUUserAVG());
         StatusUpdater.sb.append(',');

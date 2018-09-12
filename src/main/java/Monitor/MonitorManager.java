@@ -3,6 +3,7 @@ package Monitor;
 import Entity.Executor;
 import Operator.HTTPAPI;
 import Operator.ServerResponse;
+import Settings.Settings;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +15,7 @@ public class MonitorManager {
 
     public static void monitorJobs() {
 
-        ServerResponse obj = HTTPAPI.HTTPGETSender("http://115.146.92.100:5050/master/slaves");
+        ServerResponse obj = HTTPAPI.HTTPGETSender(Settings.mesosMasterURI+"/master/slaves");
         HTTPAPI.parseSlaves(obj.getResponseString());
 
         ExecutorTracker executorTrackerObj = new ExecutorTracker();

@@ -3,7 +3,7 @@ package Monitor;
 import Entity.Executor;
 import Operator.HTTPAPI;
 import Operator.ServerResponse;
-
+import java.util.logging.Level;
 import java.util.ArrayList;
 
 public class ExecutorTracker extends Thread {
@@ -11,6 +11,7 @@ public class ExecutorTracker extends Thread {
     public static boolean shutDown=false;
     public void run() {
 
+        Log.SchedulerLogging.log(Level.INFO, this.getClass().getName() + ": Started ExecutorTracker");
         Executor tmpExecutor,executorObj;
         while(true) {
 
