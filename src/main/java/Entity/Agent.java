@@ -18,6 +18,15 @@ public class Agent {
     private long registeredTime;
     private double weight;
     private long runTime=0;
+    private int price;
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
 
     public double getDefaultCPU() {
         return defaultCPU;

@@ -17,5 +17,27 @@
     <orderEntry type="library" name="httpclient-4.5" level="application" />
     <orderEntry type="library" name="httpcore-4.4.4" level="application" />
     <orderEntry type="library" name="commons-logging-1.2" level="application" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/jar_files/lpsolve-5.5.2.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/SCPSolver.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/LPSOLVESolverPack.jar!/" />
+          <root url="file://$MODULE_DIR$" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/src/main/java" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>

@@ -186,8 +186,8 @@ public class BestFitScheduler extends Thread {
         // So Reserve Resources in the Agents
         if (fullyPlaced){
             currentJob.setAllocatedExecutors(currentJob.getExecutors());
-            SchedulerUtil.resourceReservation(placedAgents,currentJob,classVar);
             placementTime=System.currentTimeMillis()-placementTime;
+            SchedulerUtil.resourceReservation(placedAgents,currentJob,classVar);
             return true;
         }
         //Could not place all the executors, take back the resources in Agent data structure..

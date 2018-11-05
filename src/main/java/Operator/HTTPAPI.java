@@ -263,6 +263,7 @@ public class HTTPAPI {
                         case "cpus":
                             agentObj.setCpu(resources.getJSONObject(j).getJSONObject("scalar").getDouble("value"));
                             agentObj.setDefaultCPU(agentObj.getCpu());
+                            agentObj.setPrice((int)agentObj.getCpu()/4);
                             break;
                         case "mem":
                             agentObj.setMem(resources.getJSONObject(j).getJSONObject("scalar").getDouble("value"));
