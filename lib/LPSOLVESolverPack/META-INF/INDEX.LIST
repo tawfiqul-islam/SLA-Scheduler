@@ -1,0 +1,8 @@
+JarIndex-Version: 1.0
+
+LPSOLVESolverPack.jar
+lib
+lpsolve
+scpsolver
+scpsolver/lpsolver
+

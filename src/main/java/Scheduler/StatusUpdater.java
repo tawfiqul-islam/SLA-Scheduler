@@ -18,6 +18,7 @@ public class StatusUpdater extends Thread{
 
     public static void updateAgents()
     {
+        Log.SchedulerLogging.log(Level.INFO, StatusUpdater.class.getName() + " Updating Agents");
         ArrayList<Agent> updatedAgentList;
         updatedAgentList=HTTPAPI.GET_AGENT();
 
@@ -78,6 +79,7 @@ public class StatusUpdater extends Thread{
 
     public static void updateJobs()
     {
+        Log.SchedulerLogging.log(Level.INFO, StatusUpdater.class.getName() + " Updating Jobs");
         ArrayList<Framework> frameworkList = HTTPAPI.GET_FRAMEWORK();
         for(int i=0;i<frameworkList.size();i++) {
             boolean found = false;

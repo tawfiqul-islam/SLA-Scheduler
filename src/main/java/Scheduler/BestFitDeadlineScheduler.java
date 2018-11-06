@@ -145,7 +145,7 @@ public class BestFitDeadlineScheduler extends Thread {
 
             Log.SchedulerLogging.log(Level.INFO, classVar.getName() + ": Placed executor(s) for Job: " + currentJob.getJobID());
             currentJob.setResourceReserved(true);
-            currentJob.setSchedulingDelay(currentJob.getSchedulingDelay() + BestFitScheduler.placementTime);
+            currentJob.setSchedulingDelay(currentJob.getSchedulingDelay() + SchedulerUtil.placementTime);
             if (currentJob.getAllocatedExecutors() == currentJob.getExecutors()) {
                 Log.SchedulerLogging.log(Level.INFO, classVar.getName() + ": All executors are placed for Job: " + currentJob.getJobID());
 

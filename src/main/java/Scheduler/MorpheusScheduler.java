@@ -71,7 +71,7 @@ public class MorpheusScheduler extends Thread{
                                 }
                             }
                             else {
-                                if (placeExecutor(currentJob,this.getClass())) {
+                                if (RoundRobinScheduler.placeExecutor(currentJob,this.getClass())) {
 
                                     Log.SchedulerLogging.log(Level.INFO, MorpheusScheduler.class.getName() + ": Placed executor(s) for Job: " + currentJob.getJobID());
                                     currentJob.setResourceReserved(true);
@@ -148,7 +148,7 @@ public class MorpheusScheduler extends Thread{
             clusterMEMCap=SchedulerUtil.agentList.get(i).getDefaultMEM();
         }
     }
-
+/*
     private boolean placeExecutor(Job currentJob, Class classVar)  {
 
         int executorCount=0,storedIndex=index,lastPlaced=index;
@@ -193,9 +193,10 @@ public class MorpheusScheduler extends Thread{
                 index=lastPlaced+1;
             }
 
+            placementTime=System.currentTimeMillis()-placementTime;
             SchedulerUtil.resourceReservation(placedAgents,currentJob,classVar.getClass());
 
-            placementTime=System.currentTimeMillis()-placementTime;
+
             return true;
         }
 
@@ -209,6 +210,6 @@ public class MorpheusScheduler extends Thread{
             }
             return false;
         }
-    }
+    }*/
 }
 

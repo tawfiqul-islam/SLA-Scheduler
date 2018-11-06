@@ -23,7 +23,7 @@ public class SchedulerUtil {
     public static List<Job> fullySubmittedJobList = Collections.synchronizedList(new ArrayList<Job>());
     public static List<Job> finishedJobList = Collections.synchronizedList(new ArrayList<Job>());
     public static List<Agent> agentList;
-
+    public static long placementTime;
     public static void printJobBuffer() {
         for (int i=0;i<jobBuffer.size();i++) {
             System.out.println(jobBuffer.get(i).toString());

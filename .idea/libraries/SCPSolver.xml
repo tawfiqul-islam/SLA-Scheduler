@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="SCPSolver">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/SCPSolver.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

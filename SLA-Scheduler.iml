@@ -11,33 +11,13 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Arquillian JUnit:Release" level="project" />
-    <orderEntry type="library" name="java-json" level="application" />
-    <orderEntry type="library" name="spark-launcher_2.11-2.0.1" level="application" />
-    <orderEntry type="library" name="json-simple-1.1" level="application" />
-    <orderEntry type="library" name="httpclient-4.5" level="application" />
-    <orderEntry type="library" name="httpcore-4.4.4" level="application" />
-    <orderEntry type="library" name="commons-logging-1.2" level="application" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/jar_files/lpsolve-5.5.2.0.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/SCPSolver.jar!/" />
-          <root url="jar://$MODULE_DIR$/lib/LPSOLVESolverPack.jar!/" />
-          <root url="file://$MODULE_DIR$" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/src/main/java" />
-        </SOURCES>
-      </library>
-    </orderEntry>
+    <orderEntry type="library" exported="" name="java-json" level="application" />
+    <orderEntry type="library" exported="" name="spark-launcher_2.11-2.0.1" level="application" />
+    <orderEntry type="library" exported="" name="json-simple-1.1" level="application" />
+    <orderEntry type="library" exported="" name="httpclient-4.5" level="application" />
+    <orderEntry type="library" exported="" name="httpcore-4.4.4" level="application" />
+    <orderEntry type="library" exported="" name="commons-logging-1.2" level="application" />
+    <orderEntry type="library" exported="" name="SCPSolver" level="project" />
+    <orderEntry type="library" exported="" name="LPSOLVESolverPack" level="project" />
   </component>
 </module>

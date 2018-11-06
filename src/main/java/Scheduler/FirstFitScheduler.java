@@ -53,7 +53,7 @@ public class FirstFitScheduler extends Thread {
 
                                     Log.SchedulerLogging.log(Level.INFO, FirstFitScheduler.class.getName() + ": Placed executor(s) for Job: " + currentJob.getJobID());
                                     currentJob.setResourceReserved(true);
-                                    currentJob.setSchedulingDelay(currentJob.getSchedulingDelay()+BestFitScheduler.placementTime);
+                                    currentJob.setSchedulingDelay(currentJob.getSchedulingDelay()+SchedulerUtil.placementTime);
 
                                     if (currentJob.getAllocatedExecutors() == currentJob.getExecutors()) {
                                         Log.SchedulerLogging.log(Level.INFO, FirstFitScheduler.class.getName() + ": All executors are placed for Job: " + currentJob.getJobID());

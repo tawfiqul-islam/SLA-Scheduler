@@ -1,0 +1,18 @@
+JarIndex-Version: 1.0
+
+SCPSolver.jar
+nmi
+nmi/assayoptimization
+nmi/data
+nmi/gui
+nmi/tools
+scpsolver
+scpsolver/constraints
+scpsolver/graph
+scpsolver/infeas
+scpsolver/lpsolver
+scpsolver/problems
+scpsolver/qpsolver
+scpsolver/util
+scpsolver/util/debugging
+

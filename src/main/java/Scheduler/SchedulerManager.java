@@ -114,8 +114,11 @@ public class SchedulerManager {
             RoundRobinScheduler rrSchedulerObj = new RoundRobinScheduler();
             rrSchedulerObj.start();
         }
-        else if(SchedulerUtil.schedulerAlgorithm==Algorithm.BFHeuristic) {
-            Log.SchedulerLogging.log(Level.INFO,SchedulerManager.class.getName()+": Started BestFit Scheduler ");
+        else if(SchedulerUtil.schedulerAlgorithm==Algorithm.BFHeuristic||SchedulerUtil.schedulerAlgorithm==Algorithm.ILP) {
+            if(SchedulerUtil.schedulerAlgorithm==Algorithm.BFHeuristic)
+                Log.SchedulerLogging.log(Level.INFO,SchedulerManager.class.getName()+": Started BestFit Scheduler ");
+            else
+                Log.SchedulerLogging.log(Level.INFO,SchedulerManager.class.getName()+": Started ILP Scheduler ");
             startTime=System.currentTimeMillis();
             BestFitScheduler bfSchedulerObj = new BestFitScheduler();
             bfSchedulerObj.start();

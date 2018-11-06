@@ -97,7 +97,7 @@ public class RoundRobinScheduler extends Thread{
         }
     }
 
-    private boolean placeExecutor(Job currentJob, Class classVar)  {
+    static boolean placeExecutor(Job currentJob, Class classVar)  {
 
         int executorCount=0,storedIndex=index,lastPlaced=index;
 
@@ -141,9 +141,9 @@ public class RoundRobinScheduler extends Thread{
                 index=lastPlaced+1;
             }
 
+            placementTime=System.currentTimeMillis()-placementTime;
             SchedulerUtil.resourceReservation(placedAgents,currentJob,classVar.getClass());
 
-            placementTime=System.currentTimeMillis()-placementTime;
             return true;
         }
 

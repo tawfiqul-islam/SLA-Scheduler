@@ -10,8 +10,6 @@ import java.util.logging.Level;
 
 public class BestFitScheduler extends Thread {
 
-    static long placementTime;
-
     static class AgentComparator implements Comparator<Agent> {
         @Override
         public int compare(Agent a, Agent b) {
@@ -61,7 +59,6 @@ public class BestFitScheduler extends Thread {
                 synchronized (SchedulerUtil.fullySubmittedJobList) {
                     synchronized (SchedulerUtil.agentList) {
 
-
                         //if job_queue is empty, fetch jobs from job_buffer to job_queue
                         //otherwise keep working on the current jobqueue
                         if(SchedulerUtil.jobQueue.size()==0) {
@@ -98,10 +95,21 @@ public class BestFitScheduler extends Thread {
                                 }
                             }
                             else {
-                                if (placeExecutor(currentJob,BestFitScheduler.class)) {
+
+                                boolean isPlaced;
+                                if(SchedulerUtil.schedulerAlgorithm==Algorithm.ILP)
+                                {
+                                    Log.SchedulerLogging.log(Level.INFO, BestFitScheduler.class.getName() + ": Trying to place executors by using ILP");
+                                    isPlaced=LPSolver.placeExecutorILP(currentJob,BestFitScheduler.class);
+                                    Log.SchedulerLogging.log(Level.INFO, BestFitScheduler.class.getName() + ": Finished ILP solver placement");
+                                }
+                                else {
+                                    isPlaced=placeExecutor(currentJob,BestFitScheduler.class);
+                                }
+                                if (isPlaced) {
                                     Log.SchedulerLogging.log(Level.INFO, BestFitScheduler.class.getName() + ": Placed executor(s) for Job: " + currentJob.getJobID());
                                     currentJob.setResourceReserved(true);
-                                    currentJob.setSchedulingDelay(currentJob.getSchedulingDelay()+placementTime);
+                                    currentJob.setSchedulingDelay(currentJob.getSchedulingDelay()+SchedulerUtil.placementTime);
 
                                     if (currentJob.getAllocatedExecutors() == currentJob.getExecutors()) {
                                         Log.SchedulerLogging.log(Level.INFO, BestFitScheduler.class.getName() + ": All executors are placed for Job: " + currentJob.getJobID());
@@ -114,6 +122,7 @@ public class BestFitScheduler extends Thread {
                                         i--;
                                     }
                                 } else {
+                                    Log.SchedulerLogging.log(Level.INFO, BestFitScheduler.class.getName() + " Unable to place Executors for Job "+currentJob.getJobID());
                                     //could not place any executors for the current job
                                     //Log.SchedulerLogging.log(Level.INFO, BestFitScheduler.class.getName() + ":Could not place any executor(s) for Job: " + currentJob.getJobID());
                                 }
@@ -154,7 +163,7 @@ public class BestFitScheduler extends Thread {
         int executorCount=0;
         boolean fullyPlaced=false;
         ArrayList<Agent> placedAgents = new ArrayList<>();
-        placementTime=System.currentTimeMillis();
+        SchedulerUtil.placementTime=System.currentTimeMillis();
 
         for(int i=0;i<SchedulerUtil.agentList.size();i++) {
 
@@ -186,7 +195,7 @@ public class BestFitScheduler extends Thread {
         // So Reserve Resources in the Agents
         if (fullyPlaced){
             currentJob.setAllocatedExecutors(currentJob.getExecutors());
-            placementTime=System.currentTimeMillis()-placementTime;
+            SchedulerUtil.placementTime=System.currentTimeMillis()-SchedulerUtil.placementTime;
             SchedulerUtil.resourceReservation(placedAgents,currentJob,classVar);
             return true;
         }
