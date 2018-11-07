@@ -12,11 +12,12 @@ import scpsolver.constraints.*;
 import java.util.logging.Level;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 
 public class LPSolver {
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
 
         LPWizard lpw = new LPWizard();
         lpw.setMinProblem(true);
@@ -40,81 +41,110 @@ public class LPSolver {
         {
             System.out.println(consList.get(i).getName()+": RHS: "+consList.get(i).getRHS());
         }
-    }
+    }*/
+
+    /*public static void main(String[] args) {
+
+        LPWizard lpw = new LPWizard();
+        lpw.setMinProblem(true);
+        lpw.plus("x1",5.0);
+        lpw.plus("x2",10.0);
+        LPWizardConstraint lpconsfirst=lpw.addConstraint("c1",8,"<=");
+        lpconsfirst.plus("x1",3.0);
+        lpconsfirst.plus("x2",1.0);
+
+        lpw.addConstraint("c2",4,"<=").plus("x2",4.0);
+
+        lpconsfirst=lpw.addConstraint("c3", 2, ">=");
+        lpconsfirst.plus("x1",2.0);
+
+        lpw.setAllVariablesInteger();
+        LinearProgramSolver solver  = SolverFactory.newDefault();
+        LPSolution lpsol =lpw.solve(solver);
+
+        if(lpsol.getObjectiveValue()==0) {
+            System.out.println("model is infeasible");
+        } else {
+            System.out.println(lpsol.toString());
+        }
+        ArrayList<Constraint> consList;
+        consList=lpw.getLP().getConstraints();
+        for (int i=0;i<consList.size();i++)
+        {
+            System.out.println(consList.get(i).getName()+": RHS: "+consList.get(i).getRHS());
+        }
+        System.out.println(lpw.getLP().getConstraints().size());
+    }*/
     public static boolean placeExecutorILP(Job currentJob,Class classVar)
     {
         Log.SchedulerLogging.log(Level.INFO, LPSolver.class.getName() + ": in ILP Function");
         SchedulerUtil.placementTime=System.currentTimeMillis();
-        Log.SchedulerLogging.log(Level.INFO, LPSolver.class.getName() + ": recorded current system time");
         ArrayList<Agent> placedAgents = new ArrayList<>();
-        Log.SchedulerLogging.log(Level.INFO, LPSolver.class.getName() + ": declared Arraylist");
         LPWizard lpw = new LPWizard();
-        Log.SchedulerLogging.log(Level.INFO, LPSolver.class.getName() + ": declared lpwizard");
         lpw.setMinProblem(true);
-        Log.SchedulerLogging.log(Level.INFO, LPSolver.class.getName() + ": set min prob");
 
-        Log.SchedulerLogging.log(Level.INFO, LPSolver.class.getName() + ": Setting Objective Function");
         //set objective function: agent selection as decision variables
         for(int i=0;i<SchedulerUtil.agentList.size();i++) {
-            lpw.plus(SchedulerUtil.agentList.get(i).getId(),SchedulerUtil.agentList.get(i).getPrice());
-            lpw.setBoolean(SchedulerUtil.agentList.get(i).getId());
+            lpw.plus("x-"+SchedulerUtil.agentList.get(i).getId(),SchedulerUtil.agentList.get(i).getPrice());
+            lpw.setBoolean("x-"+SchedulerUtil.agentList.get(i).getId());
         }
         //set constraints: 1. executor placement constraint-> 1 executor in at most 1 agent
-        Log.SchedulerLogging.log(Level.INFO, LPSolver.class.getName() + ": Setting Executor Placement Constraints");
         for(int i=0;i<currentJob.getExecutors();i++) {
 
             LPWizardConstraint tmpsConsP = lpw.addConstraint("pc"+i,1,"=");
 
             for(int j=0;j<SchedulerUtil.agentList.size();j++) {
-                tmpsConsP.plus(i+SchedulerUtil.agentList.get(j).getId(),1);
+                tmpsConsP.plus("y-"+i+"-"+SchedulerUtil.agentList.get(j).getId(),1);
             }
 
             tmpsConsP.setAllVariablesBoolean();
         }
 
         //set constraints: 2. agent capacity constraint
-        Log.SchedulerLogging.log(Level.INFO, LPSolver.class.getName() + ": Setting Agent CPU capacity Constraints");
         //cpu
-        for(int i=0;i<SchedulerUtil.agentList.size();i++) {
+        for(int j=0;j<SchedulerUtil.agentList.size();j++) {
 
-            LPWizardConstraint tmpsConsCC = lpw.addConstraint("cc_cpu"+i,0,">=");
+            LPWizardConstraint tmpsConsCC = lpw.addConstraint("cc_cpu"+j,0,">=");
 
-            for(int j=0;j<currentJob.getExecutors();j++) {
-                tmpsConsCC.plus(j+SchedulerUtil.agentList.get(i).getId(),(int)(SchedulerUtil.agentList.get(i).getCpu()/currentJob.getCoresPerExecutor()));
+            for(int i=0;i<currentJob.getExecutors();i++) {
+                tmpsConsCC.plus("y-"+i+"-"+SchedulerUtil.agentList.get(j).getId(),currentJob.getCoresPerExecutor());
             }
-            tmpsConsCC.plus(SchedulerUtil.agentList.get(i).getId(),-(int)SchedulerUtil.agentList.get(i).getCpu());
+
+            tmpsConsCC.plus("x-"+SchedulerUtil.agentList.get(j).getId(),-SchedulerUtil.agentList.get(j).getCpu());
         }
 
         //memory
-        Log.SchedulerLogging.log(Level.INFO, LPSolver.class.getName() + ": Setting Agent Memory capacity Constraints");
-        for(int i=0;i<SchedulerUtil.agentList.size();i++) {
+        for(int j=0;j<SchedulerUtil.agentList.size();j++) {
 
-            LPWizardConstraint tmpsConsCM = lpw.addConstraint("cc_mem"+i,0,">=");
+            LPWizardConstraint tmpsConsCM = lpw.addConstraint("cc_mem"+j,0,">=");
 
-            for(int j=0;j<currentJob.getExecutors();j++) {
-                tmpsConsCM.plus(j+SchedulerUtil.agentList.get(i).getId(),(int)(SchedulerUtil.agentList.get(i).getMem()/Math.ceil(currentJob.getTotalExecutorMemory())));
+            for(int i=0;i<currentJob.getExecutors();i++) {
+                tmpsConsCM.plus("y-"+i+"-"+SchedulerUtil.agentList.get(j).getId(),Math.ceil(currentJob.getTotalExecutorMemory()));
             }
-            tmpsConsCM.plus(SchedulerUtil.agentList.get(i).getId(),-(int)SchedulerUtil.agentList.get(i).getMem());
+            tmpsConsCM.plus("x-"+SchedulerUtil.agentList.get(j).getId(),-SchedulerUtil.agentList.get(j).getMem());
+
         }
+        /*Log.SchedulerLogging.log(Level.INFO, LPSolver.class.getName() + ": Total Constraints: "+lpw.getLP().getConstraints().size());
+        for (int i=0;i< lpw.getLP().getConstraints().size();i++) {
+            Log.SchedulerLogging.log(Level.INFO,"constraint-"+i+": "+lpw.getLP().getConstraints().get(i).getName());
+        }*/
         Log.SchedulerLogging.log(Level.INFO, LPSolver.class.getName() + ": Solving LP");
         LinearProgramSolver solver  = SolverFactory.newDefault();
         LPSolution lpsol =lpw.solve(solver);
         Log.SchedulerLogging.log(Level.INFO, LPSolver.class.getName() + ": Finished solving LP. Objective Value: "+lpsol.getObjectiveValue());
 
-        if(lpsol.getObjectiveValue()!=0) {
+        if(lpsol.getObjectiveValue()>0) {
+            Log.SchedulerLogging.log(Level.INFO,LPSolver.class.getName() + lpsol.toString());
             for (int i = 0; i < currentJob.getExecutors(); i++) {
                 for (int j = 0; j < SchedulerUtil.agentList.size(); j++) {
-                    if (lpsol.getBoolean(i + SchedulerUtil.agentList.get(j).getId())) {
+                    if (lpsol.getBoolean("y-"+i+"-"+SchedulerUtil.agentList.get(j).getId())) {
+                        SchedulerUtil.agentList.get(j).setCpu(SchedulerUtil.agentList.get(j).getCpu() - currentJob.getCoresPerExecutor());
+                        SchedulerUtil.agentList.get(j).setMem(SchedulerUtil.agentList.get(j).getMem() - Math.ceil(currentJob.getTotalExecutorMemory()));
                         placedAgents.add(SchedulerUtil.agentList.get(j));
                         Log.SchedulerLogging.log(Level.INFO, LPSolver.class.getName() + "Added Agent "+placedAgents.get(placedAgents.size()-1).getId());
                         break;
                     }
                 }
-            }
-
-            for (int i = 0; i < placedAgents.size(); i++) {
-                placedAgents.get(i).setCpu(SchedulerUtil.agentList.get(i).getCpu() - currentJob.getCoresPerExecutor());
-                placedAgents.get(i).setMem(SchedulerUtil.agentList.get(i).getMem() - Math.ceil(currentJob.getTotalExecutorMemory()));
             }
 
             SchedulerUtil.placementTime=System.currentTimeMillis()-SchedulerUtil.placementTime;
