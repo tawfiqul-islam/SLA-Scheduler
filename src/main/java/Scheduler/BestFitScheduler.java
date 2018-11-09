@@ -137,6 +137,12 @@ public class BestFitScheduler extends Thread {
                                     currentSubmittedJob.setSubmitted(true);
                                     Log.SchedulerLogging.log(Level.INFO, BestFitScheduler.class.getName() + ": Submitting Job: " + currentSubmittedJob.getJobID() +" with role: "+currentSubmittedJob.getRole()+ " to the Cluster");
                                     new SparkLauncherAPI(currentSubmittedJob).start();
+                                    try {
+                                        Thread.sleep(3000);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+
                                 }
                             }
                         }

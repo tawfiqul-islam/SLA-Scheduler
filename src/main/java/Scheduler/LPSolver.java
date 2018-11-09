@@ -173,11 +173,15 @@ public class LPSolver {
             for (int i = 0; i < currentJob.getExecutors(); i++) {
                 for (int j = 0; j < SchedulerUtil.agentList.size(); j++) {
                     if (lpsol.getBoolean("y-"+i+"-"+SchedulerUtil.agentList.get(j).getId())) {
-                        SchedulerUtil.agentList.get(j).setCpu(SchedulerUtil.agentList.get(j).getCpu() - currentJob.getCoresPerExecutor());
-                        SchedulerUtil.agentList.get(j).setMem(SchedulerUtil.agentList.get(j).getMem() - Math.ceil(currentJob.getTotalExecutorMemory()));
-                        placedAgents.add(SchedulerUtil.agentList.get(j));
-                        Log.SchedulerLogging.log(Level.INFO, LPSolver.class.getName() + "Added Agent "+placedAgents.get(placedAgents.size()-1).getId());
-                        break;
+                        if (SchedulerUtil.agentList.get(j).getCpu() >= currentJob.getCoresPerExecutor() &&
+                                SchedulerUtil.agentList.get(j).getMem() >= Math.ceil(currentJob.getTotalExecutorMemory())) {
+
+                            SchedulerUtil.agentList.get(j).setCpu(SchedulerUtil.agentList.get(j).getCpu() - currentJob.getCoresPerExecutor());
+                            SchedulerUtil.agentList.get(j).setMem(SchedulerUtil.agentList.get(j).getMem() - Math.ceil(currentJob.getTotalExecutorMemory()));
+                            placedAgents.add(SchedulerUtil.agentList.get(j));
+                            Log.SchedulerLogging.log(Level.INFO, LPSolver.class.getName() + "Added Agent " + placedAgents.get(placedAgents.size() - 1).getId());
+                            break;
+                        }
                     }
                 }
             }
