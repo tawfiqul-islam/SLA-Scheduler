@@ -7,12 +7,8 @@ import scpsolver.lpsolver.SolverFactory;
 import scpsolver.problems.LPSolution;
 import scpsolver.problems.LPWizard;
 import scpsolver.problems.LPWizardConstraint;
-import scpsolver.constraints.*;
-
 import java.util.logging.Level;
-
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 
 public class LPSolver {
@@ -88,6 +84,17 @@ public class LPSolver {
             lpw.plus("x-"+SchedulerUtil.agentList.get(i).getId(),SchedulerUtil.agentList.get(i).getPrice());
             lpw.setBoolean("x-"+SchedulerUtil.agentList.get(i).getId());
         }
+        //totalCost constraint
+        double totalCost=0;
+
+        for(int i=0;i<SchedulerUtil.agentList.size();i++) {
+            totalCost+=SchedulerUtil.agentList.get(i).getPrice();
+        }
+        LPWizardConstraint totalCostCons = lpw.addConstraint("tc_cons",totalCost,">=");
+        for(int i=0;i<SchedulerUtil.agentList.size();i++) {
+            totalCostCons.plus("x-"+SchedulerUtil.agentList.get(i).getId(),SchedulerUtil.agentList.get(i).getPrice());
+        }
+
         //set constraints: 1. executor placement constraint-> 1 executor in at most 1 agent
         for(int i=0;i<currentJob.getExecutors();i++) {
 
@@ -95,9 +102,8 @@ public class LPSolver {
 
             for(int j=0;j<SchedulerUtil.agentList.size();j++) {
                 tmpsConsP.plus("y-"+i+"-"+SchedulerUtil.agentList.get(j).getId(),1);
+                lpw.setBoolean("y-"+i+"-"+SchedulerUtil.agentList.get(j).getId());
             }
-
-            tmpsConsP.setAllVariablesBoolean();
         }
 
         //set constraints: 2. agent capacity constraint
@@ -124,6 +130,27 @@ public class LPSolver {
             tmpsConsCM.plus("x-"+SchedulerUtil.agentList.get(j).getId(),-SchedulerUtil.agentList.get(j).getMem());
 
         }
+
+        //bound constraints
+        for(int i=0;i<SchedulerUtil.agentList.size();i++) {
+            lpw.addConstraint("bc0-x-"+SchedulerUtil.agentList.get(i).getId(), 0, "<=").plus("x-"+SchedulerUtil.agentList.get(i).getId(),1);
+            lpw.addConstraint("bc1-x-"+SchedulerUtil.agentList.get(i).getId(), 1, ">=").plus("x-"+SchedulerUtil.agentList.get(i).getId(),1);
+
+        }
+        for(int i=0;i<currentJob.getExecutors();i++) {
+            for(int j=0;j<SchedulerUtil.agentList.size();j++) {
+                lpw.addConstraint("bc0-y-"+i+"-"+SchedulerUtil.agentList.get(j).getId(), 0, "<=").plus("y-"+i+"-"+SchedulerUtil.agentList.get(j).getId(),1);
+                lpw.addConstraint("bc1-y-"+i+"-"+SchedulerUtil.agentList.get(j).getId(), 1, ">=").plus("y-"+i+"-"+SchedulerUtil.agentList.get(j).getId(),1);
+            }
+        }
+
+        //already turned-on machine constraints
+        /* ************************** */
+        for(int i=0;i<SchedulerUtil.agentList.size();i++) {
+            if(SchedulerUtil.agentList.get(i).isUsed()) {
+                lpw.addConstraint("active-x-"+SchedulerUtil.agentList.get(i).getId(), 1, "=").plus("x-"+SchedulerUtil.agentList.get(i).getId(),1);
+            }
+        }
         /*Log.SchedulerLogging.log(Level.INFO, LPSolver.class.getName() + ": Total Constraints: "+lpw.getLP().getConstraints().size());
         for (int i=0;i< lpw.getLP().getConstraints().size();i++) {
             Log.SchedulerLogging.log(Level.INFO,"constraint-"+i+": "+lpw.getLP().getConstraints().get(i).getName());
@@ -131,10 +158,18 @@ public class LPSolver {
         Log.SchedulerLogging.log(Level.INFO, LPSolver.class.getName() + ": Solving LP");
         LinearProgramSolver solver  = SolverFactory.newDefault();
         LPSolution lpsol =lpw.solve(solver);
-        Log.SchedulerLogging.log(Level.INFO, LPSolver.class.getName() + ": Finished solving LP. Objective Value: "+lpsol.getObjectiveValue());
 
-        if(lpsol.getObjectiveValue()>0) {
-            Log.SchedulerLogging.log(Level.INFO,LPSolver.class.getName() + lpsol.toString());
+        Log.SchedulerLogging.log(Level.INFO, LPSolver.class.getName() + ": Finished solving LP. Objective Value: "+lpsol.getObjectiveValue());
+        Log.SchedulerLogging.log(Level.INFO,LPSolver.class.getName() +"\n"+ lpsol.toString());
+
+        for(int i=0;i<SchedulerUtil.agentList.size();i++) {
+            Log.SchedulerLogging.log(Level.INFO, LPSolver.class.getName() +": " +SchedulerUtil.agentList.get(i).getId()+"-> CPU-"+SchedulerUtil.agentList.get(i).getCpu()+" MEM-"+SchedulerUtil.agentList.get(i).getMem());
+        }
+        Log.SchedulerLogging.log(Level.INFO, LPSolver.class.getName() + ": current job->coresPerExec: "+currentJob.getCoresPerExecutor()+" memPerExec: "+currentJob.getMemPerExecutor()+" E: "+currentJob.getExecutors());
+        double objVal=lpsol.getObjectiveValue();
+        //objVal=Math.floor(objVal * 100 + 0.5) / 100;
+        if((objVal == Math.floor(objVal)) && !Double.isInfinite(objVal)&&objVal>0&&objVal<=totalCost) {
+           // Log.SchedulerLogging.log(Level.INFO,LPSolver.class.getName() + lpsol.toString());
             for (int i = 0; i < currentJob.getExecutors(); i++) {
                 for (int j = 0; j < SchedulerUtil.agentList.size(); j++) {
                     if (lpsol.getBoolean("y-"+i+"-"+SchedulerUtil.agentList.get(j).getId())) {
@@ -147,6 +182,10 @@ public class LPSolver {
                 }
             }
 
+            if(placedAgents.size()<currentJob.getExecutors()) {
+                Log.SchedulerLogging.log(Level.INFO, LPSolver.class.getName() + ": Model is infeasible to solve, returning failure, no exec placed");
+                return false;
+            }
             SchedulerUtil.placementTime=System.currentTimeMillis()-SchedulerUtil.placementTime;
             //if success
             currentJob.setAllocatedExecutors(currentJob.getExecutors());
@@ -156,9 +195,8 @@ public class LPSolver {
             return true;
         }
         else {
-            Log.SchedulerLogging.log(Level.INFO, LPSolver.class.getName() + ": Model is infeasible to solve, returning failure");
+            Log.SchedulerLogging.log(Level.INFO, LPSolver.class.getName() + ": Model is infeasible to solve, returning failure, obj not integer");
             return false;
         }
-
     }
 }
