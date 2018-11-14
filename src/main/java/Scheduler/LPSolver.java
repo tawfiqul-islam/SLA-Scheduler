@@ -188,6 +188,10 @@ public class LPSolver {
 
             if(placedAgents.size()<currentJob.getExecutors()) {
                 Log.SchedulerLogging.log(Level.INFO, LPSolver.class.getName() + ": Model is infeasible to solve, returning failure, no exec placed");
+                for(int i=0;i<placedAgents.size();i++){
+                    placedAgents.get(i).setCpu(placedAgents.get(i).getCpu() + currentJob.getCoresPerExecutor());
+                    placedAgents.get(i).setMem(placedAgents.get(i).getMem() + Math.ceil(currentJob.getTotalExecutorMemory()));
+                }
                 return false;
             }
             SchedulerUtil.placementTime=System.currentTimeMillis()-SchedulerUtil.placementTime;
