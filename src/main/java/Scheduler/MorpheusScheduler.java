@@ -94,19 +94,26 @@ public class MorpheusScheduler extends Thread{
                                 }
                             }
 
+                            //Submitting new jobs (with fully placed executors) to the cluster
+                            for(int j=0;j<SchedulerUtil.fullySubmittedJobList.size();j++)
+                            {
+                                Job currentSubmittedJob = SchedulerUtil.fullySubmittedJobList.get(j);
+                                //if the job is new submit it in the cluster
+                                if (!currentSubmittedJob.isSubmitted()&&currentSubmittedJob.isResourceReserved()) {
+                                    currentSubmittedJob.setSubmitted(true);
+                                    Log.SchedulerLogging.log(Level.INFO, MorpheusScheduler.class.getName() + ": Submitting Job: " + currentSubmittedJob.getJobID() +" with role: "+currentSubmittedJob.getRole()+ " to the Cluster");
+                                    new SparkLauncherAPI(currentSubmittedJob).start();
+                                    try {
+                                        Thread.sleep(3000);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                }
+                            }
+
                         }
 
-                        //Submitting new jobs (with fully placed executors) to the cluster
-                        for(int i=0;i<SchedulerUtil.fullySubmittedJobList.size();i++)
-                        {
-                            currentJob = SchedulerUtil.fullySubmittedJobList.get(i);
-                            //if the job is new submit it in the cluster
-                            if (!currentJob.isSubmitted()&&currentJob.isResourceReserved()) {
-                                currentJob.setSubmitted(true);
-                                Log.SchedulerLogging.log(Level.INFO, MorpheusScheduler.class.getName() + ": Submitting Job: " + currentJob.getJobID() +" with role: "+currentJob.getRole()+ " to the Cluster");
-                                new SparkLauncherAPI(currentJob).start();
-                            }
-                        }
                     }
                 }
             }
