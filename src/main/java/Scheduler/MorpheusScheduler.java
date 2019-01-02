@@ -51,7 +51,10 @@ public class MorpheusScheduler extends Thread{
 
                         //update jobs
                         StatusUpdater.updateJobs();
-
+                        Log.SchedulerLogging.log(Level.INFO, MorpheusScheduler.class.getName() + "jobBufferSize: "+SchedulerUtil.jobBuffer.size());
+                        Log.SchedulerLogging.log(Level.INFO, MorpheusScheduler.class.getName() + "QueueSize: "+SchedulerUtil.jobQueue.size());
+                        Log.SchedulerLogging.log(Level.INFO, MorpheusScheduler.class.getName() + "finishedListSize: "+SchedulerUtil.finishedJobList.size());
+                        Log.SchedulerLogging.log(Level.INFO, MorpheusScheduler.class.getName() + "SubmittedListSize: "+SchedulerUtil.fullySubmittedJobList.size());
                         calculateClusterLoad();
                         setJobsLowCost();
                         //sort all the Jobs according to increasing lowCostThreshold
@@ -64,8 +67,8 @@ public class MorpheusScheduler extends Thread{
                             currentJob = SchedulerUtil.jobQueue.get(i);
 
                             //shutDown check
-                            if (currentJob.isShutdown()) {
-                                if (SchedulerUtil.jobQueue.size() == 1&&SchedulerUtil.fullySubmittedJobList.size()==0) {
+                            if (currentJob.isShutdown()&&!shutdown) {
+                                if (SchedulerUtil.jobQueue.size() == 1&&SchedulerUtil.fullySubmittedJobList.size()<=3&&SchedulerUtil.jobBuffer.size()==0) {
                                     shutdown = true;
                                     shutdownJobArrivalTime=System.currentTimeMillis();
                                 }
@@ -118,7 +121,7 @@ public class MorpheusScheduler extends Thread{
                 }
             }
 
-            if (shutdown&&(SchedulerUtil.fullySubmittedJobList.size()==0||(System.currentTimeMillis()-shutdownJobArrivalTime)/1000>=1200)) {
+            if (shutdown&&(SchedulerUtil.fullySubmittedJobList.size()==0||(System.currentTimeMillis()-shutdownJobArrivalTime)/1000>=600)) {
                 Log.SchedulerLogging.log(Level.INFO, MorpheusScheduler.class.getName() + "Shutting Down Morpheus Scheduler. Job Queue is Empty...");
                 SchedulerManager.shutDown();
                 break;

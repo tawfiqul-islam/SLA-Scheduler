@@ -88,8 +88,8 @@ public class BestFitScheduler extends Thread {
                             currentJob = SchedulerUtil.jobQueue.get(i);
 
                             //shutDown check
-                            if (currentJob.isShutdown()) {
-                                if (SchedulerUtil.jobQueue.size() == 1&&SchedulerUtil.fullySubmittedJobList.size()==0) {
+                            if (currentJob.isShutdown()&&!shutdown) {
+                                if (SchedulerUtil.jobQueue.size() == 1&&SchedulerUtil.fullySubmittedJobList.size()<=3) {
                                     shutdown = true;
                                     shutdownJobArrivalTime=System.currentTimeMillis();
                                 }
@@ -149,7 +149,7 @@ public class BestFitScheduler extends Thread {
                     }
                 }
             }
-            if (shutdown&&(SchedulerUtil.fullySubmittedJobList.size()==0||(System.currentTimeMillis()-shutdownJobArrivalTime)/1000>=1200)) {
+            if (shutdown&&(SchedulerUtil.fullySubmittedJobList.size()==0||(System.currentTimeMillis()-shutdownJobArrivalTime)/1000>=600)) {
                 Log.SchedulerLogging.log(Level.INFO, BestFitScheduler.class.getName() + "Shutting Down BestFit Scheduler. Job Queue is Empty...");
                 SchedulerManager.shutDown();
                 break;

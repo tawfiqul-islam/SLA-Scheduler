@@ -21,14 +21,15 @@ public class RoundRobinScheduler extends Thread{
                 synchronized (SchedulerUtil.fullySubmittedJobList) {
                     synchronized (SchedulerUtil.agentList) {
 
+
+                        //update jobs
+                        StatusUpdater.updateJobs();
+
                         //if job_queue is empty, fetch jobs from job_buffer to job_queue
                         //otherwise keep working on the current jobqueue
                         if(SchedulerUtil.jobQueue.size()==0) {
                             SchedulerUtil.fetchJobs();
                         }
-
-                        //update jobs
-                        StatusUpdater.updateJobs();
 
                         Job currentJob;
 
@@ -37,8 +38,8 @@ public class RoundRobinScheduler extends Thread{
                             currentJob = SchedulerUtil.jobQueue.get(i);
 
                             //shutDown check
-                            if (currentJob.isShutdown()) {
-                                if (SchedulerUtil.jobQueue.size() == 1&&SchedulerUtil.fullySubmittedJobList.size()==0) {
+                            if (currentJob.isShutdown()&&!shutdown) {
+                                if (SchedulerUtil.jobQueue.size() == 1&&SchedulerUtil.fullySubmittedJobList.size()<=3&&SchedulerUtil.jobBuffer.size()==0) {
                                     shutdown = true;
                                     shutdownJobArrivalTime=System.currentTimeMillis();
                                 }
@@ -58,47 +59,39 @@ public class RoundRobinScheduler extends Thread{
                                         //add job to fully submitted job list
                                         SchedulerUtil.fullySubmittedJobList.add(currentJob);
                                         Log.SchedulerLogging.log(Level.INFO, RoundRobinScheduler.class.getName() + ": Added Job: " + currentJob.getJobID() + " to fullySubmittedJobList");
-                                        i--;
+
+                                        if (!currentJob.isSubmitted()&&currentJob.isResourceReserved()) {
+                                            currentJob.setSubmitted(true);
+                                            Log.SchedulerLogging.log(Level.INFO, RoundRobinScheduler.class.getName() + ": Submitting Job: " + currentJob.getJobID() +" with role: "+currentJob.getRole()+ " to the Cluster");
+                                            new SparkLauncherAPI(currentJob).start();
+                                            try {
+                                                Thread.sleep(3000);
+                                            } catch (InterruptedException e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                        break;
                                     }
 
                                 } else {
                                     //could not place any executors for the current job
-                                    //Log.SchedulerLogging.log(Level.INFO, RoundRobinScheduler.class.getName() + ":Could not place any executor(s) for Job: " + currentJob.getJobID());
+                                    Log.SchedulerLogging.log(Level.INFO, RoundRobinScheduler.class.getName() + ":Could not place any executor(s) for Job: " + currentJob.getJobID());
                                 }
                             }
-
-                            //Submitting new jobs (with fully placed executors) to the cluster
-                            for(int j=0;j<SchedulerUtil.fullySubmittedJobList.size();j++)
-                            {
-                                Job currentSubmittedJob = SchedulerUtil.fullySubmittedJobList.get(j);
-                                //if the job is new submit it in the cluster
-                                if (!currentSubmittedJob.isSubmitted()&&currentSubmittedJob.isResourceReserved()) {
-                                    currentSubmittedJob.setSubmitted(true);
-                                    Log.SchedulerLogging.log(Level.INFO, RoundRobinScheduler.class.getName() + ": Submitting Job: " + currentSubmittedJob.getJobID() +" with role: "+currentSubmittedJob.getRole()+ " to the Cluster");
-                                    new SparkLauncherAPI(currentSubmittedJob).start();
-                                    try {
-                                        Thread.sleep(3000);
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
-
-                                }
-                            }
-
+                        }
+                        if (shutdown&&(SchedulerUtil.fullySubmittedJobList.size()==0||(System.currentTimeMillis()-shutdownJobArrivalTime)/1000>=600)) {
+                            Log.SchedulerLogging.log(Level.INFO, RoundRobinScheduler.class.getName() + "Shutting Down Round Robin Scheduler. Job Queue is Empty...");
+                            SchedulerManager.shutDown();
+                            break;
+                        }
+                        //sleep
+                        try {
+                            Thread.sleep(SchedulerUtil.schedulingInterval*1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
                         }
                     }
                 }
-            }
-            if (shutdown&&(SchedulerUtil.fullySubmittedJobList.size()==0||(System.currentTimeMillis()-shutdownJobArrivalTime)/1000>=1200)) {
-                Log.SchedulerLogging.log(Level.INFO, RoundRobinScheduler.class.getName() + "Shutting Down Round Robin Scheduler. Job Queue is Empty...");
-                SchedulerManager.shutDown();
-                break;
-            }
-            //sleep
-            try {
-                Thread.sleep(SchedulerUtil.schedulingInterval*1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
         }
     }
