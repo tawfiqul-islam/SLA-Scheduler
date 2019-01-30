@@ -186,6 +186,7 @@ public class LPSolver {
                 }
             }
 
+
             if(placedAgents.size()<currentJob.getExecutors()) {
                 Log.SchedulerLogging.log(Level.INFO, LPSolver.class.getName() + ": Model is infeasible to solve, returning failure, no exec placed");
                 for(int i=0;i<placedAgents.size();i++){
