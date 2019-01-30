@@ -39,8 +39,8 @@
       <file leaf-file-name="LPSolver.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Scheduler/LPSolver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="761">
-              <caret line="197" column="24" lean-forward="true" selection-start-line="197" selection-start-column="24" selection-end-line="197" selection-end-column="24" />
+            <state relative-caret-position="581">
+              <caret line="187" column="0" lean-forward="true" selection-start-line="187" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -748,7 +748,7 @@
       <workItem from="1542692251762" duration="13021000" />
       <workItem from="1542849698024" duration="117000" />
       <workItem from="1546400151034" duration="87000" />
-      <workItem from="1548813042427" duration="1207000" />
+      <workItem from="1548813042427" duration="1726000" />
     </task>
     <task id="LOCAL-00002" summary="added reserve_resources and unreserve_resources">
       <created>1507877440509</created>
@@ -1097,7 +1097,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="786303000" />
+    <option name="totallyTimeSpent" value="786822000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -1607,8 +1607,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Scheduler/LPSolver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="761">
-          <caret line="197" column="24" lean-forward="true" selection-start-line="197" selection-start-column="24" selection-end-line="197" selection-end-column="24" />
+        <state relative-caret-position="581">
+          <caret line="187" column="0" lean-forward="true" selection-start-line="187" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
