@@ -1,0 +1,1709 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="SLA-Scheduler:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/src/main/java/Settings/SettingsLoader.java" line="36" />
+    <bookmark url="file://$PROJECT_DIR$/src/main/java/Scheduler/BestFitScheduler.java" line="75" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="781a3369-0915-42e3-8c8e-763a088e84ad" name="Default" comment="" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <expand />
+    <select />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="SLA-Scheduler" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="LPSolver.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Scheduler/LPSolver.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="761">
+              <caret line="197" column="24" lean-forward="true" selection-start-line="197" selection-start-column="24" selection-end-line="197" selection-end-column="24" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StatusUpdater.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Scheduler/StatusUpdater.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1782">
+              <caret line="105" column="50" lean-forward="false" selection-start-line="105" selection-start-column="50" selection-end-line="105" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BestFitScheduler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Scheduler/BestFitScheduler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1080">
+              <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MorpheusScheduler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Scheduler/MorpheusScheduler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1890">
+              <caret line="112" column="37" lean-forward="false" selection-start-line="112" selection-start-column="37" selection-end-line="112" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RoundRobinScheduler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Scheduler/RoundRobinScheduler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1224">
+              <caret line="72" column="46" lean-forward="false" selection-start-line="72" selection-start-column="46" selection-end-line="72" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Arquillian JUnit Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>health</find>
+      <find>System</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/java/Scheduler/JobSubmitter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Scheduler/JobRequestHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Scheduler/BFHeuristicAlgo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Scheduler/BFHeuristic.java" />
+        <option value="$PROJECT_DIR$/src/main/java/JobSubmitter/JobSubmit.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Scheduler/SparkLauncherAPI.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Scheduler/Scheduler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Scheduler/JobProcessor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Cluster/Framework.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Scheduler/Job.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operator/OperatorUtil.java" />
+        <option value="$PROJECT_DIR$/src/test/Scheduler/RoundRobinSchedulerTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Log/Logger.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Log/Logging.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Log/MyLogging.java" />
+        <option value="$PROJECT_DIR$/src/main/java/JobMananger/JobRequestHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Settings/Settings.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Log/SchedulerLogging.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Scheduler/BFHeuristicScheduler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/JobMananger/JobSubmit.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operator/ServerResponse.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Settings/SettingsLoader.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/profiler.ini" />
+        <option value="$PROJECT_DIR$/src/main/java/JobMananger/SparkLauncherAPI.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Scheduler/FirstFitDScheduler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Scheduler/FirstFitDeadlineScheduler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Scheduler/AgentTimer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/JobMananger/JobProcessor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Monitor/TaskMonitor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Monitor/ExecutorMonitor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Entity/ExecutorMonitor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Monitor/FrameworkMonitor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Monitor/MonitorHTTPAPI.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Entity/Framework.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Entity/Executor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Entity/Job.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Monitor/ExecutorTracker.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Monitor/MonitorManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Entity/Agent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Operator/HTTPAPI.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Scheduler/Demo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Scheduler/Algorithm.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Scheduler/SchedulerManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Scheduler/SchedulerUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Scheduler/BestFitDeadlineScheduler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Scheduler/StatusUpdater.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Scheduler/FirstFitScheduler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Scheduler/BestFitScheduler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Scheduler/MorpheusScheduler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Scheduler/RoundRobinScheduler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Scheduler/LPSolver.java" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="375" />
+    <option name="y" value="237" />
+    <option name="width" value="1163" />
+    <option name="height" value="968" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="SLA-Scheduler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SLA-Scheduler" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SLA-Scheduler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SLA-Scheduler" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SLA-Scheduler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SLA-Scheduler" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="SCPSolver" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SLA-Scheduler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SLA-Scheduler" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SLA-Scheduler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SLA-Scheduler" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SLA-Scheduler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SLA-Scheduler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SLA-Scheduler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SLA-Scheduler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SLA-Scheduler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SLA-Scheduler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SLA-Scheduler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SLA-Scheduler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SLA-Scheduler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SLA-Scheduler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="JobMananger" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SLA-Scheduler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SLA-Scheduler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Log" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SLA-Scheduler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SLA-Scheduler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SLA-Scheduler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SLA-Scheduler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Monitor" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SLA-Scheduler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SLA-Scheduler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Operator" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SLA-Scheduler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SLA-Scheduler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Scheduler" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SLA-Scheduler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SLA-Scheduler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Settings" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SLA-Scheduler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SLA-Scheduler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SLA-Scheduler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="AndroidView" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/LPSOLVESolverPack.jar!/" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.29310346" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="Arquillian JUnit4" />
+    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/src/main/java/Scheduler/BestFitScheduler.java" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="Scheduler" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Scheduler" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="JobSubmit" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="JobMananger.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="JobMananger.JobSubmit" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="SLA-Scheduler" />
+      <envs />
+    </configuration>
+    <configuration name="LPSolver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="Scheduler.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="Scheduler.LPSolver" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="SLA-Scheduler" />
+      <envs />
+    </configuration>
+    <configuration name="MonitorHTTPAPI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="Entity.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="Monitor.MonitorHTTPAPI" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="SLA-Scheduler" />
+      <envs />
+    </configuration>
+    <configuration name="MonitorManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="Monitor.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="Monitor.MonitorManager" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="SLA-Scheduler" />
+      <envs />
+    </configuration>
+    <configuration name="SchedulerManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="JobMananger.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="Scheduler.SchedulerManager" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="SLA-Scheduler" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file id="idea.log" enabled="true" />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+    </configuration>
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="Application.JobSubmit" />
+      <item index="1" class="java.lang.String" itemvalue="Application.SchedulerManager" />
+      <item index="2" class="java.lang.String" itemvalue="Application.MonitorHTTPAPI" />
+      <item index="3" class="java.lang.String" itemvalue="Application.MonitorManager" />
+      <item index="4" class="java.lang.String" itemvalue="Application.LPSolver" />
+    </list>
+    <recent_temporary>
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Application.LPSolver" />
+        <item index="1" class="java.lang.String" itemvalue="Application.MonitorManager" />
+        <item index="2" class="java.lang.String" itemvalue="Application.MonitorHTTPAPI" />
+        <item index="3" class="java.lang.String" itemvalue="Application.JobSubmit" />
+        <item index="4" class="java.lang.String" itemvalue="Application.SchedulerManager" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SbtLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="781a3369-0915-42e3-8c8e-763a088e84ad" name="Default" comment="" />
+      <created>1507608579546</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1507608579546</updated>
+      <workItem from="1507608580971" duration="98000" />
+      <workItem from="1507614694983" duration="4814000" />
+      <workItem from="1507681433883" duration="2492000" />
+      <workItem from="1507688380761" duration="3212000" />
+      <workItem from="1507695654719" duration="1872000" />
+      <workItem from="1507855427371" duration="1811000" />
+      <workItem from="1507857623530" duration="16621000" />
+      <workItem from="1508115126928" duration="32239000" />
+      <workItem from="1508278522348" duration="3853000" />
+      <workItem from="1508302653065" duration="73000" />
+      <workItem from="1508302812679" duration="12000" />
+      <workItem from="1508367908164" duration="249000" />
+      <workItem from="1508377978273" duration="317000" />
+      <workItem from="1508378327557" duration="609000" />
+      <workItem from="1508455085489" duration="6714000" />
+      <workItem from="1510282108835" duration="95000" />
+      <workItem from="1510282225189" duration="4765000" />
+      <workItem from="1510529958034" duration="6558000" />
+      <workItem from="1510799999440" duration="11000" />
+      <workItem from="1510800036924" duration="6922000" />
+      <workItem from="1510813212961" duration="6229000" />
+      <workItem from="1510892965820" duration="10459000" />
+      <workItem from="1510903563176" duration="8399000" />
+      <workItem from="1511134401126" duration="15767000" />
+      <workItem from="1511227670465" duration="25524000" />
+      <workItem from="1511306037347" duration="5355000" />
+      <workItem from="1511317023431" duration="36000" />
+      <workItem from="1511317663633" duration="9125000" />
+      <workItem from="1511743774259" duration="36131000" />
+      <workItem from="1512362145568" duration="9253000" />
+      <workItem from="1512435661866" duration="13085000" />
+      <workItem from="1512463123896" duration="1350000" />
+      <workItem from="1512481387085" duration="2044000" />
+      <workItem from="1512525444929" duration="3995000" />
+      <workItem from="1512912413117" duration="76000" />
+      <workItem from="1516750114873" duration="5801000" />
+      <workItem from="1517190335929" duration="58146000" />
+      <workItem from="1517797916906" duration="4097000" />
+      <workItem from="1517889092696" duration="2865000" />
+      <workItem from="1517960421766" duration="1867000" />
+      <workItem from="1518053629951" duration="8488000" />
+      <workItem from="1518393713849" duration="20296000" />
+      <workItem from="1518487985547" duration="619000" />
+      <workItem from="1518489831512" duration="9508000" />
+      <workItem from="1518504939979" duration="1812000" />
+      <workItem from="1518564329868" duration="7676000" />
+      <workItem from="1518578788009" duration="1802000" />
+      <workItem from="1518742893478" duration="30000" />
+      <workItem from="1518763553669" duration="8493000" />
+      <workItem from="1519004517249" duration="780000" />
+      <workItem from="1519006377521" duration="1311000" />
+      <workItem from="1519007852994" duration="1585000" />
+      <workItem from="1519009738109" duration="2828000" />
+      <workItem from="1519015564508" duration="1158000" />
+      <workItem from="1519017587551" duration="607000" />
+      <workItem from="1519027463058" duration="1728000" />
+      <workItem from="1519029515904" duration="430000" />
+      <workItem from="1519030022859" duration="240000" />
+      <workItem from="1519030323845" duration="1177000" />
+      <workItem from="1519035345625" duration="2859000" />
+      <workItem from="1519087586468" duration="98000" />
+      <workItem from="1519088341229" duration="2083000" />
+      <workItem from="1519091769958" duration="7117000" />
+      <workItem from="1519106809236" duration="3202000" />
+      <workItem from="1519269955544" duration="5587000" />
+      <workItem from="1519355018880" duration="6158000" />
+      <workItem from="1519362917546" duration="811000" />
+      <workItem from="1519363814198" duration="1109000" />
+      <workItem from="1519365238058" duration="631000" />
+      <workItem from="1519529640559" duration="1159000" />
+      <workItem from="1519531056830" duration="466000" />
+      <workItem from="1519531616344" duration="217000" />
+      <workItem from="1519532007732" duration="444000" />
+      <workItem from="1519533120823" duration="146000" />
+      <workItem from="1519535962444" duration="208000" />
+      <workItem from="1519536179470" duration="3564000" />
+      <workItem from="1519541138922" duration="1661000" />
+      <workItem from="1519544028111" duration="819000" />
+      <workItem from="1519546680370" duration="859000" />
+      <workItem from="1519547852784" duration="649000" />
+      <workItem from="1519548687928" duration="3245000" />
+      <workItem from="1519605645877" duration="327000" />
+      <workItem from="1519606016273" duration="2020000" />
+      <workItem from="1519608436109" duration="11412000" />
+      <workItem from="1519622538218" duration="150000" />
+      <workItem from="1519622692958" duration="4000" />
+      <workItem from="1519626236574" duration="353000" />
+      <workItem from="1519697311606" duration="4693000" />
+      <workItem from="1519709969446" duration="227000" />
+      <workItem from="1519772011076" duration="2559000" />
+      <workItem from="1519786543524" duration="7929000" />
+      <workItem from="1519958172981" duration="8615000" />
+      <workItem from="1519973881194" duration="983000" />
+      <workItem from="1519975107634" duration="344000" />
+      <workItem from="1519975552381" duration="245000" />
+      <workItem from="1519975883331" duration="247000" />
+      <workItem from="1519976350434" duration="1476000" />
+      <workItem from="1519979161229" duration="4847000" />
+      <workItem from="1520052165477" duration="749000" />
+      <workItem from="1520054613541" duration="692000" />
+      <workItem from="1520055997220" duration="1258000" />
+      <workItem from="1520138982865" duration="205000" />
+      <workItem from="1520158507338" duration="1662000" />
+      <workItem from="1520311479371" duration="14350000" />
+      <workItem from="1520559648374" duration="5762000" />
+      <workItem from="1520575973236" duration="796000" />
+      <workItem from="1520579815045" duration="613000" />
+      <workItem from="1520587240718" duration="11000" />
+      <workItem from="1520664569774" duration="786000" />
+      <workItem from="1520812440734" duration="1611000" />
+      <workItem from="1520819937733" duration="11385000" />
+      <workItem from="1520985527270" duration="8691000" />
+      <workItem from="1521354156875" duration="35000" />
+      <workItem from="1521437837400" duration="1899000" />
+      <workItem from="1521440263928" duration="4545000" />
+      <workItem from="1521605624611" duration="891000" />
+      <workItem from="1522380175084" duration="45000" />
+      <workItem from="1522665544682" duration="610000" />
+      <workItem from="1523601838446" duration="976000" />
+      <workItem from="1523854860107" duration="1826000" />
+      <workItem from="1523933086134" duration="7563000" />
+      <workItem from="1523950906600" duration="2916000" />
+      <workItem from="1524113845171" duration="1516000" />
+      <workItem from="1524188134419" duration="946000" />
+      <workItem from="1524448111874" duration="11803000" />
+      <workItem from="1524557548066" duration="10125000" />
+      <workItem from="1524630550843" duration="1710000" />
+      <workItem from="1524709774443" duration="4354000" />
+      <workItem from="1524729659168" duration="614000" />
+      <workItem from="1524799018831" duration="112000" />
+      <workItem from="1524799187199" duration="885000" />
+      <workItem from="1524808402664" duration="1731000" />
+      <workItem from="1525133431765" duration="3492000" />
+      <workItem from="1525162551586" duration="12000" />
+      <workItem from="1525225362415" duration="56000" />
+      <workItem from="1525410353382" duration="1450000" />
+      <workItem from="1525417260589" duration="2000" />
+      <workItem from="1525505418969" duration="603000" />
+      <workItem from="1526022444471" duration="2000" />
+      <workItem from="1526278753528" duration="2454000" />
+      <workItem from="1526353142647" duration="6000" />
+      <workItem from="1526357641964" duration="157000" />
+      <workItem from="1526432063281" duration="5556000" />
+      <workItem from="1527502400985" duration="5000" />
+      <workItem from="1528792986825" duration="633000" />
+      <workItem from="1528850999646" duration="449000" />
+      <workItem from="1528953343788" duration="6321000" />
+      <workItem from="1529305856892" duration="671000" />
+      <workItem from="1529385780015" duration="1980000" />
+      <workItem from="1530683050822" duration="2361000" />
+      <workItem from="1536041781529" duration="3470000" />
+      <workItem from="1536107586033" duration="58000" />
+      <workItem from="1536107760664" duration="9000" />
+      <workItem from="1536108683155" duration="47002000" />
+      <workItem from="1536724726967" duration="38000" />
+      <workItem from="1538532921346" duration="19345000" />
+      <workItem from="1540252947498" duration="25000" />
+      <workItem from="1540514359125" duration="10000" />
+      <workItem from="1541123301749" duration="2571000" />
+      <workItem from="1541135986394" duration="86637000" />
+      <workItem from="1542177910937" duration="191000" />
+      <workItem from="1542258265925" duration="9600000" />
+      <workItem from="1542692251762" duration="13021000" />
+      <workItem from="1542849698024" duration="117000" />
+      <workItem from="1546400151034" duration="87000" />
+      <workItem from="1548813042427" duration="1207000" />
+    </task>
+    <task id="LOCAL-00002" summary="added reserve_resources and unreserve_resources">
+      <created>1507877440509</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1507877440509</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Fixed Bugs in HTTP API, generalized json constructions">
+      <created>1508200418084</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1508200418085</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added GET_STATE, created Agent List with resource info">
+      <created>1508224301746</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1508224301746</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added JobRequestHandler, JobProcessor; removed profiler">
+      <created>1510819752880</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1510819752881</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added Settings, job processor and generalized some classes">
+      <created>1510906659140</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1510906659140</updated>
+    </task>
+    <task id="LOCAL-00007" summary="added RR scheduler">
+      <created>1510913569729</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1510913569729</updated>
+    </task>
+    <task id="LOCAL-00008" summary="job-queue/list finalized, statusupdater,  RR algo">
+      <created>1511264607878</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1511264607878</updated>
+    </task>
+    <task id="LOCAL-00009" summary="finished RR and tested with local settings (1 node)">
+      <created>1511840003431</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1511840003431</updated>
+    </task>
+    <task id="LOCAL-00010" summary="latest changes">
+      <created>1512912458493</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1512912458493</updated>
+    </task>
+    <task id="LOCAL-00011" summary="implemented bfhscheduler">
+      <created>1517547989022</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1517547989022</updated>
+    </task>
+    <task id="LOCAL-00012" summary="updated data structures, status updater and schedulers">
+      <created>1517798008242</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1517798008242</updated>
+    </task>
+    <task id="LOCAL-00013" summary="small changes">
+      <created>1518422732759</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1518422732760</updated>
+    </task>
+    <task id="LOCAL-00014" summary="added status thread, output retrievers">
+      <created>1518507506741</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1518507506741</updated>
+    </task>
+    <task id="LOCAL-00015" summary="fixed some bugs, added resultant jobid with jobs">
+      <created>1519007501954</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1519007501954</updated>
+    </task>
+    <task id="LOCAL-00016" summary="FF implemented">
+      <created>1519529743025</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1519529743025</updated>
+    </task>
+    <task id="LOCAL-00017" summary="fixed bugs in RR and statusupdater">
+      <created>1519610502293</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1519610502293</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Recoded BF and FFD">
+      <created>1519617296051</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1519617296051</updated>
+    </task>
+    <task id="LOCAL-00019" summary="fixed scheduling delay calculation">
+      <created>1519773453314</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1519773453314</updated>
+    </task>
+    <task id="LOCAL-00020" summary="fixed deadlock problem in RR">
+      <created>1519980099470</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1519980099470</updated>
+    </task>
+    <task id="LOCAL-00021" summary="fixed deadlock probs, generalized place-exec and reserve methods">
+      <created>1519984321329</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1519984321329</updated>
+    </task>
+    <task id="LOCAL-00022" summary="added output clear method. fixed bugs in bf and ffd schedulers">
+      <created>1520056086542</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1520056086543</updated>
+    </task>
+    <task id="LOCAL-00023" summary="added a new result file with cost calculations">
+      <created>1520561111513</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1520561111513</updated>
+    </task>
+    <task id="LOCAL-00024" summary="added configurable schedulingInterval and RUthreshold">
+      <created>1520562560739</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1520562560739</updated>
+    </task>
+    <task id="LOCAL-00025" summary="added jobbuffer; schedulers now fetches job from job buffer to job queue at the start of each scheduling interval">
+      <created>1520566822837</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1520566822838</updated>
+    </task>
+    <task id="LOCAL-00026" summary="fixed driver memory prob, scheduling interval timing prob">
+      <created>1520925733969</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1520925733969</updated>
+    </task>
+    <task id="LOCAL-00027" summary="updated bfd and ffd">
+      <created>1523941430625</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1523941430625</updated>
+    </task>
+    <task id="LOCAL-00028" summary="implemented morpheus scheduler">
+      <created>1524479197296</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1524479197296</updated>
+    </task>
+    <task id="LOCAL-00029" summary="implemented bf and ff deadline scheduler">
+      <created>1524571516037</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1524571516037</updated>
+    </task>
+    <task id="LOCAL-00030" summary="changed ffd class name">
+      <created>1524571647717</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1524571647717</updated>
+    </task>
+    <task id="LOCAL-00031" summary="fixed cost calculation bug">
+      <created>1524719592967</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1524719592967</updated>
+    </task>
+    <task id="LOCAL-00032" summary="updated RUT calculations">
+      <created>1525410653487</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1525410653487</updated>
+    </task>
+    <task id="LOCAL-00033" summary="udpated deadline parsing in jobprocessor">
+      <created>1528953571861</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1528953571862</updated>
+    </task>
+    <task id="LOCAL-00034" summary="fixed shutdown bug due to job failures">
+      <created>1529306515479</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1529306515479</updated>
+    </task>
+    <task id="LOCAL-00035" summary="added monitoring modules using APIs">
+      <created>1536231065847</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1536231065847</updated>
+    </task>
+    <task id="LOCAL-00036" summary="zsfsdf">
+      <created>1536294802044</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1536294802044</updated>
+    </task>
+    <task id="LOCAL-00037" summary="updated executortracker">
+      <created>1536311266210</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1536311266210</updated>
+    </task>
+    <task id="LOCAL-00038" summary="finished adding job monitoring modules">
+      <created>1536644688953</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1536644688953</updated>
+    </task>
+    <task id="LOCAL-00039" summary="fixed bug in result update">
+      <created>1536711342756</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1536711342756</updated>
+    </task>
+    <task id="LOCAL-00040" summary="added ILP solver">
+      <created>1541394677007</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1541394677007</updated>
+    </task>
+    <task id="LOCAL-00041" summary="fixed some bugs in ILP">
+      <created>1541486056147</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1541486056147</updated>
+    </task>
+    <task id="LOCAL-00042" summary="trying to fix lpsolver bug....float assignment">
+      <created>1541581003225</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1541581003225</updated>
+    </task>
+    <task id="LOCAL-00043" summary="fixed bugs in LP solver. added constraint for already on vm">
+      <created>1541728788887</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1541728788887</updated>
+    </task>
+    <task id="LOCAL-00044" summary="added delay to fix reservation bug in bf scheduler">
+      <created>1541737829584</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1541737829584</updated>
+    </task>
+    <task id="LOCAL-00045" summary="fixed resource calculation bug in LP solver place execs">
+      <created>1542176976918</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1542176976918</updated>
+    </task>
+    <task id="LOCAL-00046" summary="fixed delay problems in all the schedulers">
+      <created>1542258912392</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1542258912392</updated>
+    </task>
+    <task id="LOCAL-00047" summary="final updates on ILP scheduler and bug fixing on other schedulers">
+      <created>1546400226394</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1546400226394</updated>
+    </task>
+    <task id="LOCAL-00048" summary="commit to cloudsLab">
+      <created>1548813147786</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1548813147786</updated>
+    </task>
+    <task id="LOCAL-00049" summary="commit to cloudsLab">
+      <created>1548813261189</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1548813261190</updated>
+    </task>
+    <task id="LOCAL-00050" summary="e">
+      <created>1548813883617</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1548813883634</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="786303000" />
+  </component>
+  <component name="TodoView" selected-index="1">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="375" y="237" width="1861" height="1092" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15078534" sideWeight="0.49033684" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13612565" sideWeight="0.5041368" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928848" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13612565" sideWeight="0.4958632" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0" sideWeight="0.47380033" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.49364993" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2597904" sideWeight="0.89411765" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32965213" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24958587" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24958587" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24324325" sideWeight="0.105882354" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.4958632" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32965213" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.4958632" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.020942409" sideWeight="0.4682846" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added jobbuffer; schedulers now fetches job from job buffer to job queue at the start of each scheduling interval" />
+    <MESSAGE value="fixed driver memory prob, scheduling interval timing prob" />
+    <MESSAGE value="updated bfd and ffd" />
+    <MESSAGE value="implemented morpheus scheduler" />
+    <MESSAGE value="implemented bf and ff deadline scheduler" />
+    <MESSAGE value="changed ffd class name" />
+    <MESSAGE value="fixed cost calculation bug" />
+    <MESSAGE value="updated RUT calculations" />
+    <MESSAGE value="udpated deadline parsing in jobprocessor" />
+    <MESSAGE value="fixed shutdown bug due to job failures" />
+    <MESSAGE value="added monitoring modules using APIs" />
+    <MESSAGE value="zsfsdf" />
+    <MESSAGE value="updated executortracker" />
+    <MESSAGE value="finished adding job monitoring modules" />
+    <MESSAGE value="fixed bug in result update" />
+    <MESSAGE value="added ILP solver" />
+    <MESSAGE value="fixed some bugs in ILP" />
+    <MESSAGE value="trying to fix lpsolver bug....float assignment" />
+    <MESSAGE value="fixed bugs in LP solver. added constraint for already on vm" />
+    <MESSAGE value="added delay to fix reservation bug in bf scheduler" />
+    <MESSAGE value="fixed resource calculation bug in LP solver place execs" />
+    <MESSAGE value="fixed delay problems in all the schedulers" />
+    <MESSAGE value="final updates on ILP scheduler and bug fixing on other schedulers" />
+    <MESSAGE value="commit to cloudsLab" />
+    <MESSAGE value="e" />
+    <option name="LAST_COMMIT_MESSAGE" value="e" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="10" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/profiler.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/JobMananger/JobProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Scheduler/StatusUpdater.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4284">
+          <caret line="244" column="48" lean-forward="false" selection-start-line="244" selection-start-column="48" selection-end-line="244" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/JobMananger/SparkLauncherAPI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1152">
+          <caret line="76" column="38" lean-forward="false" selection-start-line="76" selection-start-column="38" selection-end-line="76" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/JobMananger/JobRequestHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Entity/Job.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2160">
+          <caret line="192" column="23" lean-forward="false" selection-start-line="192" selection-start-column="23" selection-end-line="192" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Entity/Agent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="738">
+          <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+          <folding>
+            <element signature="e#735#736#0" expanded="false" />
+            <element signature="e#779#780#0" expanded="false" />
+            <element signature="e#2052#2053#0" expanded="false" />
+            <element signature="e#2083#2084#0" expanded="false" />
+            <element signature="method#setWeight#0;class#Agent#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Scheduler/SchedulerUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="34" column="59" lean-forward="false" selection-start-line="34" selection-start-column="59" selection-end-line="34" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Settings/Settings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Settings/SettingsLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="558">
+          <caret line="36" column="8" lean-forward="false" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="106" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/profiler.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/JobMananger/JobProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Scheduler/SchedulerManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="26" column="9" lean-forward="false" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/JobMananger/SparkLauncherAPI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1152">
+          <caret line="76" column="38" lean-forward="false" selection-start-line="76" selection-start-column="38" selection-end-line="76" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/JobMananger/JobRequestHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Entity/Job.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2160">
+          <caret line="192" column="23" lean-forward="false" selection-start-line="192" selection-start-column="23" selection-end-line="192" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Entity/Agent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="738">
+          <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+          <folding>
+            <element signature="e#735#736#0" expanded="false" />
+            <element signature="e#779#780#0" expanded="false" />
+            <element signature="e#2052#2053#0" expanded="false" />
+            <element signature="e#2083#2084#0" expanded="false" />
+            <element signature="method#setWeight#0;class#Agent#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Scheduler/SchedulerUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="34" column="59" lean-forward="false" selection-start-line="34" selection-start-column="59" selection-end-line="34" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Settings/Settings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Settings/SettingsLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="558">
+          <caret line="36" column="8" lean-forward="false" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="106" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/profiler.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operator/ServerResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Monitor/FrameworkMonitor.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/Monitor/MonitorHTTPAPI.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/Entity/Framework.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="26" lean-forward="false" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+          <folding>
+            <element signature="e#972#973#0" expanded="false" />
+            <element signature="e#1004#1005#0" expanded="false" />
+            <element signature="e#1051#1052#0" expanded="false" />
+            <element signature="e#1093#1094#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/profiler.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Monitor/MonitorManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="27" lean-forward="false" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Monitor/ExecutorTracker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Entity/Executor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1152">
+          <caret line="108" column="29" lean-forward="false" selection-start-line="108" selection-start-column="29" selection-end-line="108" selection-end-column="29" />
+          <folding>
+            <element signature="e#2432#2433#0" expanded="false" />
+            <element signature="e#2468#2469#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/JobMananger/SparkLauncherAPI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-738">
+          <caret line="26" column="41" lean-forward="true" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
+          <folding>
+            <element signature="e#459#460#0" expanded="false" />
+            <element signature="e#495#496#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operator/HTTPAPI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="268" column="92" lean-forward="false" selection-start-line="268" selection-start-column="92" selection-end-line="268" selection-end-column="92" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Settings/Settings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Settings/SettingsLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="558">
+          <caret line="36" column="8" lean-forward="false" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="106" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Operator/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Scheduler/FirstFitDeadlineScheduler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="116" column="49" lean-forward="false" selection-start-line="116" selection-start-column="49" selection-end-line="116" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Scheduler/Algorithm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Log/SchedulerLogging.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Scheduler/AgentTimer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="19" column="51" lean-forward="false" selection-start-line="19" selection-start-column="51" selection-end-line="19" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Scheduler/SchedulerManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-612">
+          <caret line="23" column="56" lean-forward="true" selection-start-line="23" selection-start-column="56" selection-end-line="23" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Entity/Job.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4410">
+          <caret line="360" column="5" lean-forward="false" selection-start-line="360" selection-start-column="5" selection-end-line="360" selection-end-column="5" />
+          <folding>
+            <element signature="e#6984#6985#0" expanded="false" />
+            <element signature="e#7038#7039#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/JobMananger/JobRequestHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1278">
+          <caret line="79" column="1" lean-forward="false" selection-start-line="79" selection-start-column="1" selection-end-line="79" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/JobMananger/JobProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="33" column="69" lean-forward="false" selection-start-line="33" selection-start-column="69" selection-end-line="33" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Entity/Agent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1170">
+          <caret line="99" column="20" lean-forward="false" selection-start-line="99" selection-start-column="16" selection-end-line="99" selection-end-column="23" />
+          <folding>
+            <element signature="e#735#736#0" expanded="false" />
+            <element signature="e#779#780#0" expanded="false" />
+            <element signature="e#2052#2053#0" expanded="false" />
+            <element signature="e#2083#2084#0" expanded="false" />
+            <element signature="method#setWeight#0;class#Agent#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Scheduler/FirstFitScheduler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="85" column="58" lean-forward="false" selection-start-line="85" selection-start-column="58" selection-end-line="85" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Scheduler/BestFitDeadlineScheduler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1247">
+          <caret line="80" column="36" lean-forward="true" selection-start-line="80" selection-start-column="36" selection-end-line="80" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Scheduler/SchedulerUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="45" column="23" lean-forward="false" selection-start-line="45" selection-start-column="23" selection-end-line="45" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Scheduler/BestFitScheduler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1080">
+          <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Scheduler/StatusUpdater.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1782">
+          <caret line="105" column="50" lean-forward="false" selection-start-line="105" selection-start-column="50" selection-end-line="105" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Scheduler/MorpheusScheduler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1890">
+          <caret line="112" column="37" lean-forward="false" selection-start-line="112" selection-start-column="37" selection-end-line="112" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Scheduler/RoundRobinScheduler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1224">
+          <caret line="72" column="46" lean-forward="false" selection-start-line="72" selection-start-column="46" selection-end-line="72" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Scheduler/LPSolver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="761">
+          <caret line="197" column="24" lean-forward="true" selection-start-line="197" selection-start-column="24" selection-end-line="197" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>SLA-Scheduler:jar</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.29310346" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>commons-logging-1.2</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>SLA-Scheduler</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.29310346" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Arquillian JUnit:Release</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
