@@ -44,10 +44,27 @@ public class JobProcessor extends Thread {
             jobObj.setArrivalTime(System.currentTimeMillis());
             jobObj.setRole("role"+getRole());
             jobObj.setResultID(requestJson.getInt("resultID"));
+
+            //job profile information
+            if(jobObj.getExecutors()==2)
+            {
+                jobObj.setTotalPredictedTime(40);
+            }
+            else if(jobObj.getExecutors()==4)
+            {
+                jobObj.setTotalPredictedTime(70);
+            }
+            else if(jobObj.getExecutors()==6)
+            {
+                jobObj.setTotalPredictedTime(100);
+            }
+
+
             if(requestJson.has("priority"))
             {
                 jobObj.setPriority(requestJson.getBoolean("priority"));
             }
+
             if(requestJson.has("deadline"))
             {
                 //double temp = (jobObj.getArrivalTime()- SchedulerManager.startTime)/1000.0;

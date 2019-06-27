@@ -20,6 +20,24 @@ public class Agent {
     private long runTime=0;
     private double price;
     private boolean isLocal;
+    private double maxT;
+    private double prevMaxT;
+
+    public double getPrevMaxT() {
+        return prevMaxT;
+    }
+
+    public void setPrevMaxT(double prevMaxT) {
+        this.prevMaxT = prevMaxT;
+    }
+
+    public double getMaxT() {
+        return maxT;
+    }
+
+    public void setMaxT(double maxT) {
+        this.maxT = maxT;
+    }
 
     public boolean isLocal() {
         return isLocal;

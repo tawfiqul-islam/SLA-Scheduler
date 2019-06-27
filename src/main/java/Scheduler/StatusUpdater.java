@@ -171,6 +171,8 @@ public class StatusUpdater extends Thread{
                                                 //use APIs here to shut down this agent if needed (to optimize VM cost)
                                                 if (agentObj.getCpu() == agentObj.getDefaultCPU() && agentObj.getMem() == agentObj.getDefaultMEM()) {
                                                     agentObj.setUsed(false);
+                                                    agentObj.setMaxT(0);
+                                                    agentObj.setPrevMaxT(0);
                                                 }
                                                 Log.SchedulerLogging.log(Level.INFO, StatusUpdater.class.getName() + "*RESERVATION SUCCESSFUL* -->  Current Status of Agent: " + SchedulerUtil.agentList.get(k).getId() + "-> CPU: " + SchedulerUtil.agentList.get(k).getCpu() + " Mem: " + SchedulerUtil.agentList.get(k).getMem());
                                                 //updating agent resources

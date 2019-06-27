@@ -147,6 +147,18 @@ public class SchedulerManager {
             FirstFitDeadlineScheduler ffdSchedulerObj = new FirstFitDeadlineScheduler();
             ffdSchedulerObj.start();
         }
+        else if(SchedulerUtil.schedulerAlgorithm==Algorithm.FFHybrid) {
+            Log.SchedulerLogging.log(Level.INFO,SchedulerManager.class.getName()+": Started FirstFit Hybrid Scheduler ");
+            startTime=System.currentTimeMillis();
+            FirstFitScheduler ffdSchedulerObj = new FirstFitScheduler();
+            ffdSchedulerObj.start();
+        }
+        else if(SchedulerUtil.schedulerAlgorithm==Algorithm.GIOHybrid) {
+            Log.SchedulerLogging.log(Level.INFO,SchedulerManager.class.getName()+": Started GIOHybrid Scheduler ");
+            startTime=System.currentTimeMillis();
+            GIOScheduler gioSchedulerObj = new GIOScheduler();
+            gioSchedulerObj.start();
+        }
         else {
             //log error..not scheduling algorithm is chosen...or use a default scheduler
             Log.SchedulerLogging.log(Level.SEVERE,SchedulerManager.class.getName()+": No Scheduler Algorithm was selected in configuration");
