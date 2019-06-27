@@ -243,6 +243,9 @@ public class HTTPAPI {
 
     private static ArrayList<Agent> parseAgents(String responseStr) {
 
+        boolean localSmall=false;
+        boolean localMedium=false;
+        boolean localLarge=false;
         ArrayList<Agent> agentList= new ArrayList<>();
         JSONArray agents;
 
@@ -263,7 +266,28 @@ public class HTTPAPI {
                         case "cpus":
                             agentObj.setCpu(resources.getJSONObject(j).getJSONObject("scalar").getDouble("value"));
                             agentObj.setDefaultCPU(agentObj.getCpu());
-                            agentObj.setPrice((int)agentObj.getCpu()/4);
+                            agentObj.setPrice((agentObj.getCpu()/4)*(0.24/3600));
+                            if(agentObj.getDefaultCPU()==4) {
+                                if(!localSmall) {
+                                    localSmall = true;
+                                    agentObj.setLocal(true);
+                                }
+                            }
+                            else if(agentObj.getDefaultCPU()==8){
+                                if(!localMedium) {
+                                    localMedium = true;
+                                    agentObj.setLocal(true);
+                                }
+                            }
+                            else if(agentObj.getDefaultCPU()==12){
+                                if(!localLarge) {
+                                    localLarge = true;
+                                    agentObj.setLocal(true);
+                                }
+                            }
+                            if(agentObj.isLocal()) {
+                                agentObj.setPrice(agentObj.getPrice()/2);
+                            }
                             break;
                         case "mem":
                             agentObj.setMem(resources.getJSONObject(j).getJSONObject("scalar").getDouble("value"));

@@ -18,13 +18,22 @@ public class Agent {
     private long registeredTime;
     private double weight;
     private long runTime=0;
-    private int price;
+    private double price;
+    private boolean isLocal;
 
-    public int getPrice() {
+    public boolean isLocal() {
+        return isLocal;
+    }
+
+    public void setLocal(boolean local) {
+        isLocal = local;
+    }
+
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

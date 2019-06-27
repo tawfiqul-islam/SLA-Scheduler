@@ -18,7 +18,8 @@ public class AgentTimer extends TimerTask {
             if(SchedulerUtil.agentList.get(i).isUsed())
             {
                 SchedulerUtil.agentList.get(i).setRunTime(SchedulerUtil.agentList.get(i).getRunTime()+1);
-                tempCost+=(SchedulerUtil.agentList.get(i).getDefaultCPU()/4)*(0.24/3600);
+                tempCost+=SchedulerUtil.agentList.get(i).getPrice();
+                //tempCost+=(SchedulerUtil.agentList.get(i).getDefaultCPU()/4)*(0.24/3600);
             }
         }
         cumulativeCostVar+=tempCost;

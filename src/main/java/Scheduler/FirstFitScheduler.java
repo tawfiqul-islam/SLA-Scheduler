@@ -2,6 +2,8 @@ package Scheduler;
 
 import Entity.Job;
 import JobMananger.SparkLauncherAPI;
+import Operator.Constants;
+
 import java.util.Collections;
 import java.util.logging.Level;
 
@@ -30,8 +32,10 @@ public class FirstFitScheduler extends Thread {
                         //update jobs
                         StatusUpdater.updateJobs();
 
-                        //sort all the Jobs according to decreasing resource requirements / jobSize
-                        Collections.sort(SchedulerUtil.jobQueue, new BestFitScheduler.JobComparator());
+                        if(SchedulerUtil.schedulerAlgorithm!= Algorithm.FFHybrid) {
+                            //sort all the Jobs according to decreasing resource requirements / jobSize
+                            Collections.sort(SchedulerUtil.jobQueue, new BestFitScheduler.JobComparator());
+                        }
 
                         Job currentJob;
 
